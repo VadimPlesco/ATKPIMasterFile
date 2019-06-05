@@ -1,0 +1,206 @@
+﻿@{ Layout = null;}
+@model List<ATKPIMasterFile.BusinessLogic.Model.Auto>
+
+<script src="~/Scripts/jquery.tablesorter.min.js"></script>
+<script src="~/Content/jquery.tablescroll.js"></script>
+<script>
+    $(document).ready(function () {
+
+        $.tablesorter.addParser({
+            id: "digit",
+            is: function (s, table) {
+                var c = table.config;
+                return $.tablesorter.isDigit(s, c);
+            },
+            format: function (s) {
+                if (s.match(',')) {
+                    s = s.replace(/\,/, '');
+                }
+                if (s.match('<')) {
+                    s = s.replace(/\</, '');
+                }
+                if (s.match(' ')) {
+                    s = s.replace(/\ /, '');
+                }
+                return $.tablesorter.formatFloat(s);
+            },
+            type: "numeric"
+        });
+
+        $("#salDetTbl").tablesorter({
+
+            theme: 'blue',
+
+            stringTo: "max",
+            // columns 2 & 3 (zero-based index) set using headers option
+            // columns 4+ set using header class name: "string-max", "string-min", "string-top", "string-bottom" and "string-none"
+            headers: {
+                3: { sorter: "digit", empty: "top" }, // sort empty cells to the top
+                4: { sorter: "digit" }, // non-numeric content is treated as a MAX value
+                5: { sorter: "digit" },  // non-numeric content is treated as a MIN value
+                6: { sorter: "digit" }  // non-numeric content is treated as a MIN value
+            }
+
+        });
+        $('#salDetTbl').tableScroll({ height: 450, width: 690 });
+    }
+);
+</script>
+
+@{
+    var title = "";
+    //if (Model != null)
+    //{
+    //    title = Model[0].Post;
+    //}
+}
+
+<div class="text-edit-modal2">
+    <div class="profile-setup-modal__modal-header">
+        <div class="modal-header__header-text">@title</div>
+        <div class="shared__header__close" onclick="kinkyApp.modal.hide()"></div>
+    </div>
+    <div class="tablescroll" align="center" style="padding:10px">
+
+        <table id="salDetTbl" cellspacing="0">
+            @if (Model != null)
+            {
+                <thead style="cursor:pointer">
+                    <tr>
+                        <th>
+                            N
+                        </th>
+                        <th>
+                            Номер
+                        </th>
+                        <th>
+                            Сотрудник
+                        </th>
+                        @if (ViewBag.RowName == "Запасные части - шины и аккумуляторы")
+                        {
+                            <th>
+                                Шины
+                            </th>
+                            <th>
+                                Аккумуляторы
+                            </th>
+                        }
+                        else if (ViewBag.RowName == "Запасные части - другие комплектующие авто")
+                        {
+                            <th>
+                                Запасные части
+                            </th>
+                        }
+                        else if (ViewBag.RowName == "ТО грузового транспорта" || ViewBag.RowName == "ТО легкового транспорта")
+                        {
+                            <th>
+                                Расходы содержание ОС
+                            </th>
+                            <th>
+                                Смазочные материалы
+                            </th>
+                            <th>
+                                Тестирование
+                            </th>
+                        }
+                        else if (ViewBag.RowName == "Услуги по ремонтам")
+                        {
+                            <th>
+                                Ремонт текущий ОС
+                            </th>
+                            <th>
+                                Обслуживание OC
+                            </th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @{var temp1 = 0.0; var temp2 = 0.0; var temp3 = 0.0;
+                        for (int i = 0; i < Model.Count; i++)
+                        {
+
+                            <tr>
+                                <td>
+                                    @(i + 1)
+                                </td>
+                                <td>
+                                    @Model[i].Number
+                                </td>
+                                <td>
+                                    @Model[i].Person
+                                </td>
+                                @if (ViewBag.RowName == "Запасные части - шины и аккумуляторы")
+                                {
+                                    temp1 += Model[i].Tires;
+                                    temp2 += Model[i].Accumulators;
+                                    <td>
+                                        @Model[i].Tires
+                                    </td>
+                                    <td>
+                                        @Model[i].Accumulators
+                                    </td>
+                                }
+                                else if (ViewBag.RowName == "Запасные части - другие комплектующие авто")
+                                {
+                                    temp1 += Model[i].Spares;
+                                    <td>
+                                        @Model[i].Spares
+                                    </td>
+                                }
+                                else if (ViewBag.RowName == "ТО грузового транспорта" || ViewBag.RowName == "ТО легкового транспорта")
+                                {
+                                    temp1 += Model[i].Expenses;
+                                    temp2 += Model[i].Lubricants;
+                                    temp3 += Model[i].TestareAuto;
+                                    <td>
+                                        @Model[i].Expenses
+                                    </td>
+                                    <td>
+                                        @Model[i].Lubricants
+                                    </td>
+                                    <td>
+                                        @Model[i].TestareAuto
+                                    </td>
+                                }
+                                else if (ViewBag.RowName == "Услуги по ремонтам")
+                                {
+                                    temp1 += Model[i].Repairs;
+                                    temp2 += Model[i].Services;
+                                    <td>
+                                        @Model[i].Repairs
+                                    </td>
+                                    <td>
+                                        @Model[i].Services
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>Всего</td>
+                        <td></td>
+                        @if (temp1 > 0)
+                        {
+                            <td>@temp1 (@(temp1 * 1.2))</td>
+                        }
+
+                        @if (temp2 > 0 || ViewBag.RowName == "ТО грузового транспорта" || ViewBag.RowName == "ТО легкового транспорта" || ViewBag.RowName == "Услуги по ремонтам")
+                        {
+                            <td>@temp2 (@(temp2 * 1.2))</td>
+                        }
+
+                        @if (ViewBag.RowName == "ТО грузового транспорта" || ViewBag.RowName == "ТО легкового транспорта")
+                        {
+                            <td>@temp3 (@(temp3 * 1.2))</td>
+                        }
+
+                    </tr>
+                </tfoot>
+                        }
+        </table>
+
+    </div>
+</div>

@@ -1,0 +1,151 @@
+﻿@model ATKPIMasterFile.BusinessLogic.ViewModels.Admin.ManageUsersViewModel
+
+@{
+    ViewBag.Title = "ManageUsers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //Layout = null;
+
+    //WebGrid grid = new WebGrid(null, rowsPerPage: 5);
+    //grid.Bind(Model.ManageUsers, autoSortAndPage: true, rowCount: 5);
+}
+
+<script src="~/Scripts/jquery.tablesorter.min.js"></script>
+<script src="~/Content/jquery.tablescroll.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#catTbl").tablesorter();
+       // $('#catTbl').tableScroll({ height: 600, width: 1300 });
+    }
+);
+</script>
+
+
+<div class="profile-setup-modal__modal-header">
+    <div class="modal-header__header-text">Пользователи</div>
+    @*<div class="shared__header__close" onclick="kinkyApp.modal.hide()"></div>*@
+</div>
+
+
+<table id="catTbl" class="shared__relative shared__padding-bottom-double" style="padding-left:20px; padding-right:20px;  height: 40px;table-layout:fixed;">
+    @*<div class="shared__background-white shared__padding-top-big">*@
+    @if (true)
+    {
+        <thead>
+            <tr>
+                <th style="width: 30px;">
+                    ID
+                </th>
+                <th style="width: 100px;">
+                    Имя
+                </th>
+                <th style="width: 150px;">
+                    Почта
+                </th>
+                <th style="width: 150px;">
+                    Пароль
+                </th>
+                <th style="width: 120px;">
+                    Филиал
+                </th>
+                <th style="width: 120px;">
+                    Департамент
+                </th>
+                   <th style="width: 70px;">
+                    Роли
+                </th>
+                @*<th style="width: 70px;">
+        Новые
+    </th>*@
+                @*<th style="width: 150px;">
+                    </th>*@
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.ManageUsers.Count; i++)
+            {
+                //string color = "#";
+                string color = "white";
+
+                <tr class="@(i%2==0 ? "shared__background-white": "")" @(color != null ? ("style=background-color:" + color) : "")>
+                    <td>
+                        @Model.ManageUsers[i].UserId
+                    </td>
+                    <td>
+                        @Model.ManageUsers[i].Name
+                    </td>
+                    <td style="overflow:hidden;white-space:nowrap;padding-left:10px;">
+                        @Model.ManageUsers[i].Email
+                    </td>
+                    <td style="padding-left:10px;">
+                        @Model.ManageUsers[i].Password
+                    </td>
+                    <td>
+                        @Model.ManageUsers[i].Filial
+                    </td>
+                    <td>
+                        @Model.ManageUsers[i].Department
+                    </td>
+                    <td>
+                        @foreach (var role in Model.ManageUsers[i].Roles)
+                        {
+                            <p>@role.Role.Name</p>
+                        }
+                    </td>
+                        @*<td>
+        Нет
+    </td>
+    <td>
+        Ru
+    </td>
+    <td>
+        Комментарий
+    </td>*@
+                    <td>
+                            @using (Ajax.BeginForm("ManageUsers", "Admin", null, new AjaxOptions { UpdateTargetId = "body", LoadingElementId = "loadingElement", HttpMethod = "Post" }))
+                            {
+                                <button onclick="kinkyApp.modal.showTopByUrl('@Url.Action("ManageUser", "Admin", new { categoryId = 1 })'); return false;">
+                                    Edit
+                                </button>
+                                <button onclick = "kinkyApp.modal.showByUrl('@Url.Action("ManageUser", "Admin")','body'); return false; " >
+                                       Test
+                                  </button >
+                                <button onclick="kinkyApp.modal.showByUrl('/Admin/ManageUser'); return false;">
+                                    Test2
+                                </button>
+                                <button onclick="kinkyApp.updateElementById('@Url.Action("ManageUser", "Admin")', 'body');return false;">
+                                    Test3
+                                </button>
+                                   <button type="submit" id="deleteBnt" onclick="return confirm('Вы действительно хотите удалить категорию?');">
+                                            Delete
+                                     </button>
+                                        <input type='hidden' value="1" name='CategoryId' />
+                                        <input type='hidden' value="true" name='IsDel' />
+                            }
+                        </td>
+                </tr>
+            }
+        </tbody>
+    }
+</table>
+
+<br /><br />
+
+@*<div>
+    @grid.GetHtml(tableStyle: "table table-bordered",
+         mode: WebGridPagerModes.All,
+         firstText: "<< First",
+         previousText: "< Prev",
+         nextText: "Next >",
+         lastText: "Last >>",
+            columns: grid.Columns(
+            grid.Column("UserId", " UserId"),
+            grid.Column("Name", "Name"),
+            grid.Column("Email", "Email"),
+            grid.Column("Department", "Department")
+        //grid.Column(header: "Action",
+        //            format: @Edit)
+        ))
+</div>*@
+
+
+

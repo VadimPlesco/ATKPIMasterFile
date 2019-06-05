@@ -1,0 +1,289 @@
+﻿@{
+    ViewBag.Title = "Index";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
+    }
+
+
+
+
+@*@model ATKPIMasterFile.BusinessLogic.ViewModels.User.KPIViewModel*@
+@*@using ShooryMoory.DataAccess.Model;
+    @{
+        Ajax.SetTitle(FeedResources.Online);
+    }*@
+<div class="image-folder-top shared__overflow-visible seacrh-users-result__container">
+    @*@using (Ajax.BeginForm("Index", "User", null, new AjaxOptions { UpdateTargetId = "catTbl", LoadingElementId = "loadingElement", HttpMethod = "Get" }))*@
+    @using (Html.BeginForm())
+    {
+        <div class="shared__overflow-hidden" style="padding-left:580px">
+           
+                <div class="shared__left-float shared__margin-right-double">
+                    <div class="shared__text-white shared__font-bold shared__font-small shared__margin-bottom-single shared__height-small">
+                        Год:
+                    </div>
+                    @Html.DropDownList("SelectedYear")
+                </div>
+         
+
+            <div class="shared__left-float shared__margin-right-double">
+                <button class="button-gold-to-gold-same-border button-gold-to-gold shared__button-medium shared__font-bold button-search" type="submit">Сформировать</button>
+            </div>
+        </div>
+
+    }
+</div>
+@*<div id="feedwrapper" class="shared__relative feed-wrapper admin-search-users-feed-wrapper">
+        @Html.Partial("../Search/SearchUsers", Model.InitData.Users)
+    </div>*@
+
+<p align="center" style="padding-top:30px;padding-bottom:5px;font-weight:bold;font-size:20px;">Логистика Грузового транспорта</p>
+
+<style>
+    table {
+        font-family: arial, sans-serif;
+        font-size:14px;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid Sienna    ;
+        text-align:center;
+        padding: 2px;
+    }
+
+    /*tr:nth-child(even) {
+        background-color: #dddddd;
+    }*/
+
+    .tabletitle {
+        font-weight:bold;
+        font-size:16px;
+        background-color: #dddddd;
+    }
+
+      .prim {
+        font-weight:bold;
+        font-size:16px;
+        background-color: #dddddd;
+        text-align:left;
+    }
+</style>
+
+<div style="padding-left:10px;">
+    <table >
+        <tr class="tabletitle">
+            <td class="prim"></td>
+            <td>Апрель</td>
+            <td>Май</td>
+            <td>Июнь</td>
+            <td>Июль</td>
+            <td>Август</td>
+            <td>Сентябрь</td>
+            <td>Октябрь</td>
+            <td>Ноябрь</td>
+            <td>Декабрь</td>
+            <td>Январь</td>
+            <td>Февраль</td>
+            <td>Март</td>
+        </tr>
+        <tr>
+            <td class="prim">Кол-во авто(груз. транс.)</td>
+            <td><a href="" style="text-decoration:underline">90</a></td>
+            <td><a href="" style="text-decoration:underline">93</a></td>
+            <td><a href="" style="text-decoration:underline">94</a></td>
+            <td><a href="" style="text-decoration:underline">93</a></td>
+            <td><a href="" style="text-decoration:underline">91</a></td>
+            <td><a href="" style="text-decoration:underline">90</a></td>
+            <td><a href="" style="text-decoration:underline">89</a></td>
+            <td><a href="" style="text-decoration:underline">90</a></td>
+            <td><a href="" style="text-decoration:underline">91</a></td>
+            <td><a href="" style="text-decoration:underline">90</a></td>
+            <td><a href="" style="text-decoration:underline">89</a></td>
+            <td><a href="" style="text-decoration:underline">90</a></td>
+        </tr>
+        <tr>
+            <td class="prim">Затраты на топливо(груз. транс.)</td>
+            <td><a href="" style="text-decoration:underline">351 172</a></td>
+            <td><a href="" style="text-decoration:underline">380 082</a></td>
+            <td><a href="" style="text-decoration:underline">383 664</a></td>
+            <td><a href="" style="text-decoration:underline">383 664</a></td>
+            <td><a href="" style="text-decoration:underline">383 664</a></td>
+            <td><a href="" style="text-decoration:underline">380 082</a></td>
+            <td><a href="" style="text-decoration:underline">380 082</a></td>
+            <td><a href="" style="text-decoration:underline">380 082</a></td>
+            <td><a href="" style="text-decoration:underline">380 082</a></td>
+            <td><a href="" style="text-decoration:underline">380 082</a></td>
+            <td><a href="" style="text-decoration:underline">380 082</a></td>
+            <td><a href="" style="text-decoration:underline">380 082</a></td>
+        </tr>
+        <tr>
+            <td class="prim">Кол-во авто(магистр. транс.)</td>
+            <td><a href="" style="text-decoration:underline">35</a></td>
+            <td><a href="" style="text-decoration:underline">38</a></td>
+            <td><a href="" style="text-decoration:underline">41</a></td>
+            <td><a href="" style="text-decoration:underline">45</a></td>
+            <td><a href="" style="text-decoration:underline">48</a></td>
+            <td><a href="" style="text-decoration:underline">46</a></td>
+            <td><a href="" style="text-decoration:underline">43</a></td>
+            <td><a href="" style="text-decoration:underline">45</a></td>
+            <td><a href="" style="text-decoration:underline">42</a></td>
+            <td><a href="" style="text-decoration:underline">41</a></td>
+            <td><a href="" style="text-decoration:underline">40</a></td>
+            <td><a href="" style="text-decoration:underline">40</a></td>
+        </tr>
+        <tr>
+            <td class="prim">Затраты на топливо(магистр. транс.)</td>
+            <td><a href="" style="text-decoration:underline">689 397</a></td>
+            <td><a href="" style="text-decoration:underline">689 397</a></td>
+            <td><a href="" style="text-decoration:underline">689 397</a></td>
+            <td><a href="" style="text-decoration:underline">689 397</a></td>
+            <td><a href="" style="text-decoration:underline">689 397</a></td>
+            <td><a href="" style="text-decoration:underline">689 397</a></td>
+            <td><a href="" style="text-decoration:underline">689 397</a></td>
+            <td><a href="" style="text-decoration:underline">689 397</a></td>
+            <td><a href="" style="text-decoration:underline">689 397</a></td>
+            <td><a href="" style="text-decoration:underline">689 397</a></td>
+            <td><a href="" style="text-decoration:underline">689 397</a></td>
+            <td><a href="" style="text-decoration:underline">689 397</a></td>
+        </tr>
+        <tr>
+            <td class="prim">Аренда помещений</td>
+            <td><a href="" style="text-decoration:underline">435 000</a></td>
+            <td><a href="" style="text-decoration:underline">435 000</a></td>
+            <td><a href="" style="text-decoration:underline">435 000</a></td>
+            <td><a href="" style="text-decoration:underline">435 000</a></td>
+            <td><a href="" style="text-decoration:underline">435 000</a></td>
+            <td><a href="" style="text-decoration:underline">435 000</a></td>
+            <td><a href="" style="text-decoration:underline">435 000</a></td>
+            <td><a href="" style="text-decoration:underline">435 000</a></td>
+            <td><a href="" style="text-decoration:underline">435 000</a></td>
+            <td><a href="" style="text-decoration:underline">435 000</a></td>
+            <td><a href="" style="text-decoration:underline">435 000</a></td>
+            <td><a href="" style="text-decoration:underline">435 000</a></td>
+        </tr>
+        <tr>
+            <td class="prim">Аренда грузового транспорта</td>
+            <td><a href="" style="text-decoration:underline">81 286</a></td>
+            <td><a href="" style="text-decoration:underline">199 743</a></td>
+            <td><a href="" style="text-decoration:underline">259 721</a></td>
+            <td><a href="" style="text-decoration:underline">258 487</a></td>
+            <td><a href="" style="text-decoration:underline">258 487</a></td>
+            <td><a href="" style="text-decoration:underline">258 487</a></td>
+            <td><a href="" style="text-decoration:underline">258 487</a></td>
+            <td><a href="" style="text-decoration:underline">258 487</a></td>
+            <td><a href="" style="text-decoration:underline">258 487</a></td>
+            <td><a href="" style="text-decoration:underline">258 487</a></td>
+            <td><a href="" style="text-decoration:underline">258 487</a></td>
+            <td><a href="" style="text-decoration:underline">258 487</a></td>
+        </tr>
+        <tr>
+            <td class="prim">Техническое обслуживание транспорта</td>
+            <td><a href="" style="text-decoration:underline">95 000</a></td>
+            <td><a href="" style="text-decoration:underline">95 000</a></td>
+            <td><a href="" style="text-decoration:underline">95 000</a></td>
+            <td><a href="" style="text-decoration:underline">95 000</a></td>
+            <td><a href="" style="text-decoration:underline">95 000</a></td>
+            <td><a href="" style="text-decoration:underline">95 000</a></td>
+            <td><a href="" style="text-decoration:underline">95 000</a></td>
+            <td><a href="" style="text-decoration:underline">95 000</a></td>
+            <td><a href="" style="text-decoration:underline">95 000</a></td>
+            <td><a href="" style="text-decoration:underline">95 000</a></td>
+            <td><a href="" style="text-decoration:underline">95 000</a></td>
+            <td><a href="" style="text-decoration:underline">95 000</a></td>
+        </tr>
+        <tr>
+            <td class="prim">Запасные части - шины</td>
+            <td><a href="" style="text-decoration:underline">115 000</a></td>
+            <td><a href="" style="text-decoration:underline">115 000</a></td>
+            <td><a href="" style="text-decoration:underline">115 000</a></td>
+            <td><a href="" style="text-decoration:underline">115 000</a></td>
+            <td><a href="" style="text-decoration:underline">115 000</a></td>
+            <td><a href="" style="text-decoration:underline">115 000</a></td>
+            <td><a href="" style="text-decoration:underline">115 000</a></td>
+            <td><a href="" style="text-decoration:underline">115 000</a></td>
+            <td><a href="" style="text-decoration:underline">115 000</a></td>
+            <td><a href="" style="text-decoration:underline">115 000</a></td>
+            <td><a href="" style="text-decoration:underline">115 000</a></td>
+            <td><a href="" style="text-decoration:underline">115 000</a></td>
+        </tr>
+        <tr>
+            <td class="prim">Запасные части авто</td>
+            <td><a href="" style="text-decoration:underline">230 000</a></td>
+            <td><a href="" style="text-decoration:underline">230 000</a></td>
+            <td><a href="" style="text-decoration:underline">230 000</a></td>
+            <td><a href="" style="text-decoration:underline">230 000</a></td>
+            <td><a href="" style="text-decoration:underline">230 000</a></td>
+            <td><a href="" style="text-decoration:underline">230 000</a></td>
+            <td><a href="" style="text-decoration:underline">230 000</a></td>
+            <td><a href="" style="text-decoration:underline">230 000</a></td>
+            <td><a href="" style="text-decoration:underline">230 000</a></td>
+            <td><a href="" style="text-decoration:underline">230 000</a></td>
+            <td><a href="" style="text-decoration:underline">230 000</a></td>
+            <td><a href="" style="text-decoration:underline">230 000</a></td>
+        </tr>
+        <tr>
+            <td class="prim">Запасные части - аккумуляторы</td>
+            <td><a href="" style="text-decoration:underline">7 000</a></td>
+            <td><a href="" style="text-decoration:underline">7 000</a></td>
+            <td><a href="" style="text-decoration:underline">7 000</a></td>
+            <td><a href="" style="text-decoration:underline">7 000</a></td>
+            <td><a href="" style="text-decoration:underline">7 000</a></td>
+            <td><a href="" style="text-decoration:underline">7 000</a></td>
+            <td><a href="" style="text-decoration:underline">7 000</a></td>
+            <td><a href="" style="text-decoration:underline">7 000</a></td>
+            <td><a href="" style="text-decoration:underline">7 000</a></td>
+            <td><a href="" style="text-decoration:underline">7 000</a></td>
+            <td><a href="" style="text-decoration:underline">7 000</a></td>
+            <td><a href="" style="text-decoration:underline">7 000</a></td>
+        </tr>
+        <tr>
+            <td class="prim">Списание МБП</td>
+            <td>12 000</td>
+            <td>12 000</td>
+            <td>12 000</td>
+            <td>12 000</td>
+            <td>12 000</td>
+            <td>12 000</td>
+            <td>12 000</td>
+            <td>12 000</td>
+            <td>12 000</td>
+            <td>12 000</td>
+            <td>12 000</td>
+            <td>12 000</td>
+        </tr>
+        <tr>
+            <td class="prim">GSP</td>
+            <td>8 000</td>
+            <td>8 000</td>
+            <td>8 000</td>
+            <td>8 000</td>
+            <td>8 000</td>
+            <td>8 000</td>
+            <td>8 000</td>
+            <td>8 000</td>
+            <td>8 000</td>
+            <td>8 000</td>
+            <td>8 000</td>
+            <td>8 000</td>
+        </tr>
+        <tr>
+            <td class="prim">Страхование</td>
+            <td>15 000</td>
+            <td>15 000</td>
+            <td>15 000</td>
+            <td>15 000</td>
+            <td>15 000</td>
+            <td>15 000</td>
+            <td>15 000</td>
+            <td>15 000</td>
+            <td>15 000</td>
+            <td>15 000</td>
+            <td>15 000</td>
+            <td>15 000</td>
+        </tr>
+  
+    </table>
+</div>
+

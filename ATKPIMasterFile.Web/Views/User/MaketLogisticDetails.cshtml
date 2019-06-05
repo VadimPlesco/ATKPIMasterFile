@@ -1,0 +1,469 @@
+﻿@*@{
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+*@
+
+
+@*@model ATKPIMasterFile.BusinessLogic.ViewModels.User.KPIViewModel*@
+@*@using ShooryMoory.DataAccess.Model;
+    @{
+        Ajax.SetTitle(FeedResources.Online);
+    }*@
+<div class="image-folder-top shared__overflow-visible seacrh-users-result__container">
+    @*@using (Ajax.BeginForm("Index", "User", null, new AjaxOptions { UpdateTargetId = "catTbl", LoadingElementId = "loadingElement", HttpMethod = "Get" }))*@
+    @using (Html.BeginForm())
+    {
+        <div class="shared__overflow-hidden" style="padding-left:580px">
+           
+            <div class="shared__left-float shared__margin-right-double">
+                <div class="shared__text-white shared__font-bold shared__font-small shared__margin-bottom-single shared__height-small">
+                    Месяц:
+                </div>
+                @Html.DropDownList("SelectedMonth")
+            </div>
+            <div class="shared__left-float shared__margin-right-double">
+                <div class="shared__text-white shared__font-bold shared__font-small shared__margin-bottom-single shared__height-small">
+                    Год:
+                </div>
+                @Html.DropDownList("SelectedYear")
+            </div>
+            <div class="shared__left-float shared__margin-right-double">
+                <div class="shared__text-white shared__font-bold shared__font-small shared__margin-bottom-single shared__height-small">
+                    Филиал:
+                </div>
+                @Html.DropDownList("SelectedFilial")
+            </div>
+            <div class="shared__left-float shared__margin-right-double">
+                <div class="shared__text-white shared__font-bold shared__font-small shared__margin-bottom-single shared__height-small">
+                    Тип:
+                </div>
+                @Html.DropDownList("SelectedType")
+            </div>
+         
+
+            <div class="shared__left-float shared__margin-right-double">
+                <button class="button-gold-to-gold-same-border button-gold-to-gold shared__button-medium shared__font-bold button-search" type="submit">Сформировать</button>
+            </div>
+        </div>
+
+    }
+</div>
+@*<div id="feedwrapper" class="shared__relative feed-wrapper admin-search-users-feed-wrapper">
+        @Html.Partial("../Search/SearchUsers", Model.InitData.Users)
+    </div>*@
+
+<p align="center" style="padding-top:30px;padding-bottom:5px;font-weight:bold;font-size:20px;">Детализированный отчет по авто</p>
+
+<style>
+    table {
+        font-family: arial, sans-serif;
+        font-size:14px;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid Sienna    ;
+        text-align:center;
+        padding: 2px;
+    }
+
+    /*tr:nth-child(even) {
+        background-color: #dddddd;
+    }*/
+
+    .tabletitle {
+        font-weight:bold;
+        font-size:16px;
+        background-color: #dddddd;
+    }
+
+      .prim {
+        
+        text-align:left;
+    }
+</style>
+
+<div style="padding-left:10px;">
+    <table >
+        <tr class="tabletitle">
+            <td >Номер</td>
+            <td>Филиал</td>
+            <td>Подразделение</td>
+            <td>Тип</td>
+            <td>Аренда</td>
+            <td>Владелец</td>
+            <td>Марка</td>
+            <td>Топливо</td>
+            <td>Топливо цена</td>
+            <td>КМ</td>
+            <td>Литры</td>
+            <td>Литры по работе</td>
+            <td>Шины</td>
+        </tr>
+        <tr>
+            <td>A935BX</td>
+            <td>AquaTrade "Chisinau"</td>
+            <td>Кишинев ОП Rusnac</td>
+            <td>Легковая</td>
+            <td>Нет</td>
+            <td>Burlac Andrei </td>
+            <td>Volkswagen Passat</td>
+            <td>Бензин</td>
+            <td>15,16</td>
+            <td>2280</td>
+            <td>450</td>
+            <td>430</td>
+            <td>3 456</td>
+       </tr>
+        <tr>
+            <td>AAB886</td>
+            <td>AquaTrade "Cahul"</td>
+            <td>AquaTrade Cahul</td>
+            <td>Легковая</td>
+            <td>Нет</td>
+            <td>Turceac  Andrei</td>
+            <td>OPEL MERIVA 1.6</td>
+            <td>Бензин</td>
+            <td>15,16</td>
+            <td>1374</td>
+            <td>120</td>
+            <td>103,05</td>
+            <td>1 256</td>
+        </tr>
+        <tr>
+            <td>A935BX</td>
+            <td>AquaTrade "Chisinau"</td>
+            <td>Кишинев ОП Rusnac</td>
+            <td>Легковая</td>
+            <td>Нет</td>
+            <td>Burlac Andrei </td>
+            <td>Volkswagen Passat</td>
+            <td>Бензин</td>
+            <td>15,16</td>
+            <td>2280</td>
+            <td>450</td>
+            <td>430</td>
+            <td>3 456</td>
+        </tr>
+        <tr>
+            <td>AAB886</td>
+            <td>AquaTrade "Cahul"</td>
+            <td>AquaTrade Cahul</td>
+            <td>Легковая</td>
+            <td>Нет</td>
+            <td>Turceac  Andrei</td>
+            <td>OPEL MERIVA 1.6</td>
+            <td>Бензин</td>
+            <td>15,16</td>
+            <td>1374</td>
+            <td>120</td>
+            <td>103,05</td>
+            <td>1 256</td>
+        </tr>
+        <tr>
+            <td>A935BX</td>
+            <td>AquaTrade "Chisinau"</td>
+            <td>Кишинев ОП Rusnac</td>
+            <td>Легковая</td>
+            <td>Нет</td>
+            <td>Burlac Andrei </td>
+            <td>Volkswagen Passat</td>
+            <td>Бензин</td>
+            <td>15,16</td>
+            <td>2280</td>
+            <td>450</td>
+            <td>430</td>
+            <td>3 456</td>
+        </tr>
+        <tr>
+            <td>AAB886</td>
+            <td>AquaTrade "Cahul"</td>
+            <td>AquaTrade Cahul</td>
+            <td>Легковая</td>
+            <td>Нет</td>
+            <td>Turceac  Andrei</td>
+            <td>OPEL MERIVA 1.6</td>
+            <td>Бензин</td>
+            <td>15,16</td>
+            <td>1374</td>
+            <td>120</td>
+            <td>103,05</td>
+            <td>1 256</td>
+        </tr>
+        <tr>
+            <td>A935BX</td>
+            <td>AquaTrade "Chisinau"</td>
+            <td>Кишинев ОП Rusnac</td>
+            <td>Легковая</td>
+            <td>Нет</td>
+            <td>Burlac Andrei </td>
+            <td>Volkswagen Passat</td>
+            <td>Бензин</td>
+            <td>15,16</td>
+            <td>2280</td>
+            <td>450</td>
+            <td>430</td>
+            <td>3 456</td>
+        </tr>
+        <tr>
+            <td>AAB886</td>
+            <td>AquaTrade "Cahul"</td>
+            <td>AquaTrade Cahul</td>
+            <td>Легковая</td>
+            <td>Нет</td>
+            <td>Turceac  Andrei</td>
+            <td>OPEL MERIVA 1.6</td>
+            <td>Бензин</td>
+            <td>15,16</td>
+            <td>1374</td>
+            <td>120</td>
+            <td>103,05</td>
+            <td>1 256</td>
+        </tr>
+        <tr>
+            <td>A935BX</td>
+            <td>AquaTrade "Chisinau"</td>
+            <td>Кишинев ОП Rusnac</td>
+            <td>Легковая</td>
+            <td>Нет</td>
+            <td>Burlac Andrei </td>
+            <td>Volkswagen Passat</td>
+            <td>Бензин</td>
+            <td>15,16</td>
+            <td>2280</td>
+            <td>450</td>
+            <td>430</td>
+            <td>3 456</td>
+        </tr>
+        <tr>
+            <td>AAB886</td>
+            <td>AquaTrade "Cahul"</td>
+            <td>AquaTrade Cahul</td>
+            <td>Легковая</td>
+            <td>Нет</td>
+            <td>Turceac  Andrei</td>
+            <td>OPEL MERIVA 1.6</td>
+            <td>Бензин</td>
+            <td>15,16</td>
+            <td>1374</td>
+            <td>120</td>
+            <td>103,05</td>
+            <td>1 256</td>
+        </tr>
+        <tr>
+            <td>A935BX</td>
+            <td>AquaTrade "Chisinau"</td>
+            <td>Кишинев ОП Rusnac</td>
+            <td>Легковая</td>
+            <td>Нет</td>
+            <td>Burlac Andrei </td>
+            <td>Volkswagen Passat</td>
+            <td>Бензин</td>
+            <td>15,16</td>
+            <td>2280</td>
+            <td>450</td>
+            <td>430</td>
+            <td>3 456</td>
+        </tr>
+        <tr>
+            <td>AAB886</td>
+            <td>AquaTrade "Cahul"</td>
+            <td>AquaTrade Cahul</td>
+            <td>Легковая</td>
+            <td>Нет</td>
+            <td>Turceac  Andrei</td>
+            <td>OPEL MERIVA 1.6</td>
+            <td>Бензин</td>
+            <td>15,16</td>
+            <td>1374</td>
+            <td>120</td>
+            <td>103,05</td>
+            <td>1 256</td>
+        </tr>
+        <tr>
+            <td>A935BX</td>
+            <td>AquaTrade "Chisinau"</td>
+            <td>Кишинев ОП Rusnac</td>
+            <td>Легковая</td>
+            <td>Нет</td>
+            <td>Burlac Andrei </td>
+            <td>Volkswagen Passat</td>
+            <td>Бензин</td>
+            <td>15,16</td>
+            <td>2280</td>
+            <td>450</td>
+            <td>430</td>
+            <td>3 456</td>
+        </tr>
+        <tr>
+            <td>AAB886</td>
+            <td>AquaTrade "Cahul"</td>
+            <td>AquaTrade Cahul</td>
+            <td>Легковая</td>
+            <td>Нет</td>
+            <td>Turceac  Andrei</td>
+            <td>OPEL MERIVA 1.6</td>
+            <td>Бензин</td>
+            <td>15,16</td>
+            <td>1374</td>
+            <td>120</td>
+            <td>103,05</td>
+            <td>1 256</td>
+        </tr>
+        <tr>
+            <td>A935BX</td>
+            <td>AquaTrade "Chisinau"</td>
+            <td>Кишинев ОП Rusnac</td>
+            <td>Легковая</td>
+            <td>Нет</td>
+            <td>Burlac Andrei </td>
+            <td>Volkswagen Passat</td>
+            <td>Бензин</td>
+            <td>15,16</td>
+            <td>2280</td>
+            <td>450</td>
+            <td>430</td>
+            <td>3 456</td>
+        </tr>
+        <tr>
+            <td>AAB886</td>
+            <td>AquaTrade "Cahul"</td>
+            <td>AquaTrade Cahul</td>
+            <td>Легковая</td>
+            <td>Нет</td>
+            <td>Turceac  Andrei</td>
+            <td>OPEL MERIVA 1.6</td>
+            <td>Бензин</td>
+            <td>15,16</td>
+            <td>1374</td>
+            <td>120</td>
+            <td>103,05</td>
+            <td>1 256</td>
+        </tr>
+        <tr>
+            <td>A935BX</td>
+            <td>AquaTrade "Chisinau"</td>
+            <td>Кишинев ОП Rusnac</td>
+            <td>Легковая</td>
+            <td>Нет</td>
+            <td>Burlac Andrei </td>
+            <td>Volkswagen Passat</td>
+            <td>Бензин</td>
+            <td>15,16</td>
+            <td>2280</td>
+            <td>450</td>
+            <td>430</td>
+            <td>3 456</td>
+        </tr>
+        <tr>
+            <td>AAB886</td>
+            <td>AquaTrade "Cahul"</td>
+            <td>AquaTrade Cahul</td>
+            <td>Легковая</td>
+            <td>Нет</td>
+            <td>Turceac  Andrei</td>
+            <td>OPEL MERIVA 1.6</td>
+            <td>Бензин</td>
+            <td>15,16</td>
+            <td>1374</td>
+            <td>120</td>
+            <td>103,05</td>
+            <td>1 256</td>
+        </tr>
+        <tr>
+            <td>A935BX</td>
+            <td>AquaTrade "Chisinau"</td>
+            <td>Кишинев ОП Rusnac</td>
+            <td>Легковая</td>
+            <td>Нет</td>
+            <td>Burlac Andrei </td>
+            <td>Volkswagen Passat</td>
+            <td>Бензин</td>
+            <td>15,16</td>
+            <td>2280</td>
+            <td>450</td>
+            <td>430</td>
+            <td>3 456</td>
+        </tr>
+        <tr>
+            <td>AAB886</td>
+            <td>AquaTrade "Cahul"</td>
+            <td>AquaTrade Cahul</td>
+            <td>Легковая</td>
+            <td>Нет</td>
+            <td>Turceac  Andrei</td>
+            <td>OPEL MERIVA 1.6</td>
+            <td>Бензин</td>
+            <td>15,16</td>
+            <td>1374</td>
+            <td>120</td>
+            <td>103,05</td>
+            <td>1 256</td>
+        </tr>
+        <tr>
+            <td>A935BX</td>
+            <td>AquaTrade "Chisinau"</td>
+            <td>Кишинев ОП Rusnac</td>
+            <td>Легковая</td>
+            <td>Нет</td>
+            <td>Burlac Andrei </td>
+            <td>Volkswagen Passat</td>
+            <td>Бензин</td>
+            <td>15,16</td>
+            <td>2280</td>
+            <td>450</td>
+            <td>430</td>
+            <td>3 456</td>
+        </tr>
+        <tr>
+            <td>AAB886</td>
+            <td>AquaTrade "Cahul"</td>
+            <td>AquaTrade Cahul</td>
+            <td>Легковая</td>
+            <td>Нет</td>
+            <td>Turceac  Andrei</td>
+            <td>OPEL MERIVA 1.6</td>
+            <td>Бензин</td>
+            <td>15,16</td>
+            <td>1374</td>
+            <td>120</td>
+            <td>103,05</td>
+            <td>1 256</td>
+        </tr>
+        <tr>
+            <td>A935BX</td>
+            <td>AquaTrade "Chisinau"</td>
+            <td>Кишинев ОП Rusnac</td>
+            <td>Легковая</td>
+            <td>Нет</td>
+            <td>Burlac Andrei </td>
+            <td>Volkswagen Passat</td>
+            <td>Бензин</td>
+            <td>15,16</td>
+            <td>2280</td>
+            <td>450</td>
+            <td>430</td>
+            <td>3 456</td>
+        </tr>
+        <tr>
+            <td>AAB886</td>
+            <td>AquaTrade "Cahul"</td>
+            <td>AquaTrade Cahul</td>
+            <td>Легковая</td>
+            <td>Нет</td>
+            <td>Turceac  Andrei</td>
+            <td>OPEL MERIVA 1.6</td>
+            <td>Бензин</td>
+            <td>15,16</td>
+            <td>1374</td>
+            <td>120</td>
+            <td>103,05</td>
+            <td>1 256</td>
+        </tr>
+       
+    </table>
+</div>
+

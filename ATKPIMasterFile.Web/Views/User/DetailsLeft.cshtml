@@ -1,0 +1,181 @@
+﻿
+@model ATKPIMasterFile.BusinessLogic.ViewModels.User.UserViewModel
+
+@{
+    //var isAuthenticated = PageContext.Page.Context.User.Identity.IsAuthenticated;
+    var profileImage = Model.ImageUrlNormal;//Url.Action("show", "user", new { id = Model.UserId });//Model.IsInMaskMode ? Model.MaskUrl : Model.ImageUrlNormal;
+    //var profileImage = Url.Action("show", "user", new { id = Model.UserId });
+    var profileImageHeight = Model.ImagetHeight;
+
+    //if (Model.User.IsAffiliatedMan() && (Model.User.IsInMaskMode && Model.User.RealSocialStatus != SocialStatus.None))
+    //{
+    //    profileImage = Model.User.Image.UrlNormal;
+    //    profileImageHeight = Model.User.Image.GetHeight(258);
+    //}
+}
+
+
+
+<div  class="profile__left-block">
+
+    <div class="profile__left-standard-block-wrapper shared__left-float shared__relative">
+        <div class="profile__profile-private-block shared__padding-bottom-single shared__padding-top-double">
+            <div class="shared__font-bold theme-item__value">
+                @Model.Name @*, @Model.Age*@
+
+
+
+                @*<div class="chat-header__user-online-v2 shared__right-float @Model.User.GetOnlineClass("", "recent", "hidden")" title="@Model.User.GetOnlineClass(MenuSharedResources.OnlineStatus_IsNowOnline, MenuSharedResources.OnlineStatus_WasRecent, "")" data-online="@Model.User.UserId">online</div>*@
+            </div>
+            <div class="shared__font-small shared__text-grey shared__padding-bottom-single theme-item__key">
+
+                <span class="theme-item__location-icon"></span>@Model.City
+            </div>
+
+
+            @*@if (!string.IsNullOrWhiteSpace(Model.TextStatus) || (Model.IsMy && !Model.ImageIsNull))
+            {
+                <div id="profile-page__user-status-container" class="profile-page__user-status-container shared__status-bubble shared__text-black shared__font-small shared__font-italic shared__margin-top-tripple  shared__margin-bottom-double theme-item__border-back">
+                    <div id="profile-page__user-status" class="profile-page__user-status" @(Model.IsMy ? "contentEditable=true" : "") @(Model.IsMy ? "onfocus=document.execCommand('selectAll',false,null)" : "")>
+                        <div class="shared__overflow-hidden theme-item__back profile-page__user-status-text">
+                            @Model.TextStatus
+                        </div>
+                    </div>
+                </div>
+
+              
+            }*@
+
+
+            <div class="profile__private-block-photo-wrapper">
+
+               
+                    <div class="profile__private-block-photo-main" onmouseover="kinkyApp.hover.show(this)" onmouseout="kinkyApp.hover.hide(this)">
+
+
+                        <div  data-userid="@Model.UserId">
+                            <img id="avatarImg"  class="profile__avatar-main-photo-img photo-smooth-background shared__pointer"
+                                 src="@profileImage"
+                                 style="width: 258px; height: @(profileImageHeight)px;" />
+                        </div>
+
+
+                        @if (Model.IsMy && !Model.IsInMaskMode)
+                        {
+                            <div class="profile-change-folder-cover-button-container">
+                                <button id="updateAvatar" class="profile-change-folder-cover-button theme-item__button"
+                                        @(Model.ImageIsNull ? "style=display:inline-block" : "data-hover=true")>
+                                    @(Model.ImageIsNull ? "Загрузить Аватар" : "Изменить Аватар")
+                                </button>
+                            </div>
+                            <script>
+                                $('#updateAvatar').on('click', function () {
+                                    kinkyApp.UploadPhoto('@Url.Action("Avatar", "User")', function () {
+                                        //alert("1111");
+                                        kinkyApp.updateElementById('@Url.Action("AvatarDetails", "User", new {user = Model.UserId})', 'body');
+                                        @*kinkyApp.updateBodyByUrl('@Url.Action("Details", "User", new {user = Model.UserId})');*@
+                                        @*kinkyApp.asyncRequest('body', '@Url.Action("Details", "User", new { user = Model.UserId })');*@
+                                        @*unobtrusiveAjax.asyncRequest('body', '@Url.Action("Details", "User", new {user = Model.UserId})')*@
+                                        @*$.ajax({
+                                            url: '@Url.Action("Details", "User", new {user = Model.UserId})',
+                                            type: 'post',
+                                            async: true,
+                                            success: function (data) {
+
+                                                //window.location.reload(true);
+                                                $(window).scrollTop(0);
+                                                console.log(data);
+                                                $('#body').html('<p>Hello!</p>');
+
+                                            }
+                                        });*@
+                                    });
+                                });
+                            </script>
+                        }
+                    </div>
+                
+            </div>
+            @if (!Model.IsMy && !Model.IsInMaskMode && !Model.IsDeleted)
+            {
+                <button class="theme-item__button shared__button-medium shared__font-bold shared__width_100 shared__margin-bottom-single shared__margin-top-tripple" onclick="kinkyApp.viewModel.showChat(@Model.UserId)" type="button">
+                    <span class="shared__icon shared__icon-topic-medium"></span>
+
+
+
+                    <span class="shared__text-sprite shared__text-sprite-send-message-Lng"></span>
+
+                </button>
+            }
+
+
+
+            @if (Model.IsMy)
+            {
+                
+                
+            }
+            else
+            {
+                if (Model != null && Model.ImageIsNull)
+                {
+                    if (!Model.IsAskAvatar && !Model.IsDeleted)
+                    {
+                        <div class="ask-to-upload-avatar-button-container">
+                            <button id="ask-to-upload-avatar-button" class="button-gold-to-gold-same-border button-gold-to-gold shared__button-medium shared__font-bold shared__width_100"
+                                    onclick="kinkyApp.fn.askedAvatar(this, @Model.UserId, event)">
+                                Ask_download
+                            </button>
+                        </div>
+                    }
+                }
+                
+            }
+        </div>
+
+    </div>
+    @*@Html.Partial("DetailsAboutBottom", Model)*@
+</div>
+
+
+
+
+
+
+@*@if (!Model.User.IsMy && !Model.UserAbout.IsFill && !Model.User.IsDeleted)
+{
+    <div class="profile__left-standard-block-wrapper shared__left-float shared__relative">
+        <div class="profile__profile-private-block">
+            <div class="profile-page__devider theme-item__devider"></div>
+
+            <div id="sendReq"
+                 @(Model.UserAbout.IsAsk ? "" : "style=display:none")
+                 class="shared__text-center profile__no-personal-info-text shared__text-grey shared__font-middle shared__font-bold shared__padding-top-double shared__padding-bottom-double theme-item__title">
+                Sent_request_fill1<br>
+                Sent_request_fill2
+            </div>
+
+            @if (!Model.UserAbout.IsAsk)
+            {
+                <div id="notInf" class="shared__text-center profile__no-personal-info-text shared__text-grey shared__font-middle shared__font-bold shared__padding-top-double shared__padding-bottom-double theme-item__title">Not_filled</div>
+                <div id="fillButton">
+                    <button class="shared__width_100 button-gold-to-gold-same-border button-gold-to-gold shared__button-medium shared__font-bold" type="button"
+                            onclick="askedFill(@Model.User.UserId)">
+                        <span>Asked_fill</span>
+                    </button>
+                </div>
+                <script>
+                    function askedFill(userId) {
+                        kinkyApp.viewModel.sendAskPersonalInfo(userId);
+                        $('#notInf').hide();
+                        $('#fillButton').hide();
+                        $('#sendReq').show();
+                    }
+                </script>
+            }
+        </div>
+    </div>
+}*@
+
+
+

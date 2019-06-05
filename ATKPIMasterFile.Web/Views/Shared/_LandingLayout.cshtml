@@ -1,0 +1,52 @@
+﻿@using System.Web.Optimization
+@{Layout = null;}
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js landing__html main__html">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+   
+    <title>@ViewBag.Title</title>
+
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+  
+    @Styles.Render("~/bundles/original.css")
+    @Scripts.Render("~/bundles/jquery.js")
+
+    <script type="text/javascript">
+        var kinkyApp = {fn:{},data:{}};
+    </script>
+
+    @*@Scripts.Render("~/bundles/kinkyApp.js")*@
+    @Scripts.Render("~/bundles/dzen.js")
+
+   
+
+</head>
+
+<body class="landing__body">
+   
+    <div class="landing__page">
+
+        @*<div class="landing__region-right landing__fullscreen-image relative" style="background-image: url(/Content/themes/original/images/blurredBackground.jpg);">
+            <img class="landing-background-img" src="/Content/themes/original/images/blurredBackground.jpg">
+        </div>*@
+        <div id="landing__region-right">
+            @RenderBody()
+        </div>
+    </div>
+
+    <div id="main__overflow" class="main__overflow">
+        <div id="main_modal" class="main__modal" data-type="modal-add"></div>
+    </div>
+
+    @*<script>kinkyApp.fn.detectBandwidth();</script>*@
+
+</body>
+</html>

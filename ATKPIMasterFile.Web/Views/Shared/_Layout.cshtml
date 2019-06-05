@@ -1,0 +1,112 @@
+﻿@using System.Web.Optimization
+@{
+    var isAuthenticated = PageContext.Page.Context.User.Identity.IsAuthenticated || (ViewBag.HideMenu != null && ViewBag.HideMenu);
+    var showMenu = isAuthenticated && ViewBag.HideMenu == null;
+}
+
+<!DOCTYPE html>
+<html class="main__html">
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+
+    @RenderSection("meta", false)
+    <title>@ViewBag.Title</title>
+
+    <script type="text/javascript">var _sf_startpt = (new Date()).getTime()</script>
+    @Styles.Render("~/bundles/original.css")
+   
+
+    @Scripts.Render("~/bundles/jquery.js")
+    @Scripts.Render("~/bundles/jqueryui.js")
+    <script type="text/javascript">
+        var kinkyApp = { fn: {}, data: {} };
+        kinkyApp.statusCodes = 'Ok';
+        kinkyApp.data.localization = '';
+    </script>
+    @Scripts.Render("~/bundles/knockout.js")
+    <script type='text/javascript' src="~/Scripts/knockout-3.4.2.js"></script>
+    @Scripts.Render("~/bundles/additional.js")
+
+    @Scripts.Render("~/bundles/kinkyApp.js")
+    @Scripts.Render("~/bundles/dzen.js")
+
+    @Scripts.Render("~/bundles/jtablesite.js")
+
+    @*@ContentCdn.RenderStyle("~/bundles/dzen.css")
+
+    @ContentCdn.RenderScript("~/bundles/jquery.js")
+    @ContentCdn.RenderScript("~/bundles/jqueryui.js")
+
+
+    @if (isAuthenticated)
+    {
+        @ContentCdn.RenderScript("~/bundles/knockout.js")
+        @ContentCdn.RenderScript("~/bundles/additional.js")
+
+
+    }
+    else
+    {
+        <script>
+            kinkyApp.viewModel = { showChat: function () { kinkyApp.modal.showByUrl("/Register"); } };
+            kinkyApp.viewModel.sendAskPhoto = kinkyApp.viewModel.showChat;
+            kinkyApp.viewModel.sendAskAvatar = kinkyApp.viewModel.showChat;
+        </script>
+    }
+
+    @ContentCdn.RenderScript("~/bundles/kinkyApp.js")
+    @ContentCdn.RenderScript("~/bundles/dzen.js")*@
+</head>
+
+
+<body class="main-body" data-tip="">
+
+    @Html.Action("Menu", "Menu")
+    @*@if (showMenu)
+    {
+        @Html.Action("Menu", "Menu")
+        @Html.Partial("../Menu/Notifications")
+        @Html.Partial("../Menu/ChatDialogs")
+    }
+    else
+    {
+        @Html.Action("NoMenu", "Menu")
+    }*@
+
+    <div id="body" class="main__body noise-back @(showMenu ? "" : "non-authenticated-left")">
+        @RenderBody()
+
+    </div>
+    <div id="main__overflow-top" class="main__overflow-top">
+        <div id="main_modal-top" class="main__modal-top"></div>
+    </div>
+
+    <div id="main__overflow" class="main__overflow">
+        <div id="main_modal" class="main__modal">Привет!</div>
+     </div>
+
+
+
+        <script>
+            $(document).ready(function () {
+                var scrollPage = function (that, selector) {
+                    if ($(that).scrollTop() > 100 && !kinkyApp.fn.isMobile())
+                        $(selector).fadeIn();
+                    else
+                        $(selector).fadeOut();
+                };
+                $(window).scroll(function () { scrollPage(this, "#scroll-to-top-block"); });
+                $("#no-modal-outer").scroll(function () { scrollPage(this, "#scroll-to-top-block"); });
+                $("#main__overflow").scroll(function () { scrollPage(this, "#scroll-to-top-block_overflow"); });
+                kinkyApp.fn.initCurrentLink();
+            });
+    </script>
+        
+
+        <div class="tutorial-v2-overlay"></div>
+
+
+</body>
+
+</html>

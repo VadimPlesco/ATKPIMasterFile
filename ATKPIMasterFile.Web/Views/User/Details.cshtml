@@ -1,0 +1,29 @@
+﻿@model ATKPIMasterFile.BusinessLogic.ViewModels.User.UserViewModel
+@{
+    ViewBag.Title = "Details";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*@using (Ajax.BeginForm("AvatarDetails", "User", null, new AjaxOptions { UpdateTargetId = "avatarDetails", LoadingElementId = "loadingElement", HttpMethod = "Get", OnSuccess = "OnSaveSuccess" }))
+{
+    <button class="button-gold-to-gold-same-border button-gold-to-gold shared__button-medium shared__font-bold button-search" type="submit">Обновить</button>
+}*@
+
+<div class="profile__bottom">
+    <div id="avatarDetails" class="profile__left">
+        @Html.Partial("DetailsLeft", Model)
+    </div>
+    @*<div class="profile__right shared__padding-left-big">
+        @Html.Partial("DetailsRight", Model)
+    </div>*@
+</div>
+
+
+<script>
+    var OnSaveSuccess = function (data) {
+      //  $('#body').html(data);
+    };
+
+   
+
+</script>

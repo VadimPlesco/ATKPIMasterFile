@@ -1,0 +1,57 @@
+﻿@using ATKPIMasterFile.Web.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "KPI AquaTrade";
+    Layout = "../Shared/_LandingLayout.cshtml";
+}
+
+<div class="landing__top-bar-container-right landing__top-bar-container-right-login">
+    @*@Html.Partial("LangSwitchLanding")*@
+</div>
+
+<div id="landing__form-block-container" class="landing__form-block-container landing__form-block-container-login black-background border-boxrelative">
+    <div id="landing__form-block" class="landing__form-block ">
+        <div class="smlove-logo_login-page">
+            @*<a href="/" class="smlove-logo "></a>*@
+            <div class="smlove-logo "></div>
+        </div>
+        <div class="landing__form-block-login">
+            <div id="landing__form-block-inner" class="landing__form-block-inner inline-block">
+                <div id="login-form" class="landing__register-block landing__input_text inline-block">
+                    @using (Ajax.BeginForm("Login", "Account", new AjaxOptions { UpdateTargetId = "landing__region-right", HttpMethod = "Post" }))
+            {
+                        @Html.AntiForgeryToken()
+
+                        <div class="landing__input-label-block"><label class="landing__input-label" for="landing__input-email-login">Почта</label></div>
+                        <div class="landing__input-block">
+                            @Html.TextBoxFor(m => m.Email, new { id = "landing__input-email-login", Class = "landing__input_general text-black background-grey-gradient text-shadow-02", onblur = "kinkyApp.registerInputBlur(this)", onfocus = "kinkyApp.registerInputFocus(this)", onkeyup = "kinkyApp.registerInputFocus(this)" })
+                            <div class="landing-icon-delete-background background-grey-gradient" data-hidden="true">
+                                @*<div data-selector="register-input-close-button" class="landing-action-icon-delete action-icon-delete pointer" onclick="kinkyApp.registerClearInput(this)"></div>*@
+                            </div>
+                        </div>
+
+                            <div class="landing__input-label-block"><label class="landing__input-label" for="landing__input-password-login">Пароль</label></div>
+                            <div class="landing__input-block">
+                                @Html.PasswordFor(m => m.Password, new { id = "landing__input-password-login", Class = "landing__input_general text-black font-bold background-grey-gradient text-shadow-02", onblur = "kinkyApp.registerInputBlur(this)", onfocus = "kinkyApp.registerInputFocus(this)", onkeyup = "kinkyApp.registerInputFocus(this)" })
+                                <div class="landing-icon-delete-background background-grey-gradient" data-hidden="true">
+                                    @*<div data-selector="register-input-close-button" class="landing-action-icon-delete action-icon-delete pointer" onclick="kinkyApp.registerClearInput(this)"></div>*@
+                                </div>
+                            </div>
+
+
+                            @Html.ValidationSummary()
+
+                      
+                        <button class="landing__input_submit landing__input_submit_register text-white  background-red-gradient text-shadow-04 pointer" type="submit">
+                            <span>Войти</span>
+                        </button>
+                       
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>

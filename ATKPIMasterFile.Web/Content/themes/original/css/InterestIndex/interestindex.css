@@ -1,0 +1,229 @@
+﻿.fixed-top-bar {
+    position: fixed;
+    z-index: 91;
+    top: 0;
+    left: 100px;
+    right: 0;
+}
+
+.non-authenticated-left .fixed-top-bar {
+    left: 0;
+}
+
+.authenticated-margin {
+    margin-left: 100px;
+}
+
+
+.fixed-top-bar-inner {
+    height: 70px; 
+}
+
+.image-folder-top {
+    background-color: #363636;
+    box-shadow: 0 -4px 4px rgba(0, 0, 0, 0.4) inset, 2px 0 2px rgba(0, 0, 0, 0.4) inset, 0 -2px 2px rgba(0, 0, 0, 0.4) inset;
+    overflow: hidden;
+}
+
+.image-folder-top-inner {
+    width: 100%;
+}
+
+.image-folder-top-back {
+    width: 100%;
+    height: 70px;
+    margin-bottom: 11px;
+}
+
+.image-folder-header-container {
+    margin: 34px auto 54px auto; 
+    float: left;
+    width: 100%;
+}
+
+.feed-top-bar {
+    float: left;
+    width: 100%;
+}
+
+.image-folder-header {
+color: rgba(21, 21, 21, 0.8);
+    font-size: 47px;
+    font-weight: bold;
+    line-height: 52px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 65%;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+ 
+}
+
+.payment-success-wrapper {
+    float: left;
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.payment-success-logo {
+    display: inline-block !important;
+}
+
+.payment-success-text {
+    color: rgba(21, 21, 21, 0.8);
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 52px;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.payment-success-button-wrapper {
+    margin-top: 60px;
+    display: inline-block;
+}
+
+.payment-success-button {
+    font-size: 14px;
+    line-height: 26px;
+    font-weight: bold;
+    min-width: 200px;
+    display: inline-block;
+}
+
+.image-folder-success-wrapper {
+    float: left;
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+}
+
+
+
+.image-folder-success-logo {
+    display: inline-block !important;
+    margin-right: -58px;
+}
+
+.image-folder-success-text {
+    color: rgba(21, 21, 21, 0.8);
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 52px;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.image-folder-success-button-wrapper {
+    margin-top: 60px;
+    display: inline-block;
+}
+
+.image-folder-success-button {
+    font-size: 14px;
+    line-height: 26px;
+    font-weight: bold;
+    min-width: 200px;
+    display: inline-block;
+}
+
+.image-folder-description {
+    font-size: 18px;
+    line-height: 26px;
+    margin: 10px auto;
+    padding-left: 35px;
+    padding-right: 30px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.67);
+    color: #6C6C6C;
+    text-align: center;
+    max-width: 65%;
+}
+
+.image-folder-message-link {
+    margin-top: 3px !important;
+}
+
+.image-folder-arrow {
+    position: absolute;
+    z-index: 40;
+    bottom: 0px;
+    left: 34px;
+    width: 0;
+    height: 0;
+    content: "";
+    border-style: solid;
+    border-width: 6px 6px 6px 6px;
+    border-color: transparent transparent #e9e9e9 transparent;
+}
+
+.image-folder-title-text {
+    color: white;
+    font-size: 28px;
+    margin: auto;
+    font-weight: bold;
+}
+
+.image-folder-details-text {
+    font-size: 12px;
+    padding-top: 2px;
+    line-height: 16px;
+    color: #cfcfcf;
+    margin: auto;
+}
+
+
+.image-folder-title-block {
+    margin-bottom: 20px;
+}
+
+.image-folder-subscribers-stats {
+    padding-right: 10px;
+}
+
+.image-folder-subscribers-numbers {
+    padding-right: 30px;
+}
+
+.image-folder-title-container {
+    text-align: center;
+}
+
+.image-folder-content {
+    float: left;
+    width: 100%;
+    margin-left: 40px;
+}
+
+.image-folder-content-left {
+    float: left;
+    width: 220px;
+    height: 70px;
+}
+
+.image-folder-content-right {
+    float: right;
+    height: 70px;
+    line-height: 70px;
+}
+
+.image-folder-content-center {
+    overflow: hidden;
+    height: 70px;
+    min-width: 450px;
+}
+
+.user-avatar_center-block {
+    margin-top: 14px;
+    margin-left: 20px;
+}
+
+.image-folder-content-right_center-block {
+    margin-right: 20px;
+    height: 100%;
+}
+
+.image-folder-button {
+    min-width: 180px;
+}

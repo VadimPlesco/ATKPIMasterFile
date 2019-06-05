@@ -1,0 +1,449 @@
+﻿@*@{
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+*@
+
+
+@*@model ATKPIMasterFile.BusinessLogic.ViewModels.User.KPIViewModel*@
+@*@using ShooryMoory.DataAccess.Model;
+    @{
+        Ajax.SetTitle(FeedResources.Online);
+    }*@
+<div class="image-folder-top shared__overflow-visible seacrh-users-result__container">
+    @*@using (Ajax.BeginForm("Index", "User", null, new AjaxOptions { UpdateTargetId = "catTbl", LoadingElementId = "loadingElement", HttpMethod = "Get" }))*@
+    @using (Html.BeginForm())
+    {
+        <div class="shared__overflow-hidden" style="padding-left:580px">
+           
+                <div class="shared__left-float shared__margin-right-double">
+                    <div class="shared__text-white shared__font-bold shared__font-small shared__margin-bottom-single shared__height-small">
+                        Год:
+                    </div>
+                    @Html.DropDownList("SelectedYear")
+                </div>
+         
+
+            <div class="shared__left-float shared__margin-right-double">
+                <button class="button-gold-to-gold-same-border button-gold-to-gold shared__button-medium shared__font-bold button-search" type="submit">Сформировать</button>
+            </div>
+        </div>
+
+    }
+</div>
+@*<div id="feedwrapper" class="shared__relative feed-wrapper admin-search-users-feed-wrapper">
+        @Html.Partial("../Search/SearchUsers", Model.InitData.Users)
+    </div>*@
+
+<p align="center" style="padding-top:30px;padding-bottom:5px;font-weight:bold;font-size:20px;">P&L_Profit and Loss Statement</p>
+
+<style>
+    table {
+        font-family: arial, sans-serif;
+        font-size:14px;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid Sienna    ;
+        text-align:center;
+        padding: 2px;
+    }
+
+    /*tr:nth-child(even) {
+        background-color: #dddddd;
+    }*/
+
+    .tabletitle {
+        font-weight:bold;
+        font-size:16px;
+        background-color: #dddddd;
+    }
+
+      .prim {
+        
+        text-align:left;
+    }
+</style>
+
+<div style="padding-left:10px;">
+    <table >
+        <tr class="tabletitle">
+            <td class="prim">Операционная деятельность</td>
+            <td>Апрель</td>
+            <td>Май</td>
+            <td>Июнь</td>
+            <td>Июль</td>
+            <td>Август</td>
+            <td>Сентябрь</td>
+            <td>Октябрь</td>
+            <td>Ноябрь</td>
+            <td>Декабрь</td>
+            <td>Январь</td>
+            <td>Февраль</td>
+            <td>Март</td>
+        </tr>
+        <tr>
+            <td class="prim">Объемы, штуки</td>
+            <td><a href="" style="text-decoration:underline">7 234 532</a></td>
+            <td><a href="" style="text-decoration:underline">7 161 362</a></td>
+            <td><a href="" style="text-decoration:underline">7 234 532</a></td>
+            <td><a href="" style="text-decoration:underline">7 161 362</a></td>
+            <td><a href="" style="text-decoration:underline">7 234 532</a></td>
+            <td><a href="" style="text-decoration:underline">7 161 362</a></td>
+            <td><a href="" style="text-decoration:underline">7 234 532</a></td>
+            <td><a href="" style="text-decoration:underline">7 161 362</a></td>
+            <td><a href="" style="text-decoration:underline">7 234 532</a></td>
+            <td><a href="" style="text-decoration:underline">7 161 362</a></td>
+            <td><a href="" style="text-decoration:underline">7 234 532</a></td>
+            <td><a href="" style="text-decoration:underline">7 161 362</a></td>
+        </tr>
+        <tr>
+            <td class="prim">Объемы, литры</td>
+            <td><a href="" style="text-decoration:underline">10 299 664</a></td>
+            <td><a href="" style="text-decoration:underline">9 921 418</a></td>
+            <td><a href="" style="text-decoration:underline">10 299 664</a></td>
+            <td><a href="" style="text-decoration:underline">9 921 418</a></td>
+            <td><a href="" style="text-decoration:underline">10 299 664</a></td>
+            <td><a href="" style="text-decoration:underline">9 921 418</a></td>
+            <td><a href="" style="text-decoration:underline">10 299 664</a></td>
+            <td><a href="" style="text-decoration:underline">9 921 418</a></td>
+            <td><a href="" style="text-decoration:underline">10 299 664</a></td>
+            <td><a href="" style="text-decoration:underline">9 921 418</a></td>
+            <td><a href="" style="text-decoration:underline">10 299 664</a></td>
+            <td><a href="" style="text-decoration:underline">9 921 418</a></td>
+        </tr>
+        <tr class="tabletitle">
+            <td class="prim">Валовый доход от продаж</td>
+            <td>48 223 351</td>
+            <td>47 489 029</td>
+            <td>48 223 351</td>
+            <td>47 489 029</td>
+            <td>48 223 351</td>
+            <td>47 489 029</td>
+            <td>48 223 351</td>
+            <td>47 489 029</td>
+            <td>48 223 351</td>
+            <td>47 489 029</td>
+            <td>48 223 351</td>
+            <td>47 489 029</td>
+        </tr>
+        <tr>
+            <td class="prim"> - Скидки</td>
+            <td><a href="" style="text-decoration:underline">2 710 305</a></td>
+            <td><a href="" style="text-decoration:underline">2 840 996</a></td>
+            <td><a href="" style="text-decoration:underline">2 710 305</a></td>
+            <td><a href="" style="text-decoration:underline">2 840 996</a></td>
+            <td><a href="" style="text-decoration:underline">2 710 305</a></td>
+            <td><a href="" style="text-decoration:underline">2 840 996</a></td>
+            <td><a href="" style="text-decoration:underline">2 710 305</a></td>
+            <td><a href="" style="text-decoration:underline">2 840 996</a></td>
+            <td><a href="" style="text-decoration:underline">2 710 305</a></td>
+            <td><a href="" style="text-decoration:underline">2 840 996</a></td>
+            <td><a href="" style="text-decoration:underline">2 710 305</a></td>
+            <td><a href="" style="text-decoration:underline">2 840 996</a></td>
+        </tr>
+        <tr class="tabletitle">
+            <td class="prim">Чистый доход от продаж</td>
+            <td>45 513 046</td>
+            <td>44 648 033</td>
+            <td>45 513 046</td>
+            <td>44 648 033</td>
+            <td>45 513 046</td>
+            <td>44 648 033</td>
+            <td>45 513 046</td>
+            <td>44 648 033</td>
+            <td>45 513 046</td>
+            <td>44 648 033</td>
+            <td>45 513 046</td>
+            <td>44 648 033</td>
+        </tr>
+        <tr>
+            <td class="prim">Возмещение затрат на пицерию</td>
+            <td></td>
+            <td>500 000</td>
+            <td></td>
+            <td>500 000</td>
+            <td></td>
+            <td>500 000</td>
+            <td></td>
+            <td>500 000</td>
+            <td></td>
+            <td>500 000</td>
+            <td></td>
+            <td>500 000</td>
+        </tr>
+        <tr class="tabletitle">
+            <td class="prim">Суммарно чистых доход</td>
+            <td>45 513 046</td>
+            <td>45 148 033</td>
+            <td>45 513 046</td>
+            <td>45 148 033</td>
+            <td>45 513 046</td>
+            <td>45 148 033</td>
+            <td>45 513 046</td>
+            <td>45 148 033</td>
+            <td>45 513 046</td>
+            <td>45 148 033</td>
+            <td>45 513 046</td>
+            <td>45 148 033</td>
+        </tr>
+        <tr>
+            <td class="prim"> - Себестоймость</td>
+            <td>30 225 692</td>
+            <td>29 753 640</td>
+            <td>30 225 692</td>
+            <td>29 753 640</td>
+            <td>30 225 692</td>
+            <td>29 753 640</td>
+            <td>30 225 692</td>
+            <td>29 753 640</td>
+            <td>30 225 692</td>
+            <td>29 753 640</td>
+            <td>30 225 692</td>
+            <td>29 753 640</td>
+        </tr>
+        <tr>
+            <td class="prim"> -- Себестоймость собственное производство</td>
+            <td><a href="" style="text-decoration:underline">20 132 522</a></td>
+            <td><a href="" style="text-decoration:underline">19 469 807</a></td>
+            <td><a href="" style="text-decoration:underline">20 132 522</a></td>
+            <td><a href="" style="text-decoration:underline">19 469 807</a></td>
+            <td><a href="" style="text-decoration:underline">20 132 522</a></td>
+            <td><a href="" style="text-decoration:underline">19 469 807</a></td>
+            <td><a href="" style="text-decoration:underline">20 132 522</a></td>
+            <td><a href="" style="text-decoration:underline">19 469 807</a></td>
+            <td><a href="" style="text-decoration:underline">20 132 522</a></td>
+            <td><a href="" style="text-decoration:underline">19 469 807</a></td>
+            <td><a href="" style="text-decoration:underline">20 132 522</a></td>
+            <td><a href="" style="text-decoration:underline">19 469 807</a></td>
+        </tr>
+        <tr>
+            <td class="prim"> -- Себестоймость другое</td>
+            <td><a href="" style="text-decoration:underline">10 093 171 </a></td>
+            <td><a href="" style="text-decoration:underline">10 283 832</a></td>
+            <td><a href="" style="text-decoration:underline">10 093 171 </a></td>
+            <td><a href="" style="text-decoration:underline">10 283 832</a></td>
+            <td><a href="" style="text-decoration:underline">10 093 171 </a></td>
+            <td><a href="" style="text-decoration:underline">10 283 832</a></td>
+            <td><a href="" style="text-decoration:underline">10 093 171 </a></td>
+            <td><a href="" style="text-decoration:underline">10 283 832</a></td>
+            <td><a href="" style="text-decoration:underline">10 093 171 </a></td>
+            <td><a href="" style="text-decoration:underline">10 283 832</a></td>
+            <td><a href="" style="text-decoration:underline">10 093 171 </a></td>
+            <td><a href="" style="text-decoration:underline">10 283 832</a></td>
+        </tr>
+        <tr class="tabletitle">
+            <td class="prim">Валовая прибыль</td>
+            <td>15 287 353</td>
+            <td>15 394 393</td>
+            <td>15 287 353</td>
+            <td>15 394 393</td>
+            <td>15 287 353</td>
+            <td>15 394 393</td>
+            <td>15 287 353</td>
+            <td>15 394 393</td>
+            <td>15 287 353</td>
+            <td>15 394 393</td>
+            <td>15 287 353</td>
+            <td>15 394 393</td>
+        </tr>
+        <tr>
+            <td class="prim"> - Затраты на маркетинг</td>
+            <td><a href="" style="text-decoration:underline">301 541</a></td>
+            <td><a href="" style="text-decoration:underline">1 130 315</a></td>
+            <td><a href="" style="text-decoration:underline">301 541</a></td>
+            <td><a href="" style="text-decoration:underline">1 130 315</a></td>
+            <td><a href="" style="text-decoration:underline">301 541</a></td>
+            <td><a href="" style="text-decoration:underline">1 130 315</a></td>
+            <td><a href="" style="text-decoration:underline">301 541</a></td>
+            <td><a href="" style="text-decoration:underline">1 130 315</a></td>
+            <td><a href="" style="text-decoration:underline">301 541</a></td>
+            <td><a href="" style="text-decoration:underline">1 130 315</a></td>
+            <td><a href="" style="text-decoration:underline">301 541</a></td>
+            <td><a href="" style="text-decoration:underline">1 130 315</a></td>
+        </tr>
+        <tr>
+            <td class="prim"> - Затраты на пицерию</td>
+            <td></td>
+            <td>500 000</td>
+            <td></td>
+            <td>500 000</td>
+            <td></td>
+            <td>500 000</td>
+            <td></td>
+            <td>500 000</td>
+            <td></td>
+            <td>500 000</td>
+            <td></td>
+            <td>500 000</td>
+        <tr>
+            <td class="prim"> - Поддержка продаж</td>
+            <td><a href="" style="text-decoration:underline">2 056 272</a></td>
+            <td><a href="" style="text-decoration:underline">2 287 712</a></td>
+            <td><a href="" style="text-decoration:underline">2 056 272</a></td>
+            <td><a href="" style="text-decoration:underline">2 287 712</a></td>
+            <td><a href="" style="text-decoration:underline">2 056 272</a></td>
+            <td><a href="" style="text-decoration:underline">2 287 712</a></td>
+            <td><a href="" style="text-decoration:underline">2 056 272</a></td>
+            <td><a href="" style="text-decoration:underline">2 287 712</a></td>
+            <td><a href="" style="text-decoration:underline">2 056 272</a></td>
+            <td><a href="" style="text-decoration:underline">2 287 712</a></td>
+            <td><a href="" style="text-decoration:underline">2 056 272</a></td>
+            <td><a href="" style="text-decoration:underline">2 287 712</a></td>
+        </tr>
+        <tr>
+            <td class="prim"> - Затраты на логистику</td>
+            <td><a href="" style="text-decoration:underline">2 021 856</a></td>
+            <td><a href="" style="text-decoration:underline">2 008 437</a></td>
+            <td><a href="" style="text-decoration:underline">2 021 856</a></td>
+            <td><a href="" style="text-decoration:underline">2 008 437</a></td>
+            <td><a href="" style="text-decoration:underline">2 021 856</a></td>
+            <td><a href="" style="text-decoration:underline">2 008 437</a></td>
+            <td><a href="" style="text-decoration:underline">2 021 856</a></td>
+            <td><a href="" style="text-decoration:underline">2 008 437</a></td>
+            <td><a href="" style="text-decoration:underline">2 021 856</a></td>
+            <td><a href="" style="text-decoration:underline">2 008 437</a></td>
+            <td><a href="" style="text-decoration:underline">2 021 856</a></td>
+            <td><a href="" style="text-decoration:underline">2 008 437</a></td>
+        </tr>
+        <tr>
+            <td class="prim"> - Затраты на персонал</td>
+            <td><a href="" style="text-decoration:underline">5 678 542</a></td>
+            <td><a href="" style="text-decoration:underline">5 703 385</a></td>
+            <td><a href="" style="text-decoration:underline">5 678 542</a></td>
+            <td><a href="" style="text-decoration:underline">5 703 385</a></td>
+            <td><a href="" style="text-decoration:underline">5 678 542</a></td>
+            <td><a href="" style="text-decoration:underline">5 703 385</a></td>
+            <td><a href="" style="text-decoration:underline">5 678 542</a></td>
+            <td><a href="" style="text-decoration:underline">5 703 385</a></td>
+            <td><a href="" style="text-decoration:underline">5 678 542</a></td>
+            <td><a href="" style="text-decoration:underline">5 703 385</a></td>
+            <td><a href="" style="text-decoration:underline">5 678 542</a></td>
+            <td><a href="" style="text-decoration:underline">5 703 385</a></td>
+        </tr>
+        <tr>
+            <td class="prim"> - Админ. расходы</td>
+            <td><a href="" style="text-decoration:underline">876 783</a></td>
+            <td><a href="" style="text-decoration:underline">626 263</a></td>
+            <td><a href="" style="text-decoration:underline">876 783</a></td>
+            <td><a href="" style="text-decoration:underline">626 263</a></td>
+            <td><a href="" style="text-decoration:underline">876 783</a></td>
+            <td><a href="" style="text-decoration:underline">626 263</a></td>
+            <td><a href="" style="text-decoration:underline">876 783</a></td>
+            <td><a href="" style="text-decoration:underline">626 263</a></td>
+            <td><a href="" style="text-decoration:underline">876 783</a></td>
+            <td><a href="" style="text-decoration:underline">626 263</a></td>
+            <td><a href="" style="text-decoration:underline">876 783</a></td>
+            <td><a href="" style="text-decoration:underline">626 263</a></td>
+        </tr>
+        <tr>
+            <td class="prim"> - Прочие налоги</td>
+            <td><a href="" style="text-decoration:underline">59 845</a></td>
+            <td><a href="" style="text-decoration:underline">61 079</a></td>
+            <td><a href="" style="text-decoration:underline">59 845</a></td>
+            <td><a href="" style="text-decoration:underline">61 079</a></td>
+            <td><a href="" style="text-decoration:underline">59 845</a></td>
+            <td><a href="" style="text-decoration:underline">61 079</a></td>
+            <td><a href="" style="text-decoration:underline">59 845</a></td>
+            <td><a href="" style="text-decoration:underline">61 079</a></td>
+            <td><a href="" style="text-decoration:underline">59 845</a></td>
+            <td><a href="" style="text-decoration:underline">61 079</a></td>
+            <td><a href="" style="text-decoration:underline">59 845</a></td>
+            <td><a href="" style="text-decoration:underline">61 079</a></td>
+        </tr>
+        <tr class="tabletitle">
+            <td class="prim">EBITDA</td>
+            <td>4 292 513</td>
+            <td>3 077 202</td>
+            <td>4 292 513</td>
+            <td>3 077 202</td>
+            <td>4 292 513</td>
+            <td>3 077 202</td>
+            <td>4 292 513</td>
+            <td>3 077 202</td>
+            <td>4 292 513</td>
+            <td>3 077 202</td>
+            <td>4 292 513</td>
+            <td>3 077 202</td>
+        </tr>
+        <tr>
+            <td class="prim"> - Амортизация</td>
+            <td><a href="" style="text-decoration:underline">1 058 514</a></td>
+            <td><a href="" style="text-decoration:underline">1 082 545</a></td>
+            <td><a href="" style="text-decoration:underline">1 058 514</a></td>
+            <td><a href="" style="text-decoration:underline">1 082 545</a></td>
+            <td><a href="" style="text-decoration:underline">1 058 514</a></td>
+            <td><a href="" style="text-decoration:underline">1 082 545</a></td>
+            <td><a href="" style="text-decoration:underline">1 058 514</a></td>
+            <td><a href="" style="text-decoration:underline">1 082 545</a></td>
+            <td><a href="" style="text-decoration:underline">1 058 514</a></td>
+            <td><a href="" style="text-decoration:underline">1 082 545</a></td>
+            <td><a href="" style="text-decoration:underline">1 058 514</a></td>
+            <td><a href="" style="text-decoration:underline">1 082 545</a></td>
+        </tr>
+        <tr class="tabletitle">
+            <td class="prim">Чистая прибыль до налога</td>
+            <td>3 233 999</td>
+            <td>1 994 657</td>
+            <td>3 233 999</td>
+            <td>1 994 657</td>
+            <td>3 233 999</td>
+            <td>1 994 657</td>
+            <td>3 233 999</td>
+            <td>1 994 657</td>
+            <td>3 233 999</td>
+            <td>1 994 657</td>
+            <td>3 233 999</td>
+            <td>1 994 657</td>
+        </tr>
+        <tr>
+            <td class="prim"> - Налог на прибыль</td>
+            <td>388 931</td>
+            <td>239 359</td>
+            <td>388 931</td>
+            <td>239 359</td>
+            <td>388 931</td>
+            <td>239 359</td>
+            <td>388 931</td>
+            <td>239 359</td>
+            <td>388 931</td>
+            <td>239 359</td>
+            <td>388 931</td>
+            <td>239 359</td>
+        </tr>
+        <tr class="tabletitle">
+            <td class="prim">Чистая прибыль после налога</td>
+            <td>2 845 068</td>
+            <td>1 755 298</td>
+            <td>2 845 068</td>
+            <td>1 755 298</td>
+            <td>2 845 068</td>
+            <td>1 755 298</td>
+            <td>2 845 068</td>
+            <td>1 755 298</td>
+            <td>2 845 068</td>
+            <td>1 755 298</td>
+            <td>2 845 068</td>
+            <td>1 755 298</td>
+        </tr>
+        <tr class="tabletitle">
+            <td class="prim">Чистая прибыль, %</td>
+            <td>6%</td>
+            <td>4%</td>
+            <td>6%</td>
+            <td>4%</td>
+            <td>6%</td>
+            <td>4%</td>
+            <td>6%</td>
+            <td>4%</td>
+            <td>6%</td>
+            <td>4%</td>
+            <td>6%</td>
+            <td>4%</td>
+        </tr>
+    </table>
+</divstyle="padding-left:20px;">
+

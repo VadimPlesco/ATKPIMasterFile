@@ -1,0 +1,90 @@
+﻿@{ Layout = null;}
+@model List<ATKPIMasterFile.BusinessLogic.ViewModels.User.PublicServiceViewModel>
+
+<script src="~/Scripts/jquery.tablesorter.min.js"></script>
+<script src="~/Content/jquery.tablescroll.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#salDetTbl").tablesorter();
+        $('#salDetTbl').tableScroll({ height: 450, width: 540 });
+    }
+);
+</script>
+
+@{ 
+    var title = "";
+    //if (Model != null)
+    //{
+    //    title = Model[0].Post;
+    //}
+}
+
+<div class="text-edit-modal">
+    <div class="profile-setup-modal__modal-header">
+        <div class="modal-header__header-text">@title</div>
+        <div class="shared__header__close" onclick="kinkyApp.modal.hide()"></div>
+    </div>
+    <div class="tablescroll" align="center" style="padding:10px">
+
+        <table id="salDetTbl" cellspacing="0">
+            @if (Model != null)
+            {
+                <thead>
+                    <tr>
+                        <th>
+                            N
+                        </th>
+                        <th>
+                           Услуга
+                        </th>
+                        <th>
+                            Сумма План
+                        </th>
+                        <th>
+                            Сумма Факт
+                        </th>
+                        @*<th>
+                            Документ
+                        </th>*@
+                    </tr>
+                </thead>
+                <tbody>
+                    @{var sum = 0.0; var sumVAT = 0.0;
+                        for (int i = 0; i < Model.Count; i++)
+                        {
+                            sum += Model[i].SumPlan;
+                            sumVAT += Model[i].SumFact * Model[i].VAT;
+                            <tr>
+                                <td>
+                                    @(i + 1)
+                                </td>
+                                <td>
+                                    @Model[i].Name
+                                </td>
+                                <td>
+                                    @Model[i].SumPlan.ToString("N0")
+                                </td>
+                                <td>
+                                    @((Model[i].SumFact * Model[i].VAT).ToString("N0"))
+                                </td>
+                                @*<td>
+                                    @Model[i].Сonsignment
+                                </td>*@
+                            </tr>
+                        }
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>Всего</td>
+                        <td>@sum.ToString("N0")</td>
+                        <td>@sumVAT.ToString("N0")</td>
+                        @*<td>&nbsp;</td>*@
+                    </tr>
+                </tfoot>
+                        }
+        </table>
+
+    </div>
+</div>

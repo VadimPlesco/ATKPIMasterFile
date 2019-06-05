@@ -1,0 +1,83 @@
+﻿@{ Layout = null;}
+@model List<ATKPIMasterFile.BusinessLogic.Model.Salary>
+
+<script src="~/Scripts/jquery.tablesorter.min.js"></script>
+<script src="~/Content/jquery.tablescroll.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#salDetTbl").tablesorter();
+        $('#salDetTbl').tableScroll({ height: 450, width: 540 });
+    }
+);
+</script>
+
+@{ 
+    var title = "";
+    if (Model != null)
+    {
+        title = Model[0].Post;
+    }
+}
+
+<div class="text-edit-modal">
+    <div class="profile-setup-modal__modal-header">
+        <div class="modal-header__header-text">@title</div>
+        <div class="shared__header__close" onclick="kinkyApp.modal.hide()"></div>
+    </div>
+    <div class="tablescroll" align="center" style="padding:10px">
+
+        <table id="salDetTbl" cellspacing="0">
+            @if (Model != null)
+            {
+                <thead>
+                    <tr>
+                        <th>
+                            N
+                        </th>
+                        <th>
+                            Имя
+                        </th>
+                        <th>
+                            ЗП
+                        </th>
+                        <th>
+                            Отпускные
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{var card = 0.0; var vac = 0.0;
+                        for (int i = 0; i < Model.Count; i++)
+                        {
+                            card += Model[i].Card;
+                            vac += Model[i].Vacation;
+                            <tr>
+                                <td>
+                                    @(i + 1)
+                                </td>
+                                <td>
+                                    @Model[i].Employee
+                                </td>
+                                <td>
+                                    @Model[i].Card
+                                </td>
+                                <td>
+                                    @Model[i].Vacation
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>Всего</td>
+                        <td>@card</td>
+                        <td>@vac</td>
+                    </tr>
+                </tfoot>
+                        }
+        </table>
+
+    </div>
+</div>

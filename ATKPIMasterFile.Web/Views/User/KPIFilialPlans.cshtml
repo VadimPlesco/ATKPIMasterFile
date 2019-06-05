@@ -1,0 +1,108 @@
+﻿@*@{
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+*@
+
+
+@model ATKPIMasterFile.BusinessLogic.ViewModels.User.KPIViewModel
+@*@using ShooryMoory.DataAccess.Model;
+    @{
+        Ajax.SetTitle(FeedResources.Online);
+    }*@
+<div class="image-folder-top shared__overflow-visible seacrh-users-result__container">
+    @*@using (Html.BeginForm())*@
+    @using (Ajax.BeginForm("KPIFilialPlans", "User", null, new AjaxOptions { UpdateTargetId = "kpiFilialPlans", LoadingElementId = "loadingElement", HttpMethod = "Post", OnSuccess = "OnSaveSuccess", OnFailure = "OnSaveFailure" }))
+    {
+        <div class="shared__overflow-hidden">
+            @*<div class="shared__left-float shared__margin-right-double">
+                    <div class="shared__text-white shared__font-bold shared__font-small shared__margin-bottom-single shared__height-small">
+                        Месяц:
+                    </div>
+                    @Html.DropDownList("SelectedMonth")
+                </div>
+                <div class="shared__left-float shared__margin-right-double">
+                    <div class="shared__text-white shared__font-bold shared__font-small shared__margin-bottom-single shared__height-small">
+                        Год:
+                    </div>
+                    @Html.DropDownList("SelectedYear")
+                </div>*@
+            <div class="shared__left-float shared__margin-right-double">
+                <div class="shared__text-white shared__font-bold shared__font-small shared__margin-bottom-single shared__height-small">
+                    Филиал:
+                </div>
+                @Html.DropDownList("SelectedFilial")
+            </div>
+
+            <div class="shared__left-float shared__margin-right-double">
+                <div class="shared__text-white shared__font-bold shared__font-small shared__margin-bottom-single shared__height-small">
+                    С:
+                </div>
+                @Html.DropDownList("SelectedMonth")
+
+                <div class="seacrh-users-result__age-hint">
+                    <div class="seacrh-users-result__age-hint-left-brace"></div>
+                    Период<div class="seacrh-users-result__age-hint-right-brace"></div>
+                </div>
+            </div>
+
+            <div class="shared__left-float shared__margin-right-double">
+                <div class="shared__text-white shared__font-bold shared__font-small shared__margin-bottom-single shared__height-small">
+
+                </div>
+                @Html.DropDownList("SelectedYear")
+            </div>
+
+            <div class="shared__left-float shared__margin-right-double">
+                <div class="shared__text-white shared__font-bold shared__font-small shared__margin-bottom-single shared__height-small">
+                    По:
+                </div>
+                @Html.DropDownList("SelectedMonthEnd")
+
+            </div>
+
+            <div class="shared__left-float shared__margin-right-double">
+                <div class="shared__text-white shared__font-bold shared__font-small shared__margin-bottom-single shared__height-small">
+
+                </div>
+                @Html.DropDownList("SelectedYearEnd")
+            </div>
+
+            <div class="shared__left-float shared__margin-right-double">
+                <div class="shared__text-white shared__font-bold shared__font-small shared__margin-bottom-single shared__height-small">
+                    Коррекция:
+                </div>
+                @Html.CheckBox("SelectedCorr")
+            </div>
+
+            <div class="shared__left-float shared__margin-right-double">
+                <button class="button-gold-to-gold-same-border button-gold-to-gold shared__button-medium shared__font-bold button-search" type="submit">Сформировать</button>
+            </div>
+        </div>
+
+    }
+</div>
+@*<div id="feedwrapper" class="shared__relative feed-wrapper admin-search-users-feed-wrapper">
+        @Html.Partial("../Search/SearchUsers", Model.InitData.Users)
+    </div>*@
+
+@*<br />*@
+
+<div id="kpiFilialPlans">
+    @Html.Partial("../User/KPIFilialPlanResult", Model)
+</div>
+
+<script>
+    var OnSaveSuccess = function (data) {
+        //alert('OnSaveSuccess');
+    };
+
+    function OnSaveFailure(result) {
+       //  alert('OnSaveFailure');
+    }
+
+</script>
+
+
+

@@ -1,0 +1,16 @@
+﻿
+.jtableadd-container {
+  padding-top:1px; 
+}   
+
+.scroll-content {
+    overflow-y: auto; 
+    width:100%;
+ }
+
+div.jtable-main-container {
+  height:560px;
+}
+
+
+ 

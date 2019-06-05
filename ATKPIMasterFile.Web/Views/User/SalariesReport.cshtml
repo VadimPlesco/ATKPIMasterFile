@@ -1,0 +1,355 @@
+﻿
+@{
+    ViewBag.Title = "Зарплата";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+    //Layout = null;
+
+
+}
+@using Mvc.CascadeDropDown
+
+<link href="~/Scripts/jtable/themes/metro/darkorange/jtable.min.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+    .jtable-column-footer {
+        background-color: #EEE;
+    }
+
+    table, th {
+        font-size: 14px;
+        text-align: left;
+    }
+
+    /*.scroll-content {
+        overflow-y: auto;
+        width: 100%;
+    }*/
+
+    /*div.jtable-main-container {
+        height: 100%;
+    }*/
+</style>
+
+<script type="text/javascript">
+
+            //$(document).ready(function () {
+            //    $("#SelectedDepartment").ultraselect();
+            //});
+
+    function beforeSend(data) {
+        return {
+            filial: $("#SelectedFilial").val(),
+            department: $("#SelectedDepartment").val()
+        }
+    }
+</script>
+
+
+@*<div class="profile-setup-modal__modal-header">
+        <div class="modal-header__header-text">Автомобили</div>
+    </div>*@
+
+<div class="image-folder-top seacrh-users-result__container">
+    @*@using (Html.BeginForm())*@
+    @*@using (Ajax.BeginForm("AutosReport", "User", null, new AjaxOptions { UpdateTargetId = "catTbl", LoadingElementId = "loadingElement", HttpMethod = "Get" }))*@
+    @using (Html.BeginForm())
+    {
+        <div class="">
+
+            <div class="shared__left-float shared__margin-right-double">
+                <div class="shared__text-white shared__font-bold shared__font-small shared__margin-bottom-single shared__height-small">
+                    Сотрудник:
+                </div>
+
+                @Html.TextBox("Employee", "", new { id = "Employee", Class = "autoreport-content__input-control", autocomplete = "off", })
+
+            </div>
+
+            <script type="text/javascript">
+                kinkyApp.fn.initTypeahead('#Employee', 10, '@Url.Action("GetEmployees", "User")', 1, null);
+            </script>
+
+            <div class="shared__left-float shared__margin-right-double">
+                <div class="shared__text-white shared__font-bold shared__font-small shared__margin-bottom-single shared__height-small">
+                    Филиал:
+                </div>
+                @*@Html.DropDownList("SelectedFilial",null, new { @class = "chosen-select" })*@
+                @Html.DropDownList("SelectedFilial", null, new { @style = "width:120px;" })
+            </div>
+            @*<script type="text/javascript">
+                $(".chosen-select").chosen();
+            </script>*@
+            <div class="shared__left-float shared__margin-right-double">
+                <div class="shared__text-white shared__font-bold shared__font-small shared__margin-bottom-single shared__height-small">
+                    Департамент:
+                </div>
+
+                @Html.CascadingDropDownList(inputName: "SelectedDepartment",
+                                inputId: "SelectedDepartment",
+                                triggeredByProperty: "SelectedFilial",
+                                url: Url.Action("GetDepartments", "User"),
+                                ajaxActionParamName: "filial",
+                                optionLabel: null,
+                                disabledWhenParentNotSelected: true,
+                                htmlAttributes: new { @style = "width:200px;" },
+                                options: null
+                               )
+
+            </div>
+
+            <div class="shared__left-float shared__margin-right-double">
+                <div class="shared__text-white shared__font-bold shared__font-small shared__margin-bottom-single shared__height-small">
+                    Должность:
+                </div>
+                @Html.CascadingDropDownList(inputName: "SelectedPost",
+                                inputId: "SelectedPost",
+                                triggeredByProperty: "SelectedDepartment",
+                                url: Url.Action("GetPosts", "User"),
+                                ajaxActionParamName: "department",
+                                optionLabel: null,
+                                disabledWhenParentNotSelected: true,
+                                htmlAttributes: new { @style = "width:200px;" },
+                                options: new CascadeDropDownOptions
+                                {
+                                    BeforeSend = "beforeSend"
+                                })
+            </div>
+            
+
+            <div class="shared__left-float shared__margin-right-double">
+                <div class="shared__text-white shared__font-bold shared__font-small shared__margin-bottom-single shared__height-small">
+                    С:
+                </div>
+                @Html.DropDownList("SelectedMonth")
+
+                <div class="seacrh-users-result__age-hint">
+                    <div class="seacrh-users-result__age-hint-left-brace"></div>
+                    Период<div class="seacrh-users-result__age-hint-right-brace"></div>
+                </div>
+            </div>
+
+            <div class="shared__left-float shared__margin-right-double">
+                <div class="shared__text-white shared__font-bold shared__font-small shared__margin-bottom-single shared__height-small">
+
+                </div>
+                @Html.DropDownList("SelectedYear")
+            </div>
+
+            <div class="shared__left-float shared__margin-right-double">
+                <div class="shared__text-white shared__font-bold shared__font-small shared__margin-bottom-single shared__height-small">
+                    По:
+                </div>
+                @Html.DropDownList("SelectedMonthEnd")
+
+            </div>
+
+            <div class="shared__left-float shared__margin-right-double">
+                <div class="shared__text-white shared__font-bold shared__font-small shared__margin-bottom-single shared__height-small">
+
+                </div>
+                @Html.DropDownList("SelectedYearEnd")
+            </div>
+
+            <div class="shared__left-float shared__margin-right-double">
+                <div class="shared__text-white shared__font-bold shared__font-small shared__margin-bottom-single shared__height-small">
+                    Тип:
+                </div>
+                @*@Html.DropDownList("SelectedPersonType" )*@
+                @Html.DropDownList(
+                    "SelectedPersonType",
+                    (IEnumerable<SelectListItem>)ViewBag.SelectedPersonType,
+                    new { @style = "width:90px;" }
+                )
+            </div>
+
+            <div class="shared__left-float shared__margin-right-double">
+                <div class="shared__text-white shared__font-bold shared__font-small shared__margin-bottom-single shared__height-small">
+                    Проект:
+                </div>
+                @*@Html.DropDownList("SelectedProject")*@
+                @Html.DropDownList(
+                    "SelectedProject",
+                    (IEnumerable<SelectListItem>)ViewBag.SelectedProject,
+                    new { @style = "width:90px;" }
+                )
+            </div>
+            
+            
+            <div class="shared__left-float shared__margin-right-double">
+                <button id="LoadRecordsButton" class="button-gold-to-gold-same-border button-gold-to-gold shared__button-medium shared__font-bold button-search" type="submit">Сформировать</button>
+            </div>
+        </div>
+
+    }
+</div>
+
+<div id="SalariesTableContainer" class="jtableadd-container">
+</div>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('#SalariesTableContainer').jtable({
+            title: 'Зарплата',
+           // jqueryuiTheme: true,
+            footer: true,
+            exportData: {
+                toExcel: true,
+                fullTable: true
+            },
+
+            bottomPanel: true,
+           
+            //paging: true,
+            //pageSize: this._totalRecordCount,
+            sorting: true,
+            defaultSorting: 'Filial ASC',
+            actions: {
+                listAction: '/User/SalariesReport',
+
+            },
+            fields: {
+                SalaryId: {
+                    key: true,
+                    create: false,
+                    edit: false,
+                    list: false
+                },
+
+                Filial: {
+                    title: 'Филиал',
+                    display: function (data) {
+                        //console.log(data.record);
+                        return data.record.Filial.Name;
+                    }
+
+                },
+
+                Department: {
+                    title: 'Департамент',
+                    // list: false
+                    display: function (data) {
+                        // console.log(data.record);
+                        return data.record.Department.Name;
+                    },
+
+                },
+
+                Month: {
+                    title: 'Месяц',
+                    //type: 'password',
+                    // list: false
+                },
+
+                Year: {
+                    title: 'Год',
+                    // list: false
+                },
+
+
+                Employee: {
+                    title: 'Сотрудник',
+                    // list: false
+                    //filter: true
+                },
+
+                Post: {
+                    title: 'Должность',
+                    // list: false
+                },
+
+                CFR: {
+                    title: 'ЦФО',
+                    // list: false
+                },
+
+                Type: {
+                    title: 'Тип',
+                    // list: false
+                    options: { '1': 'Обычный', '2': 'Поддержка продаж', '3': 'Администрация'},
+                    //filter: true
+                },
+
+
+                Card: {
+                    title: 'Карточка',
+                    // list: false
+                    footer: function (data) {
+                        var total = 0;
+                        $.each(data.Records, function (index, record) {
+                            total += Number(record.Card);
+                        });
+                        return (parseFloat(total.toFixed(0)).toLocaleString());
+                    }
+                },
+
+                Vacation: {
+                    title: 'Отпускные',
+                    // list: false
+                    footer: function (data) {
+                        var total = 0;
+                        $.each(data.Records, function (index, record) {
+                            total += Number(record.Vacation);
+                        });
+                        return (parseFloat(total.toFixed(0)).toLocaleString());
+                    }
+                },
+
+                SickLeave: {
+                    title: 'Больничный',
+                    // list: false
+                    footer: function (data) {
+                        var total = 0;
+                        $.each(data.Records, function (index, record) {
+                            total += Number(record.SickLeave);
+                        });
+                        return (parseFloat(total.toFixed(0)).toLocaleString());
+                    }
+                }
+            }
+            
+        });
+
+        //Load student list from server
+        //$('#StudentTableContainer').jtable('load', { Сombustible: 1 });
+
+        //Re-load records when user click 'load records' button.
+        $('#LoadRecordsButton').click(function (e) {
+            e.preventDefault(); 
+            $('#SalariesTableContainer').jtable('load', {
+                SelectedFilial: $('#SelectedFilial').val(),
+
+                SelectedDepartment: $('#SelectedDepartment').val(),
+
+                SelectedMonth: $('#SelectedMonth').val(),
+
+                SelectedYear: $('#SelectedYear').val(),
+
+                SelectedYearEnd: $('#SelectedYearEnd').val(),
+
+                SelectedMonthEnd: $('#SelectedMonthEnd').val(),
+
+                SelectedPersonType: $('#SelectedPersonType').val(),
+
+                SelectedProject: $('#SelectedProject').val(),
+
+                SelectedPost: $('#SelectedPost').val(),
+
+                Employee: $('#Employee').val()
+
+            });
+        });
+
+        //Load all records when page is first shown
+        $('#LoadRecordsButton').click();
+
+    });
+
+</script>
+
+
+<br /><br />
+
+
+
+

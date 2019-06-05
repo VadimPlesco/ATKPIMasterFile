@@ -1,0 +1,105 @@
+﻿@{ Layout = null;}
+@model List<ATKPIMasterFile.BusinessLogic.ViewModels.User.GoodDetailViewModel>
+
+<script src="~/Scripts/jquery.tablesorter.min.js"></script>
+<script src="~/Content/jquery.tablescroll.js"></script>
+<script>
+    $(document).ready(function () {
+
+        $("#salDetTbl").tablesorter({
+
+            theme: 'blue',
+
+            stringTo: "max",
+            // columns 2 & 3 (zero-based index) set using headers option
+            // columns 4+ set using header class name: "string-max", "string-min", "string-top", "string-bottom" and "string-none"
+            headers: {
+                3: { sorter: "currency", empty: "top" }, // sort empty cells to the top
+                4: { sorter: "currency", empty: "top" } // non-numeric content is treated as a MAX value
+               
+            }
+
+        });
+
+        //$("#salDetTbl").tablesorter();
+        $('#salDetTbl').tableScroll({ height: 450, width: 580 });
+    }
+);
+</script>
+
+@{ 
+    var title = "";
+    if (Model != null)
+    {
+        title = ViewBag.BrendName;
+    }
+}
+
+<div class="text-edit-modal1">
+    <div class="profile-setup-modal__modal-header">
+        <div class="modal-header__header-text">@title</div>
+        <div class="shared__header__close" onclick="kinkyApp.modal.hide()"></div>
+    </div>
+    <div class="tablescroll" align="center" style="padding:10px">
+
+        <table id="salDetTbl" cellspacing="0">
+            @if (Model != null)
+            {
+                <thead>
+                    <tr>
+                        <th>
+                            N
+                        </th>
+                        <th>
+                            Название
+                        </th>
+                        <th>
+                            Ем-ть
+                        </th>
+                        <th>
+                            Кол-во
+                        </th>
+                        <th>
+                            Сумма
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{var sum = 0.0;
+                        for (int i = 0; i < Model.Count; i++)
+                        {
+                            sum += Model[i].Sum;
+                            <tr>
+                                <td>
+                                    @(i + 1)
+                                </td>
+                                <td>
+                                    @Model[i].Name
+                                </td>
+                                <td align="center">
+                                    @Model[i].Capacity
+                                </td>
+                                <td align="center">
+                                    @Model[i].Amount.ToString("N0")
+                                </td>
+                                <td align="center">
+                                    @Model[i].Sum.ToString("N0")
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>Всего</td>
+                        <td></td>
+                        <td></td>
+                        <td align="center">@sum.ToString("N0")</td>
+                    </tr>
+                </tfoot>
+                        }
+        </table>
+
+    </div>
+</div>

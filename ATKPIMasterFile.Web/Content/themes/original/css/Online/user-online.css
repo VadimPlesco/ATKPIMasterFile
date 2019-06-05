@@ -1,0 +1,140 @@
+﻿.online-users__photo {
+  cursor: pointer;
+}   
+ .online-users__online-user-block-item {
+        width: 231px;
+        position: relative;
+        background: white;
+        border: 1px solid #d2d2d2;
+    }
+
+    .online-user-block-item__online-user-header {
+        width: 100%;
+        height: 61px;
+    }
+
+    .online-user-header__user-info {
+        margin-top: 9px;
+        float: left;
+        
+    }
+
+.online-user-header__user-info-city-block {
+   
+    max-width: 155px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+    .user-online-profile-text-link {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 135px;
+        display: inline-block;
+    }
+
+    .user-online-message-link {
+        vertical-align: top;
+        display: inline-block;
+    }
+
+
+    .online-user-block-item__online-user-main-photo {
+        display: block;
+        
+    }
+
+    .online-user-block-item__photo-bar {
+        width: 72px;
+        /*margin: 0 5px 10px 0px;*/
+        float: left;
+    }
+
+    .online-user-block-item__photo-holder {
+        padding: 0 0 5px 10px;
+        overflow: hidden;
+    }
+
+   .search-block {
+        position: absolute;
+        padding-left: 10px;
+        padding-top: 10px;
+        width: 247px;
+    }
+
+   .search-block-best-users {
+       position: absolute;
+        padding-left: 10px;
+        padding-top: 40px;
+        width: 247px;
+   }
+
+
+.seacrh-users-result__container{
+    padding: 15px 0 25px 20px;
+    /*float: left;*/
+    width: 100%;
+}
+
+.seacrh-users-result__age-hint{
+    margin-top:5px;
+    position:absolute;
+    color:grey;
+    font-size:0.7em;
+    font-weight:bold;
+    /*width:234px;*/
+     width:225px;
+    text-align:center;
+}
+
+.seacrh-users-result__age-hint-left-brace {
+    float:left;
+    width:60px;
+    height:7px;
+    margin-left:15px;
+    margin-top:2px;
+    border-left:1px solid #808080;
+    border-bottom:1px solid #808080;
+}
+
+.seacrh-users-result__age-hint-right-brace {
+    float:right;
+    width:60px;
+    height:7px;
+    margin-right:15px;
+    margin-top:2px;
+    border-right:1px solid #808080;
+    border-bottom:1px solid #808080;
+}
+
+.online-user-photo-container {
+    padding: 0 10px 5px 10px;
+}
+
+.online-best-user-photo-container {
+    padding: 0 10px 0px 10px;
+    position:relative;
+}
+
+.online-best-user-photo-inner {
+    padding-bottom: 10px;
+}
+
+.best-users-list-howto-link {
+    bottom: -33px;
+    right: 3px;
+    position: absolute;
+    background-color: rgba(54, 54, 54, 0.9);
+    z-index: 950;
+    min-width: 270px;
+}
+
+.best-users-list-howto-text {
+    line-height: 30px;
+    padding-right: 20px;
+    padding-left: 20px;
+    color: #FFFFFF;
+    
+}

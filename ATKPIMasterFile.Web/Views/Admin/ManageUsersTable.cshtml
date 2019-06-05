@@ -1,0 +1,130 @@
+﻿@model ATKPIMasterFile.BusinessLogic.ViewModels.Admin.ManageUsersViewModel
+
+@{
+    ViewBag.Title = "ManageUsers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //Layout = null;
+
+    //WebGrid grid = new WebGrid(null, rowsPerPage: 5);
+    //grid.Bind(Model.ManageUsers, autoSortAndPage: true, rowCount: 5);
+}
+
+@*<script src="~/Scripts/jtable/themes/metro/blue/jtable.css"></script>
+<link href="http://jtable.org/Content/themes/metroblue/jquery-ui.css" rel="stylesheet" type="text/css" />
+
+<script src="~/Scripts/jquery-ui-1.9.2.min.js"></script>
+<script src="~/Scripts/jtable/jquery.jtable.js"></script>
+<script src="~/Scripts/jtable/jquery.jtable.min.js"></script>*@
+
+<link href="http://jtable.org/Content/themes/metroblue/jquery-ui.css" rel="stylesheet" type="text/css" />
+
+
+
+
+<div class="profile-setup-modal__modal-header">
+    <div class="modal-header__header-text">Пользователи</div>
+    @*<div class="shared__header__close" onclick="kinkyApp.modal.hide()"></div>*@
+</div>
+
+<div id="StudentTableContainer">
+</div>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('#StudentTableContainer').jtable({
+            title: '',
+            //jqueryuiTheme: true,
+            footer: true,
+            exportData: {
+                toExcel: true,
+                fullTable: true
+            },
+            paging: true,
+            pageSize: 10,
+            sorting: true,
+            defaultSorting: 'Name ASC',
+            actions: {
+                listAction: '/Admin/StudentList',
+                updateAction: '/Admin/UpdateStudent',
+
+            },
+            fields: {
+                UserId: {
+                    key: true,
+                    create: false,
+                    edit: false,
+                    list: false
+                },
+                Name: {
+                    title: 'Name',
+                    footer: function (data) {
+                        
+                        return '<b>AAAAAAA</b>';
+                    }
+                },
+                Email: {
+                    title: 'Email',
+                   // list: false
+                },
+                Password: {
+                    title: 'Password',
+                    type: 'password',
+                    // list: false
+                    edit: true
+                },
+                Department: {
+                    title: 'Department',
+                    // list: false
+                    edit: true
+                },
+                Filial: {
+                    title: 'Filial',
+                    // list: false
+                    edit: true
+                },
+
+                Roles: {
+                    title: 'Roles',
+                    display: function (data) {
+                        var st = '';
+                        data.record.Roles.forEach(
+                        function addName(value)
+                        { st +='<p>' + value.Role.Name + '</p> '; }
+                        );
+                        return st;
+                    }
+                }
+
+            },
+
+        //    recordsLoaded: function (event, data){
+        //    var footer = $('table.jtable').find('tfoot');
+        //    if (!footer.length) {
+        //        footer = $('<tfoot>').appendTo('table.jtable');
+        //        footer.append($('<td id="count">00</td><td id="sum" colspan="6">0.00</td>'));
+        //    }
+        //    var count = 0;
+        //    var total = 0;
+        //    var items = data.serverResponse['Records'];
+        //    $.each(items, function(index, value){
+        //        count += 1;
+        //        total += parseFloat(value.amount);
+        //    });
+        //    $('#count').html(count);
+        //    $('#sum').html('$' + total);
+        //}
+        });
+
+        //Load student list from server
+        $('#StudentTableContainer').jtable('load');
+    });
+
+</script>
+
+
+<br /><br />
+
+
+
+

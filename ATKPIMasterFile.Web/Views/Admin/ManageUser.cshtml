@@ -1,0 +1,174 @@
+﻿@model ATKPIMasterFile.BusinessLogic.ViewModels.Admin.ManageUserViewModel
+@{ Layout = null;}
+@*<div class="main__modal-fixed ">
+    <div class="modal-header">
+        <div class="shared__header__close" onclick="kinkyApp.modal.hide()"></div>
+        <hr class="modal-header__thumb-bar-dev" />
+        <div class="modal-header__thumb-bar">
+            <div class="modal-header__tab-item  modal-header__tab-item-selected shared__margin-left-double" data-tab-id="tab-photo">
+                <div class="tab-item__icon tab-item__icon-photo"></div>
+                InterestResources.Photo
+            </div>
+            <div id="tab-text" class="modal-header__tab-item" data-tab-id="tab-text">
+                <div class="tab-item__icon tab-item__icon-status"></div>
+                InterestResources.Text
+            </div>
+            <div id="tab-video" class="modal-header__tab-item" data-tab-id="tab-video">
+                <div class="tab-item__icon tab-item__icon-video"></div>
+                InterestResources.Video
+            </div>
+           
+        </div>
+    </div>
+   
+    <div class="modal__modal-content modal__modal-content-tab-photo" id="addItemTabPhotoTab">
+      
+            <div class="modal-content-tab-photo__photo-upload-container">
+                <div id="modal-add-photo-click" class="add-photo-container__drop-down-area"
+                     onclick="kinkyApp.startImageUpload('@Url.Action("SavePhoto", "InterestItem")','addItemTabPhotoTab', modalFirstPhotoUpload);">
+                    <div id="modal-add-photo-pic" class="shared__ajax-photocam-src pointer" data-selector="first-upload" data-hidden="false"></div>
+                    <div id="modal-add-photo-title" class="add-photo-container__sub-title pointer" data-selector="first-upload" data-hidden="false">
+                        InterestResources.Upload_photos_computer
+                    </div>
+                    <div id="modal-add-photo-progress-block" class="modal-add-photo-progress-block" data-hidden="true" data-pct="0">
+                        <svg class="modal-add-photo-progress-svg" height="100" version="1.1" width="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <circle id="modal-add-photo-progress-svg-circle" class="modal-add-photo-progress-svg-circle" r="40" cx="-50" cy="50" fill="#ffffff" stroke-dasharray="300, 1000" transform="rotate(-90)"></circle>
+                            <circle id="modal-add-photo-progress-svg-bar" class="modal-add-photo-progress-svg-bar" r="40" cx="-50" cy="50" fill="transparent" stroke-dasharray="300, 1000" transform="rotate(-90)"></circle>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+       
+    </div>
+   
+    
+</div>*@
+
+<div class="text-edit-modal">
+    <div class="profile-setup-modal__modal-header">
+        <div class="modal-header__header-text">Меню</div>
+        <div class="shared__header__close" onclick="kinkyApp.modal.hide()"></div>
+    </div>
+
+    <div class="profile-setup-modal__user-info shared__padding-top-single shared__padding-bottom-single">
+        @if (Model.UserId != 12)
+        {
+        <div class="shared__padding-top-tripple shared__padding-bottom-tripple">
+            <button class="button-gold-to-gold-same-border button-gold-to-gold shared__button-medium shared__font-bold"
+                    onclick="window.location.href = '@Url.Action("Index", "User")'">
+                @*onclick="kinkyApp.modal.showByUrl('@Url.Action("Index", "User")', 'body');return false;">*@
+                Отчет KPI План-Факт
+            </button>
+
+            <button class="button-gold-to-gold-same-border button-gold-to-gold shared__button-medium shared__font-bold shared__margin-left-big"
+                    onclick="window.location.href = '@Url.Action("KPIFilialPlans", "User")'">
+                @*onclick="kinkyApp.modal.showByUrl('@Url.Action("Index", "User")', 'body');return false;">*@
+                KPI Планы
+            </button>
+        </div>
+        }
+        <div class="shared__padding-top-tripple shared__padding-bottom-tripple">
+            
+            @*<button class="button-gold-to-gold-same-border button-gold-to-gold shared__button-medium shared__font-bold"
+                    onclick="window.location.href = '@Url.Action("Index", "User")'">
+                Отчет KPI План-Факт
+            </button>*@
+
+            <button class="button-gold-to-gold-same-border button-gold-to-gold shared__button-medium shared__font-bold "
+                    onclick="window.location.href = '@Url.Action("AutosReport", "User")'">
+                Отчет по Автомобилям
+            </button>
+
+            <button class="button-gold-to-gold-same-border button-gold-to-gold shared__button-medium shared__font-bold shared__margin-left-big"
+                    onclick="window.location.href = '@Url.Action("SalariesReport", "User")'">
+                Отчет по ЗП
+            </button>
+            
+        </div>
+
+        @*<div class="shared__padding-top-tripple shared__padding-bottom-tripple">
+            <button class="button-gold-to-gold-same-border button-gold-to-gold shared__button-medium shared__font-bold"
+                    onclick="kinkyApp.modal.showByUrl('@Url.Action("Index", "Home")', 'body');return false;">
+                Админ Расходы
+            </button>
+
+            <button class="button-gold-to-gold-same-border button-gold-to-gold shared__button-medium shared__font-bold shared__margin-left-big"
+                    onclick="">
+                Затраты на персонал
+            </button>
+
+            <button class="button-gold-to-gold-same-border button-gold-to-gold shared__button-medium shared__font-bold shared__margin-left-big"
+                    onclick="">
+                Топливо
+            </button>
+            
+            <button>
+                Топливо1111
+            </button>
+
+        </div>*@
+
+        @*<div class="shared__padding-top-tripple shared__padding-bottom-tripple">
+            <button class="button-gold-to-gold-same-border button-gold-to-gold shared__button-medium shared__font-bold"
+                    onclick="kinkyApp.updateElementById('@Url.Action("EditCategories", "Admin")', 'body');">
+                Кап. Затраты
+            </button>
+
+            <button class="button-gold-to-gold-same-border button-gold-to-gold shared__button-medium shared__font-bold shared__margin-left-big"
+                    onclick="">
+                Амортизация
+            </button>
+            <button class="button-gold-to-gold-same-border button-gold-to-gold shared__button-medium shared__font-bold shared__margin-left-big"
+                    onclick="">
+                Прочие налоги
+            </button>
+        </div>*@
+
+        @*<div class="shared__padding-top-tripple shared__padding-bottom-tripple">
+            <button class="button-gold-to-gold-same-border button-gold-to-gold shared__button-medium shared__font-bold"
+                    onclick="kinkyApp.updateElementById('@Url.Action("CategoryItemsSelect", "Test")', 'body');">
+                Редактирование картинок для представления категорий
+            </button>
+        </div>
+
+        <div class="shared__padding-top-tripple shared__padding-bottom-tripple">
+            <button class="button-gold-to-gold-same-border button-gold-to-gold shared__button-medium shared__font-bold"
+                    onclick="kinkyApp.updateElementById('@Url.Action("Users", "Admin")','body')">
+                Немодерированные пользователи
+            </button>
+        </div>
+
+        <div class="shared__padding-top-tripple shared__padding-bottom-tripple">
+            <button class="button-gold-to-gold-same-border button-gold-to-gold shared__button-medium shared__font-bold"
+                    onclick="kinkyApp.updateElementById('@Url.Action("ChatUsers", "Admin")','body')">
+                Пользователи для переписки
+            </button>
+        </div>*@
+
+        @*@using (Ajax.BeginForm("AllFolders", "Admin",
+            new AjaxOptions
+            {
+                UpdateTargetId = "body",
+                LoadingElementId = "loadingElement",
+                HttpMethod = "GET",
+                OnSuccess = "kinkyApp.modal.hide();"
+            }))
+        {
+            <div class="shared__padding-top-tripple shared__padding-bottom-tripple" style="height:40px">
+                <div class="float-left padding-left-right-10">
+                    <span class="shared__text-black shared__font-bold shared__font-middle">Категория:</span>
+                 
+                    <br />
+                    <span class="shared__text-black shared__font-bold shared__font-middle">Первая подписка:</span>
+                    
+                </div>
+                <button class=" float-left button-gold-to-gold-same-border button-gold-to-gold shared__button-medium shared__font-bold"
+                        style="height:40px"
+                        type="submit">
+                    Показать папки
+                </button>
+            </div>
+        }*@
+        </div>
+    </div>
+

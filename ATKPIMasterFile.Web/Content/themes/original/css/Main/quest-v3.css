@@ -1,0 +1,1085 @@
+﻿.feed-quest {
+    width: 100%;
+    background-color: #363636;
+    float: left;
+    position: relative;
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+
+.quest-v3-container {
+    position: relative;
+    min-width: 1070px;
+    height: 240px;
+    float: left;
+    padding-left: 30px;
+    border-bottom: 1px solid #0B0B0B;
+    
+}
+
+
+
+
+/* progress bar */
+.quest-v3-progress-bar-container {
+    /*width: 60px;
+    height: 40px;
+    cursor: default;
+    display: block;
+    line-height: 12px;
+    cursor: pointer;*/
+
+    position: absolute;
+    width: 60px;
+    height: 40px;
+    bottom: -51px;
+    cursor: default;
+    display: block;
+    line-height: 12px;
+    cursor: pointer;
+}
+
+.quest-v3-progress-bar-container__progress-bar {
+    position: relative;
+    width: 100%;
+    height: 5px;
+    background-color: rgba(255, 255, 255, 0.2);
+    z-index: 1;
+}
+
+.progress-bar__progress {
+    height: 5px;
+    background-color: green;
+}
+
+.progress-bar__text {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: 14px;
+    font-family: Arial;
+    padding-top: 5px;
+}
+
+.quest-v3-ball.small > .quest-v3-progress-bar-container {
+    left: -15px;
+}
+
+.quest-v3-ball.big > .quest-v3-progress-bar-container {
+    /*left: 5px;*/
+}
+
+
+/* links */
+.quest-v3-link-single {
+    position: relative;
+    height: 100%;
+    float: left;
+    left: 7px;
+    z-index: 1;
+    width: 44px;
+    height: 30px;
+    margin-top: 96px;
+    background-image: url(/Content/themes/dzen/images/quest-v3-small-link-null.png);
+}
+
+    .quest-v3-link-single.complete,
+    .quest-v3-link-double.complete-top,
+    .quest-v3-link-double.complete-bottom:after {
+        background-image: url(/Content/themes/dzen/images/quest-v3-small-link-complete.png);
+    }
+
+    .quest-v3-link-single.half,
+    .quest-v3-link-double.half-top,
+    .quest-v3-link-double.half-bottom:after {
+        background-image: url(/Content/themes/dzen/images/quest-v3-small-link-half.png);
+    }
+
+
+.quest-v3-link-double {
+    position: relative;
+    height: 100%;
+    float: left;
+    left: 7px;
+    z-index: 1;
+    width: 44px;
+    height: 30px;
+    top: 40px;
+    background-image: url(/Content/themes/dzen/images/quest-v3-small-link-null.png);
+}
+
+    .quest-v3-link-double:after {
+        position: absolute;
+        content: "";
+        width: 44px;
+        height: 30px;
+        top: 112px;
+        background-image: url(/Content/themes/dzen/images/quest-v3-small-link-null.png);
+    }
+
+.quest-v3-link-v.single-big-to-double-small,
+.quest-v3-link-v.double-big-to-single-small {
+    position: relative;
+    float: left;
+    width: 41px;
+    height: 100%;
+    z-index: 0;
+}
+
+    .quest-v3-link-v.single-big-to-double-small:after,
+    .quest-v3-link-v.double-big-to-single-small:after,
+    .quest-v3-link-v.single-big-to-double-small:before,
+    .quest-v3-link-v.double-big-to-single-small:before {
+        position: absolute;
+        content: "";
+        width: 70px;
+        height: 30px;
+        z-index: 1;
+    }
+
+    /*.quest-v3-link-v.double-big-to-single-small:before,*/
+    .quest-v3-link-v.double-big-to-single-small:after,
+    .quest-v3-link-v.single-big-to-double-small:after,
+    .quest-v3-link-v.single-big-to-double-small:before {
+        background-image: url(/Content/themes/dzen/images/quest-v3-big-link-null.png);
+    }
+    /* < */
+    .quest-v3-link-v.single-big-to-double-small:after {
+        left: -10px;
+        top: 129px;
+        -moz-transform: rotate(32deg);
+        -webkit-transform: rotate(32deg);
+        -o-transform: rotate(32deg);
+        -ms-transform: rotate(32deg);
+        transform: rotate(32deg);
+    }
+
+    .quest-v3-link-v.single-big-to-double-small:before {
+        left: -10px;
+        top: 61px;
+        -moz-transform: rotate(-32deg);
+        -webkit-transform: rotate(-32deg);
+        -o-transform: rotate(-32deg);
+        -ms-transform: rotate(-32deg);
+        transform: rotate(-32deg);
+    }
+    /* > */
+    .quest-v3-link-v.double-big-to-single-small:before {
+        left: -10px;
+        top: 71px;
+        -moz-transform: rotate(32deg);
+        -webkit-transform: rotate(32deg);
+        -o-transform: rotate(32deg);
+        -ms-transform: rotate(32deg);
+        transform: rotate(32deg);
+    }
+
+    .quest-v3-link-v.double-big-to-single-small:after {
+        left: -10px;
+        top: 120px;
+        -moz-transform: rotate(-32deg);
+        -webkit-transform: rotate(-32deg);
+        -o-transform: rotate(-32deg);
+        -ms-transform: rotate(-32deg);
+        transform: rotate(-32deg);
+    }
+
+
+    .quest-v3-link-v.single-big-to-double-small.complete-top:before,
+    .quest-v3-link-v.single-big-to-double-small.complete-bottom:after,
+    .quest-v3-link-v.double-big-to-single-small.complete-top:before,
+    .quest-v3-link-v.double-big-to-single-small.complete-bottom:after {
+        background-image: url(/Content/themes/dzen/images/quest-v3-big-link-complete.png);
+    }
+
+    .quest-v3-link-v.single-big-to-double-small.half-top:before,
+    .quest-v3-link-v.single-big-to-double-small.half-bottom:after,
+    .quest-v3-link-v.double-big-to-single-small.half-top:before,
+    .quest-v3-link-v.double-big-to-single-small.half-bottom:after {
+        background-image: url(/Content/themes/dzen/images/quest-v3-big-link-half.png);
+    }
+
+
+
+/* blocks */
+.quest-v3-block {
+    position: relative;
+    height: 100%;
+    float: left;
+    z-index: 2;
+}
+
+    .quest-v3-block.small {
+        width: 24px;
+    }
+
+    .quest-v3-block.big {
+        width: 60px;
+    }
+
+/* balls */
+.quest-v3-ball {
+    position: absolute;
+    border: 4px solid #6b6b6b;
+    background-color: #444;
+    cursor: pointer;
+    color: #363636;
+}
+
+    .quest-v3-ball:after {
+        position: absolute;
+        width: 100%;
+        line-height: 60px;
+        text-align: center;
+        font-family: Arial;
+        font-weight: bold;
+    }
+
+    .quest-v3-ball.complete:after {
+        color: white;
+    }
+
+    .quest-v3-ball.small {
+        width: 30px;
+        height: 30px;
+        border-radius: 30px;
+    }
+
+        .quest-v3-ball.small:hover {
+            background-color: #24b04d;
+        }
+
+        .quest-v3-ball.small.single {
+            margin-top: 91px;
+        }
+
+        .quest-v3-ball.small.double:first-child {
+            margin-top: 35px;
+        }
+
+        .quest-v3-ball.small.double:last-child {
+            margin-top: 147px;
+        }
+
+    .quest-v3-ball.big {
+        width: 60px;
+        height: 60px;
+        border-radius: 60px;
+        font-size: 12px;
+    }
+
+        .quest-v3-ball.big.single {
+            margin-top: 76px;
+        }
+
+        .quest-v3-ball.big.double:first-child {
+            margin-top: 20px;
+        }
+
+        .quest-v3-ball.big.double:last-child {
+            margin-top: 132px;
+        }
+
+    .quest-v3-ball.complete {
+        border: 4px solid white;
+        background-color: #24b04d;
+    }
+
+
+/* colors */
+
+.star-ball {
+    background-color: #f5d9a7;
+}
+
+.star-ball:hover {
+    color:white;
+    background-color: #ecc278;
+}
+
+
+    .star-ball.ru:after,
+    .star-ball.en:after {
+        content: "Star";
+    }
+    
+
+.model-ball {
+    background-color: #da9dda;
+}
+
+.model-ball:hover {
+    color:white;
+    background-color: #b161b1;
+}
+
+    .model-ball.ru:after {
+        content: "Модель";
+    }
+    .model-ball.en:after {
+        content: "Model";
+    }
+
+.guest-ball {
+    background-color: #c7bfe6;
+}
+
+.guest-ball:hover {
+    color:white;
+    background-color: #a597de;
+}
+
+
+    .guest-ball.ru:after {
+        content: "Гость";
+    }
+    .guest-ball.en:after {
+        content: "Guest";
+    }
+
+.knows-ball {
+    background-color: #6cc5e9;
+}
+
+.knows-ball:hover {
+    color:white;
+    background-color: #06a2dd;
+}
+
+
+    .knows-ball.ru:after {
+        content: "В теме";
+    }
+    .knows-ball.en:after {
+        content: "In the know";
+        line-height:normal;
+        padding-top:15px;
+
+    }
+
+
+/* icons */
+.plus-ball:after {
+    position: absolute;
+    content: "+";
+    top: 0;
+    left: 0;
+    color: white;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 34px;
+}
+
+.camera-ball:after {
+    position: absolute;
+    content:"";
+    background-image:url(/Content/themes/dzen/images/quest-v3-iconset.png);
+    background-position: 0px 0px;
+    top: 7px;
+    left: 5px;
+    width: 20px;
+    height: 15px;
+}
+
+.list-ball:after {
+    position: absolute;
+    content:"";
+    background-image:url(/Content/themes/dzen/images/quest-v3-iconset.png);
+    background-position: -22px 0px;
+    top: 8px;
+    left: 7px;
+    width: 16px;
+    height: 13px;
+}
+
+.smile-ball:after {
+    position: absolute;
+    content:"";
+    background-image:url(/Content/themes/dzen/images/quest-v3-iconset.png);
+    background-position: -84px 0px;
+    top: 6px;
+    left: 6px;
+    width: 18px;
+    height: 18px;
+}
+
+.heart-ball:after {
+    position: absolute;
+    content:"";
+    background-image: url(/Content/themes/dzen/images/quest-v3-iconset.png);
+    background-position: -103px 0px;
+    top: 8px;
+    left: 6px;
+    width: 18px;
+    height: 16px;
+}
+
+.photo-ball:after {
+    position: absolute;
+    content:"";
+    background-image:url(/Content/themes/dzen/images/quest-v3-iconset.png);
+    background-position: -40px 0px;
+    top: 7px;
+    left: 6px;
+    width: 18px;
+    height: 15px;
+}
+
+.people-ball:after {
+    position: absolute;
+    content:"";
+    background-image:url(/Content/themes/dzen/images/quest-v3-iconset.png);
+    background-position: -59px 0px;
+    top: 7px;
+    left: 3px;
+    width: 24px;
+    height: 15px;
+}
+.selfie-ball:after {
+    position: absolute;
+    content:"";
+    background-image:url(/Content/themes/dzen/images/quest-v3-iconset.png);
+    background-position: -122px 0px;
+    top: 7px;
+    left: 5px;
+    width: 20px;
+    height: 18px;
+}
+
+
+.pen-ball:after {
+   position: absolute;
+    content:"";
+    background-image:url(/Content/themes/dzen/images/quest-v3-iconset.png);
+    background-position: -143px 0px;
+    top: 6px;
+    left: 6px;
+    width: 18px;
+    height: 18px;
+}
+
+/* Steps */
+
+.quest-v3-step-1 {
+    margin-left: 140px;
+    height: 100%;
+    float: left;
+
+}
+
+.quest-v3-step-1-content {
+    margin-top: 60px;
+}
+
+.quest-v3-step-1-title {
+    color: white;
+    font-size: 16px;
+}
+
+.quest-v3-step-1-link {
+    text-decoration: underline;
+    font-size: 14px;
+    color: #b0d1d8;
+    font-weight: bold;
+    margin-top: 5px;
+    display: block;
+}
+
+.quest-v3-step-1-link:hover {
+    text-decoration: underline;
+}
+
+
+
+.quest-v3-step-1-button {
+    border: none;
+    color: white;
+    height: 40px;
+    line-height: 40px;
+    min-width: 200px;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+
+
+.quest-v3-step-2 {
+    margin-left: 140px;
+    height: 100%;
+    float: left;
+}
+
+.quest-v3-step-2-content {
+    margin-top: 65px;
+}
+
+.quest-v3-step-2-title {
+    color: white;
+    font-size: 16px;
+}
+
+.quest-v3-step-2-button {
+    border: none;
+    color: white;
+    height: 40px;
+    line-height: 40px;
+    min-width: 200px;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+
+.quest-v3-step-3 {
+    margin-left: 40px;
+    height: 100%;
+    float: left;
+
+}
+
+.quest-v3-step-3-content {
+    margin-top: 35px;
+}
+
+
+
+.quest-v3-step-3-second-text-block {
+      margin-top: 10px;
+    
+      font-size: 11px;
+      color: white; 
+}
+
+.quest-v3-step-3-second-text {
+    width: 300px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.quest-v3-step-3-second-text-bullet {
+    display: inline-block;
+    vertical-align: top;
+    color: #ffae31;
+    padding-right: 5px;
+}
+
+.quest-v3-step-3-second-text-link {
+    color: #ffae31;
+}
+
+.quest-v3-step-3-text {
+    font-size: 12px;
+    color: white; 
+}
+ 
+.quest-v3-step-3-button {
+    border: none;
+    color: white;
+    height: 32px;
+    line-height: 32px;
+    min-width: 140px;
+    margin-top: 15px;
+    font-size: 13px;
+}
+
+.quest-v3-step-3-middle {
+    padding-left: 6px;
+    padding-right: 6px;
+    color: white;
+    font-size: 13px;
+}
+
+
+.quest-v3-step-4 {
+    margin-left: 140px;
+    height: 100%;
+    float: left;
+
+}
+
+.quest-v3-step-4-content {
+    margin-top: 60px;
+}
+
+.quest-v3-step-4-title {
+    color: white;
+    font-size: 16px;
+}
+
+.quest-v3-step-4-text-block {
+      margin-top: 5px;
+}
+
+
+.quest-v3-step-4-text {
+    font-size: 12px;
+    color: #b0d1d8; 
+}
+
+.quest-v3-step-4-counter {
+    font-size: 14px;
+    color: #98c46f; 
+    
+}
+ 
+
+.quest-v3-step-4-button {
+    border: none;
+    color: white;
+    height: 40px;
+    line-height: 40px;
+    min-width: 200px;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+
+
+.quest-v3-step-5 {
+    margin-left: 140px;
+    height: 100%;
+    float: left;
+
+}
+
+.quest-v3-step-5-content {
+    margin-top: 35px;
+}
+
+.quest-v3-step-5-title {
+    color: white;
+    font-size: 14px;
+}
+
+.quest-v3-step-5-text-block {
+      margin-top: 5px;
+}
+
+.quest-v3-step-5-second-text-block {
+      margin-top: 10px;
+      width: 200px;
+       font-size: 11px;
+     color: white; 
+}
+
+.quest-v3-step-5-text {
+    font-size: 12px;
+    color: white; 
+}
+
+
+
+.quest-v3-step-5-counter {
+    font-size: 14px;
+    color: #98c46f; 
+    
+}
+ 
+.quest-v3-step-5-button {
+    border: none;
+    color: white;
+    height: 40px;
+    line-height: 40px;
+    min-width: 200px;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.quest-v3-step-6 {
+    margin-left: 60px;
+    height: 100%;
+    float: left;
+
+}
+
+.quest-v3-step-6-content {
+    margin-top: 45px;
+}
+
+.quest-v3-step-6-title {
+    color: white;
+    font-size: 14px;
+}
+
+.quest-v3-step-6-second-text-block {
+      margin-top: 10px;
+      width: 300px;
+       font-size: 11px;
+     color: white; 
+}
+
+.quest-v3-step-6-second-text-link {
+    color: #6ec7f5;
+}
+
+.quest-v3-step-6-text {
+    font-size: 12px;
+    color: white; 
+}
+ 
+.quest-v3-step-6-button {
+    border: none;
+    color: white;
+    height: 40px;
+    line-height: 40px;
+    min-width: 300px;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+
+.quest-v3-step-7 {
+    margin-left: 100px;
+    height: 100%;
+    float: left;
+}
+
+.quest-v3-step-7-content {
+    margin-top: 65px;
+}
+
+.quest-v3-step-7-title {
+    color: white;
+    font-size: 16px;
+}
+
+.quest-v3-step-7-text-block {
+      margin-top: 5px;
+      width: 200px;
+}
+
+
+.quest-v3-step-7-text {
+    font-size: 14px;
+    color: white; 
+}
+
+.quest-v3-step-7-button {
+    border: none;
+    color: white;
+    height: 40px;
+    line-height: 40px;
+    min-width: 220px;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+
+.quest-v3-step-8 {
+    margin-left: 40px;
+    height: 100%;
+    float: left;
+}
+
+.quest-v3-step-8-content {
+    margin-top: 40px;
+}
+.quest-v3-step-8-wait {
+    background-image: url(/Content/themes/dzen/svg/hourglass.svg);
+    background-size: 100px auto;
+    width: 100px;
+    height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.quest-v3-step-8-text-block {
+      margin-top: 20px;
+      text-align: center;
+}
+
+
+.quest-v3-step-8-text {
+    font-size: 14px;
+    color: white; 
+}
+
+
+
+
+.quest-v3-model-hover {
+    margin-left: 40px;
+    height: 100%;
+    float: left;
+
+}
+
+.quest-v3-model-hover-content {
+    margin-top: 25px;
+}
+
+.quest-v3-model-hover-title {
+    color: #fcd286;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.quest-v3-model-hover-text {
+     font-size: 14px;
+    color: #fcd286; 
+    text-align: center;
+}
+
+.quest-v3-model-hover-text-block {
+      margin-top: 5px;
+}
+
+.quest-v3-model-hover-second-text-block {
+     margin-top: 5px;
+     font-size: 11px;
+     color: white; 
+}
+
+.quest-v3-model-hover-second-text-block-margin {
+    margin-top: 10px;
+}
+
+.quest-v3-model-hover-second-text {
+    width: 300px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.quest-v3-model-hover-second-text-bullet {
+    display: inline-block;
+    vertical-align: top;
+    color: #ffae31;
+    padding-right: 5px;
+    font-size: 20px;
+    margin-top: -8px;
+}
+
+.quest-v3-know-hover {
+    margin-left: 40px;
+    height: 100%;
+    float: left;
+
+}
+
+.quest-v3-know-hover-content {
+    margin-top: 45px;
+}
+
+.quest-v3-know-hover-title {
+    color: #fcd286;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.quest-v3-know-hover-text {
+     font-size: 14px;
+    color: #fcd286; 
+    text-align: center;
+}
+
+.quest-v3-know-hover-text-block {
+      margin-top: 5px;
+}
+
+.quest-v3-know-hover-second-text-block {
+     font-size: 11px;
+     color: white; 
+}
+
+.quest-v3-know-hover-second-text-block-margin {
+    margin-top: 10px;
+}
+
+.quest-v3-know-hover-margin {
+    margin-top: 20px;
+}
+
+.quest-v3-know-hover-second-text {
+    width: 250px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.quest-v3-know-hover-second-text-bullet-one {
+ display: inline-block;
+    vertical-align: top;
+    height: 33px;
+    width: 40px;
+    background-size: 40px auto;
+    margin-right: 3px;
+    background-image: url(/Content/themes/dzen/svg/megafon.svg);
+    margin-top: -6px;
+}
+
+.quest-v3-know-hover-second-text-bullet-two {
+    display: inline-block;
+    vertical-align: top;
+     height: 28px;
+    width: 28px;
+    background-size: 28px auto;
+    margin-right: 15px;
+   background-image: url(/Content/themes/dzen/svg/heart.svg);
+   margin-top: -6px;
+}
+
+
+.quest-v3-star-hover {
+    margin-left: 80px;
+    height: 100%;
+    float: left;
+
+}
+
+.quest-v3-star-hover-content {
+    margin-top: 15px;
+}
+
+.quest-v3-star-hover-logo {
+    width: 200px;
+    height: 90px;
+    background-size: 200px auto;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url(/Content/themes/dzen/images/kinkystars_logo_250.png);
+}
+
+.quest-v3-star-hover-title {
+    color: #fcd286;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.quest-v3-star-hover-text {
+     font-size: 14px;
+    color: #fcd286; 
+    text-align: center;
+}
+
+.quest-v3-star-hover-text-block {
+      margin-top: 5px;
+}
+
+.quest-v3-star-hover-second-text-block {
+     font-size: 11px;
+     color: white; 
+}
+
+.quest-v3-star-hover-second-text-block-margin {
+    margin-top: 10px;
+}
+
+.quest-v3-star-hover-margin {
+    margin-top: 20px;
+}
+
+.quest-v3-star-hover-second-text {
+    width: 250px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.quest-v3-star-hover-second-text-bullet-one {
+ display: inline-block;
+    vertical-align: top;
+    height: 33px;
+    width: 40px;
+    background-size: 40px auto;
+    margin-right: 3px;
+    background-image: url(/Content/themes/dzen/svg/tri_stars.svg);
+    margin-top: -6px;
+}
+
+.quest-v3-star-hover-second-text-bullet-two {
+    background-image: url(/Content/themes/dzen/images/purple_star.png);
+    background-size: 20px auto;
+    display: inline-block;
+    height: 20px;
+    margin-left: 11px;
+    margin-right: 12px;
+    margin-top: 2px;
+    vertical-align: top;
+    width: 20px;
+}
+
+
+.quest-v3-guest-hover {
+    margin-left: 40px;
+    height: 100%;
+    float: left;
+
+}
+
+.quest-v3-guest-hover-content {
+    margin-top: 30px;
+}
+
+.quest-v3-guest-hover-title {
+    color: #fcd286;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.quest-v3-guest-hover-text {
+     font-size: 14px;
+    color: #fcd286; 
+    text-align: center;
+}
+
+.quest-v3-guest-hover-text-block {
+      margin-top: 5px;
+}
+
+.quest-v3-guest-hover-second-text-block {
+     font-size: 11px;
+     color: white; 
+}
+
+.quest-v3-guest-hover-second-text-block-margin {
+    margin-top: 10px;
+}
+
+.quest-v3-guest-hover-margin {
+    margin-top: 20px;
+}
+
+.quest-v3-guest-hover-second-text {
+    width: 250px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.quest-v3-guest-hover-second-text-bullet-one {
+ display: inline-block;
+    vertical-align: top;
+    height: 18px;
+    width: 30px;
+    background-size: 30px auto;
+    margin-right: 13px;
+    background-image: url(/Content/themes/dzen/svg/envelope.svg);
+    margin-top: 3px;
+}
+
+.quest-v3-guest-hover-second-text-bullet-two {
+    display: inline-block;
+    vertical-align: top;
+     height: 28px;
+    width: 28px;
+    background-size: 28px auto;
+    margin-right: 15px;
+   background-image: url(/Content/themes/dzen/svg/heart.svg);
+   margin-top: -1px;
+}
+
+.quest-v3-guest-hover-second-text-bullet-three {
+    display: inline-block;
+    vertical-align: top;
+     height: 35px;
+    width: 35px;
+    background-size: 40px auto;
+    margin-right: 14px;
+   background-image: url(/Content/themes/dzen/svg/subscribers.svg);
+   margin-top: -10px;
+   margin-left: -6px;
+}
+
