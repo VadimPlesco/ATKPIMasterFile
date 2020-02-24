@@ -264,6 +264,7 @@ namespace ATKPIMasterFile.BusinessLogic.Aggregators
             kpi.TotalPart = new KPITotalPartRow();
             kpi.TotalPart.Rows = new List<KPIRowT>();
 
+            /////////////////////////////////////////////////////////////////////////
             var goods = _userCommands.GetGoodsByFilial(_ade, filialId, month, year, monthEnd, yearEnd);
 
             var goodsAERPVodovoz = _userCommands.GetGoodsAERPVodovozByFilial(_ade, filialId, month, year, monthEnd, yearEnd);
@@ -286,6 +287,7 @@ namespace ATKPIMasterFile.BusinessLogic.Aggregators
             var primeCost = GetTotalPrimeCost(goods);
             var discount = GetTotalDiscount(goods);
             var discountPepsi = GetTotalPepsiDiscount(goods);
+            ////////////////////////////////////////////////////////////////////////////////
 
             short yearPast = (short)(year - 1);
             short yearEndPast = (short)(yearEnd - 1);
@@ -309,7 +311,7 @@ namespace ATKPIMasterFile.BusinessLogic.Aggregators
                 adminExpenseGroupPast != null ? adminExpenseGroupPast.WashTransport : 0,
                 adminExpenseGroupPast != null ? adminExpenseGroupPast.TransportRent : 0);
 
-            var transportTotal = kpi.AutoPart.Rows.Find(p => p.Name == "Затраты на транспорт");            
+            var transportTotal = kpi.AutoPart.Rows.Find(p => p.Name == "Затраты на транспорт");
             var personalTotal = kpi.SalaryPart.Rows.Find(p => p.Name == "Затраты на персонал");
             FillKPIAdmins(filialId, month, year, monthEnd, yearEnd, kpi.AdminPart,
                 transportTotal, personalTotal,
@@ -318,7 +320,7 @@ namespace ATKPIMasterFile.BusinessLogic.Aggregators
                 /*, primeCost, discount, discountPepsi*/);
             var transportTotalPast = kpi.AutoPartPast.Rows.Find(p => p.Name == "Затраты на транспорт");
             var personalTotalPast = kpi.SalaryPartPast.Rows.Find(p => p.Name == "Затраты на персонал");
-            FillKPIAdminsPast(filialId, month, yearPast, monthEnd, yearEndPast, 
+            FillKPIAdminsPast(filialId, month, yearPast, monthEnd, yearEndPast,
                 kpi.AdminPart, kpi.AdminPartPast,
                 transportTotalPast, personalTotalPast,
                 adminExpenseGroupPast != null ? adminExpenseGroupPast.MobileTelephony : 0,
@@ -455,6 +457,13 @@ namespace ATKPIMasterFile.BusinessLogic.Aggregators
             var pepsiBrendId = new long[] { 14, 15, 16, 17, 18, 27 };
 
             return goods.Where(x => pepsiBrendId.Contains(x.BrendId)).Sum(p => p.Price) - goods.Where(x => pepsiBrendId.Contains(x.BrendId)).Sum(p => p.Sum);
+        }
+
+        public double GetGoodsSumByFilial(int filialId, short month, short year, bool byYear)
+        {
+            var goodsSum = _userCommands.GetGoodsSumByFilial(_ade, filialId, month, year, byYear);
+
+            return goodsSum ?? 0;
         }
 
         public void FillKPISales(int filialId, short month, short year, KPIViewModel kpi, List<GoodViewModel> goods, List<GoodViewModel> goodsVodovoz, short monthEnd, short yearEnd)
@@ -664,7 +673,7 @@ namespace ATKPIMasterFile.BusinessLogic.Aggregators
 
             fact = Convert.ToInt32(leaseTruck ?? 0); plan = Convert.ToInt32(autosPlans.LeaseTruck ?? 0);
             //if (plan > 0)
-                per = (double)(fact - plan) / plan * 100;
+            per = (double)(fact - plan) / plan * 100;
             //else
             //    per = 0;
             kpiAuto.Rows.Add(new KPIRow { Name = "Аренда грузового транспорта", Plan = plan, Fact = fact, Percent = per });
@@ -722,7 +731,7 @@ namespace ATKPIMasterFile.BusinessLogic.Aggregators
             //var months = GetNumberMonth(month, year, monthEnd, yearEnd);
             //var distrCarPlan = 31;
 
-            var fact =  autosPlans.Car + autosPlans.Truck;
+            var fact = autosPlans.Car + autosPlans.Truck;
             //if (filialId == 3)
             //    fact += 4 * months;
             var plan = autos.Count();
@@ -732,13 +741,13 @@ namespace ATKPIMasterFile.BusinessLogic.Aggregators
             double per = (double)(fact - plan) / plan * 100;
             kpiAuto.Rows.Add(new KPIRow { Name = "Кол-во авто", Plan = plan, Fact = fact, Percent = per });
 
-            fact =  autosPlans.Truck;
+            fact = autosPlans.Truck;
             //if (filialId == 3)
             //    fact += 4;
             plan = truck.Count(); per = (double)(fact - plan) / plan * 100;
             kpiAuto.Rows.Add(new KPIRow { Name = "Грузовой транспорт", Plan = plan, Fact = fact, Percent = per, Link = false });
 
-            fact = autosPlans.Car;  plan = car.Count(); per = (double)(fact - plan) / plan * 100;
+            fact = autosPlans.Car; plan = car.Count(); per = (double)(fact - plan) / plan * 100;
             kpiAuto.Rows.Add(new KPIRow { Name = "Легковой транспорт", Plan = plan, Fact = fact, Percent = per, Link = false });
 
             //if (filialId == 1)
@@ -766,7 +775,7 @@ namespace ATKPIMasterFile.BusinessLogic.Aggregators
                                 + (autosPlans.СarWash ?? 0) + (autosPlans.LeaseTruck ?? 0);
 
 
-            fact = Convert.ToInt32(autoTotalPlan);  plan = Convert.ToInt32(autoTotal); per = (double)(fact - plan) / plan * 100;
+            fact = Convert.ToInt32(autoTotalPlan); plan = Convert.ToInt32(autoTotal); per = (double)(fact - plan) / plan * 100;
             kpiAuto.Rows.Add(new KPIRow { Name = "Затраты на транспорт", Plan = plan, Fact = fact, Percent = per });
 
             fact = Convert.ToInt32(autosPlans.Сombustible); plan = Convert.ToInt32(combustibleTotal); per = (double)(fact - plan) / plan * 100;
@@ -780,7 +789,7 @@ namespace ATKPIMasterFile.BusinessLogic.Aggregators
             fact = Convert.ToInt32(autosPlans.Tires + autosPlans.Accumulators); plan = Convert.ToInt32(tiresAccumulatorsTotal); per = (double)(fact - plan) / plan * 100;
             kpiAuto.Rows.Add(new KPIRow { Name = "Запасные части - шины и аккумуляторы", Plan = plan, Fact = fact, Percent = per, Link = false });
 
-            fact = Convert.ToInt32(autosPlans.Spares);  plan = Convert.ToInt32(sparesTotal); per = (double)(fact - plan) / plan * 100;
+            fact = Convert.ToInt32(autosPlans.Spares); plan = Convert.ToInt32(sparesTotal); per = (double)(fact - plan) / plan * 100;
             kpiAuto.Rows.Add(new KPIRow { Name = "Запасные части - другие комплектующие авто", Plan = plan, Fact = fact, Percent = per, Link = false });
 
 
@@ -992,7 +1001,7 @@ namespace ATKPIMasterFile.BusinessLogic.Aggregators
             //if (salaries.Count == 0)
             //    return;
             var postsFact = salaries
-            .GroupBy(n => n.Post)
+            .GroupBy(n => n.Post.Trim())
             .Select(n => new Post
             { Name = n.Key, Count = n.Count() })
             .OrderBy(n => n.Name).ToList();
@@ -1050,6 +1059,22 @@ namespace ATKPIMasterFile.BusinessLogic.Aggregators
             var bon = salaries.Sum(c => c.Cash);
             var tax = salaryTax;
             var vac = salaries.Sum(c => c.Vacation);
+            ///var sumSal = fics + bon + tax + vac;
+
+            ////////////////////
+            var ded = salaries.Sum(c => c.Deduction);
+            if (ded.HasValue)
+                fics += ded.Value;
+
+            var health = salaries.Sum(c => c.HealthInsurance ?? 0);
+            var income = salaries.Sum(c => c.IncomeTax ?? 0);
+            var pension = salaries.Sum(c => c.PensionFund ?? 0);
+            var social = salaries.Sum(c => c.SocialFund ?? 0);
+
+            if(health > 0 && income > 0 && pension > 0 && social > 0)
+                tax += Math.Round(pension + health * 2 + income + social, 2);
+            ///////////////
+
             var sumSal = fics + bon + tax + vac;
 
             var salaryCommonPlans = _userCommands.GetSalaryCommonPlansByFilial(_ade, filialId, month, year, monthEnd, yearEnd, departmentId);
@@ -1118,7 +1143,7 @@ namespace ATKPIMasterFile.BusinessLogic.Aggregators
             //if (salaries.Count == 0)
             //    return;
             var postsPlan = salaries
-            .GroupBy(n => n.Post)
+            .GroupBy(n => n.Post.Trim())
             .Select(n => new Post
             { Name = n.Key, Count = n.Count() })
             .OrderBy(n => n.Name).ToList();
@@ -1218,7 +1243,7 @@ namespace ATKPIMasterFile.BusinessLogic.Aggregators
 
                 var vac = salaryCommonPlansGroup.Vacation ?? 0; percent = (vac - vacPlan) / vacPlan * 100;
                 kpiSalaryPart.Rows.Add(new KPIRow { Name = "Отпускные", Fact = Convert.ToInt32(vac), Plan = Convert.ToInt32(vacPlan), Percent = percent });
-           }
+            }
 
         }
 
@@ -1235,13 +1260,13 @@ namespace ATKPIMasterFile.BusinessLogic.Aggregators
             var salaries = _userCommands.GetSalariesByFilial(_ade, filialId, month, year, monthEnd, yearEnd, departmentId);
 
             var postsFact = salaries
-            .GroupBy(n => n.Post)
+            .GroupBy(n => n.Post.Trim())
             .Select(n => new Post
             { Name = n.Key, Count = n.Count() })
             .OrderBy(n => n.Name).ToList();
 
             var postsPlan = curSal
-                .GroupBy(n => n.Post)
+                .GroupBy(n => n.Post.Trim())
                 .Select(n => new Post
                 { Name = n.Key, Count = n.Count() })
                 .OrderBy(n => n.Name).ToList();
@@ -1328,45 +1353,47 @@ namespace ATKPIMasterFile.BusinessLogic.Aggregators
 
             //if (kpiSalaryPartPast.Rows.Count > kpiSalaryPart.Rows.Count)
             //{
-                int i = 0;
-                foreach (var row in kpiSalaryPartPast.Rows)
+            int i = 0;
+            foreach (var row in kpiSalaryPartPast.Rows)
+            {
+                if (!kpiSalaryPart.Rows.Exists(p => p.Name.Trim() == row.Name.Trim()))
                 {
-                    if (!kpiSalaryPart.Rows.Exists(p => p.Name == row.Name))
+                    kpiSalaryPart.Rows.Insert(i, new KPIRow
                     {
-                        kpiSalaryPart.Rows.Insert(i, new KPIRow
-                        {
-                            Name = row.Name,
-                            Plan = 0,
-                            Fact = 0,
-                            Percent = 0
-                        });
-                    }
-                    i++;
+                        Name = row.Name,
+                        Plan = 0,
+                        Fact = 0,
+                        Percent = 0
+                    });
                 }
+                i++;
+            }
             //}
 
             //if (kpiSalaryPart.Rows.Count > kpiSalaryPartPast.Rows.Count)
             //{
-                 i = 0;
-                foreach (var row in kpiSalaryPart.Rows)
+            i = 0;
+            foreach (var row in kpiSalaryPart.Rows)
+            {
+                if (!kpiSalaryPartPast.Rows.Exists(p => p.Name.Trim() == row.Name.Trim()))
                 {
-                    if (!kpiSalaryPartPast.Rows.Exists(p => p.Name == row.Name))
+                    kpiSalaryPartPast.Rows.Insert(i, new KPIRow
                     {
-                        kpiSalaryPartPast.Rows.Insert(i, new KPIRow
-                        {
-                            Name = row.Name,
-                            Plan = 0,
-                            Fact = 0,
-                            Percent = 0
-                        });
-                    }
-                    i++;
+                        Name = row.Name,
+                        Plan = 0,
+                        Fact = 0,
+                        Percent = 0
+                    });
                 }
-           // }
+                i++;
+            }
+            // }
+
+            kpiSalaryPart.Rows.OrderBy(p => p.Name);
 
         }
 
-        public void FillKPIAdmins(int filialId, short month, short year, short monthEnd, short yearEnd, 
+        public void FillKPIAdmins(int filialId, short month, short year, short monthEnd, short yearEnd,
             KPIAdminPartRow kpiAdminPart, KPIRow transportTotal, KPIRow personalTotal, double mobileTelephony, double premisesRent
             /*, double? primeCost, double? discount, double? discountPepsi*/)
         {
@@ -1586,81 +1613,81 @@ namespace ATKPIMasterFile.BusinessLogic.Aggregators
 
             //if (defectDiscoun != null)
             //{
-                //double discFact = 0.0;
-                //if (discount.HasValue)
-                //    discFact = discount.Value;// - (discountPepsi.HasValue ? discountPepsi.Value : 0);
-                //else
-                //    discFact = defectDiscoun != null ? (defectDiscoun.Discount ?? 0) : 0;
+            //double discFact = 0.0;
+            //if (discount.HasValue)
+            //    discFact = discount.Value;// - (discountPepsi.HasValue ? discountPepsi.Value : 0);
+            //else
+            //    discFact = defectDiscoun != null ? (defectDiscoun.Discount ?? 0) : 0;
 
-                //fact = (netProfit != null ? netProfit.Fact : 0) + discFact;//(defectDiscoun != null ? (defectDiscoun.Discount ?? 0) : 0) + (defectDiscoun != null ? (defectDiscoun.DiscountAdditional ?? 0):0);
-                //plan = (netProfit != null ? netProfit.Plan : 0) + (defectDiscountPlan.Discount ?? 0) + (defectDiscountPlan.DiscountAdditional ?? 0);
-                //per = (fact - plan) / plan * 100;
-                //kpi.AdminPart.Rows.Add(new KPIRow { Name = "Валовый доход от продаж", Plan = Convert.ToInt32(plan), Fact = Convert.ToInt32(fact), Percent = per });
+            //fact = (netProfit != null ? netProfit.Fact : 0) + discFact;//(defectDiscoun != null ? (defectDiscoun.Discount ?? 0) : 0) + (defectDiscoun != null ? (defectDiscoun.DiscountAdditional ?? 0):0);
+            //plan = (netProfit != null ? netProfit.Plan : 0) + (defectDiscountPlan.Discount ?? 0) + (defectDiscountPlan.DiscountAdditional ?? 0);
+            //per = (fact - plan) / plan * 100;
+            //kpi.AdminPart.Rows.Add(new KPIRow { Name = "Валовый доход от продаж", Plan = Convert.ToInt32(plan), Fact = Convert.ToInt32(fact), Percent = per });
 
 
-                //fact = discFact;
-                //plan = defectDiscountPlan.Discount ?? 0; per = (fact - plan) / plan * 100;
-                //kpi.AdminPart.Rows.Add(new KPIRow { Name = "Скидки", Plan = Convert.ToInt32(plan), Fact = Convert.ToInt32(fact), Percent = per });
+            //fact = discFact;
+            //plan = defectDiscountPlan.Discount ?? 0; per = (fact - plan) / plan * 100;
+            //kpi.AdminPart.Rows.Add(new KPIRow { Name = "Скидки", Plan = Convert.ToInt32(plan), Fact = Convert.ToInt32(fact), Percent = per });
 
-                ////if (discountPepsi.HasValue)
-                ////    fact = discountPepsi.Value;
-                ////else
-                ////    fact = defectDiscoun != null ? (defectDiscoun.DiscountAdditional ?? 0) : 0;
-                ////plan = defectDiscountPlan.DiscountAdditional ?? 0; per = plan != 0 ? (fact - plan) / plan * 100 : 0;
-                ////kpi.AdminPart.Rows.Add(new KPIRow { Name = "Скидки PepsiCo", Plan = Convert.ToInt32(plan), Fact = Convert.ToInt32(fact), Percent = per });
+            ////if (discountPepsi.HasValue)
+            ////    fact = discountPepsi.Value;
+            ////else
+            ////    fact = defectDiscoun != null ? (defectDiscoun.DiscountAdditional ?? 0) : 0;
+            ////plan = defectDiscountPlan.DiscountAdditional ?? 0; per = plan != 0 ? (fact - plan) / plan * 100 : 0;
+            ////kpi.AdminPart.Rows.Add(new KPIRow { Name = "Скидки PepsiCo", Plan = Convert.ToInt32(plan), Fact = Convert.ToInt32(fact), Percent = per });
 
-                //kpi.AdminPart.Rows.Add(new KPIRow { Name = "Чистый доход от продаж", Plan = netProfit.Plan, Fact = netProfit.Fact, Percent = netProfit.Percent });
+            //kpi.AdminPart.Rows.Add(new KPIRow { Name = "Чистый доход от продаж", Plan = netProfit.Plan, Fact = netProfit.Fact, Percent = netProfit.Percent });
 
-                //if (primeCost.HasValue)
-                //    fact = primeCost.Value * 1.2;
-                //else
-                //    fact = defectDiscoun != null ? (defectDiscoun.PrimeCost ?? 0) * 1.2 : 0;
-                //plan = (netProfit.Fact == 0 || fact == 0) ? 0 : (double)netProfit.Plan / (double)netProfit.Fact * fact; per = plan == 0 ? 0 : (fact - plan) / plan * 100;
-                //kpi.AdminPart.Rows.Add(new KPIRow { Name = "Себестоймость", Plan = Convert.ToInt32(plan), Fact = Convert.ToInt32(fact), Percent = per });
-                //grossProfitFact -= fact; grossProfitPlan -= plan;
+            //if (primeCost.HasValue)
+            //    fact = primeCost.Value * 1.2;
+            //else
+            //    fact = defectDiscoun != null ? (defectDiscoun.PrimeCost ?? 0) * 1.2 : 0;
+            //plan = (netProfit.Fact == 0 || fact == 0) ? 0 : (double)netProfit.Plan / (double)netProfit.Fact * fact; per = plan == 0 ? 0 : (fact - plan) / plan * 100;
+            //kpi.AdminPart.Rows.Add(new KPIRow { Name = "Себестоймость", Plan = Convert.ToInt32(plan), Fact = Convert.ToInt32(fact), Percent = per });
+            //grossProfitFact -= fact; grossProfitPlan -= plan;
 
-                
 
-                fact = defectDiscoun != null ? defectDiscoun.Defect : 0;
-                plan = GetFactKPIAminsByKey(kpiAdminPart, "Брак");
-                per = (double)(plan - fact) / fact * 100;
-                kpiAdminPartPast.Rows.Add(new KPIRow { Name = "Брак", Plan = Convert.ToInt32(plan), Fact = Convert.ToInt32(fact), Percent = per });
-                totalCurrentExpensesFact += fact; totalCurrentExpensesPlan += plan;
-                //grossProfitFact -= fact; grossProfitPlan -= plan;
 
-                fact = defectDiscoun != null ? defectDiscoun.DefectAdditional ?? 0 : 0; //fact /= 1.27; fact += fact * 0.1;//22.03.17
-                plan = GetFactKPIAminsByKey(kpiAdminPart, "Брак Другое");
-                per = (double)(plan - fact) / fact * 100;
-                kpiAdminPartPast.Rows.Add(new KPIRow { Name = "Брак Другое"/*"Брак PepsiCo"*/, Plan = Convert.ToInt32(plan), Fact = Convert.ToInt32(fact), Percent = per });
-                totalCurrentExpensesFact += fact; totalCurrentExpensesPlan += plan;
-                //grossProfitFact -= fact; grossProfitPlan -= plan;
+            fact = defectDiscoun != null ? defectDiscoun.Defect : 0;
+            plan = GetFactKPIAminsByKey(kpiAdminPart, "Брак");
+            per = (double)(plan - fact) / fact * 100;
+            kpiAdminPartPast.Rows.Add(new KPIRow { Name = "Брак", Plan = Convert.ToInt32(plan), Fact = Convert.ToInt32(fact), Percent = per });
+            totalCurrentExpensesFact += fact; totalCurrentExpensesPlan += plan;
+            //grossProfitFact -= fact; grossProfitPlan -= plan;
 
-                //fact = grossProfitFact; plan = grossProfitPlan; per = plan != 0 ? (fact - plan) / plan * 100 : 0;
-                //kpi.AdminPart.Rows.Add(new KPIRow { Name = "Валовая прибыль", Plan = Convert.ToInt32(plan), Fact = Convert.ToInt32(fact), Percent = per });
+            fact = defectDiscoun != null ? defectDiscoun.DefectAdditional ?? 0 : 0; //fact /= 1.27; fact += fact * 0.1;//22.03.17
+            plan = GetFactKPIAminsByKey(kpiAdminPart, "Брак Другое");
+            per = (double)(plan - fact) / fact * 100;
+            kpiAdminPartPast.Rows.Add(new KPIRow { Name = "Брак Другое"/*"Брак PepsiCo"*/, Plan = Convert.ToInt32(plan), Fact = Convert.ToInt32(fact), Percent = per });
+            totalCurrentExpensesFact += fact; totalCurrentExpensesPlan += plan;
+            //grossProfitFact -= fact; grossProfitPlan -= plan;
 
-                ////fact = defectDiscoun != null ? defectDiscoun.EventDistribution : 0; plan = defectDiscountPlan.EventDistribution; per = (fact - plan) / plan * 100;//per = plan != 0 ? (fact - plan) / plan * 100 : 0;
-                ////kpi.AdminPart.Rows.Add(new KPIRow { Name = "Акционная раздача воды", Plan = Convert.ToInt32(plan), Fact = Convert.ToInt32(fact), Percent = per });
-                ////totalCurrentExpensesFact += fact; totalCurrentExpensesPlan += plan;
+            //fact = grossProfitFact; plan = grossProfitPlan; per = plan != 0 ? (fact - plan) / plan * 100 : 0;
+            //kpi.AdminPart.Rows.Add(new KPIRow { Name = "Валовая прибыль", Plan = Convert.ToInt32(plan), Fact = Convert.ToInt32(fact), Percent = per });
 
-                fact = defectDiscoun != null ? defectDiscoun.Representation : 0;
-                plan = GetFactKPIAminsByKey(kpiAdminPart, "Расходы по филиалу");
-                per = (double)(plan - fact) / fact * 100;
-                kpiAdminPartPast.Rows.Add(new KPIRow { Name = "Расходы по филиалу", Plan = Convert.ToInt32(plan), Fact = Convert.ToInt32(fact), Percent = per });
-                totalCurrentExpensesFact += fact; totalCurrentExpensesPlan += plan;
+            ////fact = defectDiscoun != null ? defectDiscoun.EventDistribution : 0; plan = defectDiscountPlan.EventDistribution; per = (fact - plan) / plan * 100;//per = plan != 0 ? (fact - plan) / plan * 100 : 0;
+            ////kpi.AdminPart.Rows.Add(new KPIRow { Name = "Акционная раздача воды", Plan = Convert.ToInt32(plan), Fact = Convert.ToInt32(fact), Percent = per });
+            ////totalCurrentExpensesFact += fact; totalCurrentExpensesPlan += plan;
+
+            fact = defectDiscoun != null ? defectDiscoun.Representation : 0;
+            plan = GetFactKPIAminsByKey(kpiAdminPart, "Расходы по филиалу");
+            per = (double)(plan - fact) / fact * 100;
+            kpiAdminPartPast.Rows.Add(new KPIRow { Name = "Расходы по филиалу", Plan = Convert.ToInt32(plan), Fact = Convert.ToInt32(fact), Percent = per });
+            totalCurrentExpensesFact += fact; totalCurrentExpensesPlan += plan;
             //}
 
-           
 
-            
+
+
             fact = mobileTelephony;
             plan = GetFactKPIAminsByKey(kpiAdminPart, "Затраты на мобильную тефонию");
             per = (double)(plan - fact) / fact * 100;
             kpiAdminPartPast.Rows.Add(new KPIRow { Name = "Затраты на мобильную тефонию", Plan = Convert.ToInt32(plan), Fact = Convert.ToInt32(fact), Percent = per });
             totalCurrentExpensesFact += fact; totalCurrentExpensesPlan += plan;
-            
+
 
             var publicServices = _userCommands.GetPublicServicesByFilial(_ade, filialId, month, year, monthEnd, yearEnd);
-            
+
             var publicServicesSubtractions = _userCommands.GetPublicServicesSubtractionsByFilial(_ade, filialId, month, year, monthEnd, yearEnd);
 
             double totalPublicServices = 0;
@@ -1678,7 +1705,7 @@ namespace ATKPIMasterFile.BusinessLogic.Aggregators
             totalPublicServices -= totalPublicServicesSubtractions;
 
             var publicServicesFact = totalPublicServices;
-           
+
 
             fact = premisesRent * 1.2 + publicServicesFact;
             plan = GetFactKPIAminsByKey(kpiAdminPart, "Административные затраты");
@@ -2046,7 +2073,7 @@ namespace ATKPIMasterFile.BusinessLogic.Aggregators
                 auto.Spares = Math.Round(auto.Spares * 1.2, 2);
                 auto.TestareAuto = Math.Round(auto.TestareAuto * 1.2, 2);
                 auto.Tires = Math.Round(auto.Tires * 1.2, 2);
-                if(auto.Weight.HasValue)
+                if (auto.Weight.HasValue)
                     auto.Weight = Math.Round(auto.Weight.Value, 2);
 
                 auto.TiresAccumulators = auto.Tires + auto.Accumulators;
@@ -2229,6 +2256,16 @@ namespace ATKPIMasterFile.BusinessLogic.Aggregators
             return tempAutos;
         }
 
+        public double GetAutosWeightByFilial(int filialId, short month, short year, bool byYear)
+        {
+           var weightSum = _userCommands.GetAutosWeightByFilial(_ade, filialId, month, year, byYear);
+
+            if (weightSum.HasValue)
+                return weightSum.Value;
+            else
+                return 0;
+        }
+
         public List<string> GetAutoNumbers(string query)
         {
             return _userCommands.GetAutoNumbers(_ade, query);
@@ -2252,6 +2289,12 @@ namespace ATKPIMasterFile.BusinessLogic.Aggregators
 
             var tempSalaries =
                 _userCommands.GetSalaries(_ade, filialId, departmentId, month, year, monthEnd, yearEnd, personType, project, post, employee);
+
+            foreach(var sal in tempSalaries)
+            {
+                sal.TotalTax = Math.Round((sal.PensionFund ?? 0.0) + (sal.HealthInsurance ?? 0.0) * 2 
+                    + (sal.IncomeTax ?? 0.0) + (sal.SocialFund ?? 0.0), 2);
+            }
 
 
             switch (jtSorting)
@@ -2333,16 +2376,300 @@ namespace ATKPIMasterFile.BusinessLogic.Aggregators
                     tempSalaries = tempSalaries.OrderByDescending(t => t.SickLeave).ToList();
                     break;
 
-                    //case "Km ASC":
-                    //    autos = autos.OrderBy(t => t.Km).ToList();
-                    //    break;
-                    //case "Km DESC":
-                    //    autos = autos.OrderByDescending(t => t.Km).ToList();
-                    //    break;
+                case "TotalTax ASC":
+                    tempSalaries = tempSalaries.OrderBy(t => t.TotalTax).ToList();
+                    break;
+                case "TotalTax DESC":
+                    tempSalaries = tempSalaries.OrderByDescending(t => t.TotalTax).ToList();
+                    break;
+
+                case "Deduction ASC":
+                    tempSalaries = tempSalaries.OrderBy(t => t.Deduction).ToList();
+                    break;
+                case "Deduction DESC":
+                    tempSalaries = tempSalaries.OrderByDescending(t => t.Deduction).ToList();
+                    break;
 
             }
 
             return tempSalaries;
+        }
+
+
+        public List<SalaryCompareViewModel> GetSalariesCompareReport(int filialId, int departmentId, short month1, short year1, short month2, short year2,
+            short type, int project, bool byYear, string jtSorting)
+        {
+
+            if (filialId == -1)
+                return new List<SalaryCompareViewModel>();
+
+            var salariesGroupedByDepartment1 = new List<SalariesGroupedByDepartment>();
+            var salariesGroupedByDepartment2 = new List<SalariesGroupedByDepartment>();
+
+            if (type == 1)
+            {
+                salariesGroupedByDepartment1 =
+                   _userCommands.GetGroupedByDepartmentSalaries(_ade, filialId, departmentId, month1, year1, project, byYear);
+
+                salariesGroupedByDepartment2 =
+                    _userCommands.GetGroupedByDepartmentSalaries(_ade, filialId, departmentId, month2, year2, project, byYear);
+            }
+            else if (type == 2)
+            {
+                salariesGroupedByDepartment1 =
+                   _userCommands.GetGroupedByPostSalaries(_ade, filialId, departmentId, month1, year1, project, byYear);
+
+                salariesGroupedByDepartment2 =
+                    _userCommands.GetGroupedByPostSalaries(_ade, filialId, departmentId, month2, year2, project, byYear);
+            }
+
+            var tempSalaries = GetSalaryCompareViewModel(salariesGroupedByDepartment1, salariesGroupedByDepartment2);
+
+            switch (jtSorting)
+            {
+                case "Difference ASC":
+                    tempSalaries = tempSalaries.OrderBy(t => t.Difference).ToList();
+                    break;
+                case "Difference DESC":
+                    tempSalaries = tempSalaries.OrderByDescending(t => t.Difference).ToList();
+                    break;
+
+                case "Name1 ASC":
+                    tempSalaries = tempSalaries.OrderBy(t => t.Name1).ToList();
+                    break;
+                case "Name1 DESC":
+                    tempSalaries = tempSalaries.OrderByDescending(t => t.Name1).ToList();
+                    break;
+
+                case "Name2 ASC":
+                    tempSalaries = tempSalaries.OrderBy(t => t.Name2).ToList();
+                    break;
+                case "Name2 DESC":
+                    tempSalaries = tempSalaries.OrderByDescending(t => t.Name2).ToList();
+                    break;
+            }
+
+            return tempSalaries;
+        }
+
+        public List<SalaryCompareViewModel> GetSalaryCompareViewModel(List<SalariesGroupedByDepartment> salariesGrouped1, List<SalariesGroupedByDepartment> salariesGrouped2)
+        {
+            List<SalaryCompareViewModel> salaryCompare = new List<SalaryCompareViewModel>();
+
+            foreach (var sal in salariesGrouped1)
+            {
+                salaryCompare.Add(new SalaryCompareViewModel
+                {
+                    Name1 = sal.Name,
+                    SumSal1 = Math.Round(sal.SumSal, 2),
+                    SumVac1 = Math.Round(sal.SumVac, 2),
+                    SumTax1 = Math.Round(sal.SumTax, 2),
+                    Count1 = sal.Count,
+                    Difference = Math.Round(0 - sal.SumVac - sal.SumSal - sal.SumTax, 2)
+                });
+            }
+
+
+            foreach (var sal in salariesGrouped2)
+            {
+                var existingSal = salaryCompare.FirstOrDefault(x => x.Name1 == sal.Name);
+                if (existingSal != null)
+                {
+                    existingSal.Name2 = sal.Name;
+                    existingSal.SumVac2 = Math.Round(sal.SumVac, 2);
+                    existingSal.SumSal2 = Math.Round(sal.SumSal, 2);
+                    existingSal.SumTax2 = Math.Round(sal.SumTax, 2);
+                    existingSal.Count2 = sal.Count;
+                    existingSal.Difference = Math.Round(existingSal.SumSal2 + existingSal.SumVac2 + existingSal.SumTax2 - existingSal.SumSal1 - existingSal.SumVac1 - existingSal.SumTax1, 2);
+                    //existingPost.Percent = (double)(existingPost.Fact - post.Count) / post.Count * 100;
+                }
+                else
+                {
+                    salaryCompare.Add(new SalaryCompareViewModel
+                    {
+                        Name2 = sal.Name,
+                        SumSal2 = Math.Round(sal.SumSal, 2),
+                        SumVac2 = Math.Round(sal.SumVac, 2),
+                        SumTax2 = Math.Round(sal.SumTax, 2),
+                        Count2 = sal.Count,
+                        Difference = Math.Round(sal.SumSal + sal.SumVac + sal.SumTax, 2)
+                    });
+                }
+            }
+
+            return salaryCompare;
+        }
+
+
+        public List<AutoCompareViewModel> GetAutosCompareReport(int filialId, int departmentId, short month1, short year1, short month2, short year2,
+            short type, int project, bool byYear, string jtSorting)
+        {
+
+            if (filialId == -1)
+                return new List<AutoCompareViewModel>();
+
+            var autosGroupedByDepartment1 = new List<AutoGroupedBy>();
+            var autosGroupedByDepartment2 = new List<AutoGroupedBy>();
+
+            if (type == 1)
+            {
+                autosGroupedByDepartment1 =
+                   _userCommands.GetGroupedByDepartmentAutos(_ade, filialId, departmentId, month1, year1, project, byYear);
+
+                autosGroupedByDepartment2 =
+                    _userCommands.GetGroupedByDepartmentAutos(_ade, filialId, departmentId, month2, year2, project, byYear);
+            }
+            else if (type == 2)
+            {
+                //autosGroupedByDepartment1 =
+                //   _userCommands.GetGroupedByBrandAutos(_ade, filialId, departmentId, month1, year1, project, byYear);
+
+                //autosGroupedByDepartment2 =
+                //    _userCommands.GetGroupedByBrandAutos(_ade, filialId, departmentId, month2, year2, project, byYear);
+
+                autosGroupedByDepartment1 =
+                  _userCommands.GetGroupedByTAutos(_ade, filialId, departmentId, month1, year1, project, byYear, p=>p.Brand);
+
+                autosGroupedByDepartment2 =
+                    _userCommands.GetGroupedByTAutos(_ade, filialId, departmentId, month2, year2, project, byYear, p => p.Brand);
+            }
+
+            var tempAutos = GetAutoCompareViewModel(autosGroupedByDepartment1, autosGroupedByDepartment2);
+
+            switch (jtSorting)
+            {
+                case "Difference ASC":
+                    tempAutos = tempAutos.OrderBy(t => t.Difference).ToList();
+                    break;
+                case "Difference DESC":
+                    tempAutos = tempAutos.OrderByDescending(t => t.Difference).ToList();
+                    break;
+
+                case "Name1 ASC":
+                    tempAutos = tempAutos.OrderBy(t => t.Name1).ToList();
+                    break;
+                case "Name1 DESC":
+                    tempAutos = tempAutos.OrderByDescending(t => t.Name1).ToList();
+                    break;
+
+                case "Name2 ASC":
+                    tempAutos = tempAutos.OrderBy(t => t.Name2).ToList();
+                    break;
+                case "Name2 DESC":
+                    tempAutos = tempAutos.OrderByDescending(t => t.Name2).ToList();
+                    break;
+            }
+
+            return tempAutos;
+        }
+
+        public List<AutoCompareViewModel> GetAutoCompareViewModel(List<AutoGroupedBy> autosGrouped1, List<AutoGroupedBy> autosGrouped2)
+        {
+            List<AutoCompareViewModel> autoCompare = new List<AutoCompareViewModel>();
+
+            foreach (var auto in autosGrouped1)
+            {
+                autoCompare.Add(new AutoCompareViewModel
+                {
+                    Name1 = auto.Name,
+                    SumСombustible1 = Math.Round(auto.SumСombustible, 2),
+                    SumExpenses1 = Math.Round(auto.SumExpenses, 2),
+                    Count1 = auto.Count,
+                    Difference = Math.Round(0 - auto.SumСombustible - auto.SumExpenses, 2)
+                });
+            }
+
+
+            foreach (var auto in autosGrouped2)
+            {
+                var existingSal = autoCompare.FirstOrDefault(x => x.Name1 == auto.Name);
+                if (existingSal != null)
+                {
+                    existingSal.Name2 = auto.Name;
+                    existingSal.SumСombustible2 = Math.Round(auto.SumСombustible, 2);
+                    existingSal.SumExpenses2 = Math.Round(auto.SumExpenses, 2);
+                    existingSal.Count2 = auto.Count;
+                    existingSal.Difference = Math.Round(existingSal.SumСombustible2 + existingSal.SumExpenses2 
+                        - existingSal.SumСombustible1 - existingSal.SumExpenses1, 2);
+                }
+                else
+                {
+                    autoCompare.Add(new AutoCompareViewModel
+                    {
+                        Name2 = auto.Name,
+                        SumСombustible2 = Math.Round(auto.SumСombustible, 2),
+                        SumExpenses2 = Math.Round(auto.SumExpenses, 2),
+                        Count2 = auto.Count,
+                        Difference = Math.Round(auto.SumСombustible + auto.SumExpenses, 2)
+                    });
+                }
+            }
+
+            return autoCompare;
+        }
+
+        public List<U> GetCompareViewModel<U,T>(List<T> autosGrouped1, List<T> autosGrouped2) 
+            where U : class, new()
+            where T : class
+        {
+            List<U> autoCompare = new List<U>();
+
+            U uTemp = new U();
+            var uProperties = uTemp.GetType().GetProperties();
+            var tProperties = autosGrouped1[0].GetType().GetProperties();
+
+            foreach (var auto in autosGrouped1)
+            {
+                uTemp = new U();
+
+                foreach (var tp in tProperties)
+                {
+                    foreach (var up in uProperties)
+                    {
+                        if (up.Name == tp.Name+"1")
+                        {
+                            up.SetValue(uTemp, Convert.ChangeType(tp.GetValue(auto), up.PropertyType));
+                        }
+                    }
+                }
+
+                //autoCompare.Add(new U
+                //{
+                //    Name1 = auto.Name,
+                //    SumСombustible1 = Math.Round(auto.SumСombustible, 2),
+                //    SumExpenses1 = Math.Round(auto.SumExpenses, 2),
+                //    Count1 = auto.Count,
+                //    Difference = Math.Round(0 - auto.SumСombustible - auto.SumExpenses, 2)
+                //});
+            }
+
+
+            //foreach (var auto in autosGrouped2)
+            //{
+            //    var existingSal = autoCompare.FirstOrDefault(x => x.Name1 == auto.Name);
+            //    if (existingSal != null)
+            //    {
+            //        existingSal.Name2 = auto.Name;
+            //        existingSal.SumСombustible2 = Math.Round(auto.SumСombustible, 2);
+            //        existingSal.SumExpenses2 = Math.Round(auto.SumExpenses, 2);
+            //        existingSal.Count2 = auto.Count;
+            //        existingSal.Difference = Math.Round(existingSal.SumСombustible2 + existingSal.SumExpenses2
+            //            - existingSal.SumСombustible1 - existingSal.SumExpenses1, 2);
+            //    }
+            //    else
+            //    {
+            //        autoCompare.Add(new AutoCompareViewModel
+            //        {
+            //            Name2 = auto.Name,
+            //            SumСombustible2 = Math.Round(auto.SumСombustible, 2),
+            //            SumExpenses2 = Math.Round(auto.SumExpenses, 2),
+            //            Count2 = auto.Count,
+            //            Difference = Math.Round(auto.SumСombustible + auto.SumExpenses, 2)
+            //        });
+            //    }
+            //}
+
+            return autoCompare;
         }
 
 
@@ -2474,7 +2801,7 @@ namespace ATKPIMasterFile.BusinessLogic.Aggregators
             var userId = _contextService.GetCurrentUserId();
             var user = GetUserById(userId);
 
-            
+
 
             UserViewModel userViewModel = new UserViewModel();
             userViewModel.UserId = user.UserId;
@@ -2484,12 +2811,12 @@ namespace ATKPIMasterFile.BusinessLogic.Aggregators
             userViewModel.TextStatus = "All is OK";
             userViewModel.IsMy = true;
             userViewModel.IsInMaskMode = false;
-            userViewModel.MaskUrl = "";            
+            userViewModel.MaskUrl = "";
             userViewModel.ImageIsNull = false;
             userViewModel.IsDeleted = false;
             userViewModel.IsAskAvatar = false;
 
-            if(string.IsNullOrEmpty(user.AvatarPath))
+            if (string.IsNullOrEmpty(user.AvatarPath))
             {
                 userViewModel.ImageUrlNormal = user.Sex ? "/Content/Uploads/male-blank.gif" : "/Content/Uploads/female-blank.gif";
                 userViewModel.ImageIsNull = true;
@@ -2524,7 +2851,7 @@ namespace ATKPIMasterFile.BusinessLogic.Aggregators
 
             g.DrawImage(image, 0, 0, destWidth, destHeight);
             g.Dispose();
-            
+
             return (Image)b;
         }
 
@@ -2571,8 +2898,8 @@ namespace ATKPIMasterFile.BusinessLogic.Aggregators
 
 
             var newImage = image.Resize(width: destWidth, height: destHeight);
-                                        //,preserveAspectRatio: true,
-                                        // preventEnlarge: true);
+            //,preserveAspectRatio: true,
+            // preventEnlarge: true);
 
             return (WebImage)newImage;
         }

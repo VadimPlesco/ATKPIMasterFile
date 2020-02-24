@@ -80,10 +80,35 @@
             </button>
 
             <button class="button-gold-to-gold-same-border button-gold-to-gold shared__button-medium shared__font-bold shared__margin-left-big"
+                    onclick="window.location.href = '@Url.Action("AutosCompareReport", "User")'">
+                Сравнение Авто Затрат
+            </button>
+
+            @*<button class="button-gold-to-gold-same-border button-gold-to-gold shared__button-medium shared__font-bold shared__margin-left-big"
+                    onclick="window.location.href = '@Url.Action("SalariesReport", "User")'">
+                Отчет по ЗП
+            </button>*@
+            
+        </div>
+
+        <div class="shared__padding-top-tripple shared__padding-bottom-tripple">
+
+            @*<button class="button-gold-to-gold-same-border button-gold-to-gold shared__button-medium shared__font-bold"
+                    onclick="window.location.href = '@Url.Action("Index", "User")'">
+                Отчет KPI План-Факт
+            </button>*@
+
+            <button class="button-gold-to-gold-same-border button-gold-to-gold shared__button-medium shared__font-bold shared__margin-left-big"
                     onclick="window.location.href = '@Url.Action("SalariesReport", "User")'">
                 Отчет по ЗП
             </button>
-            
+            @*@if (Model.UserId == 2)
+            {*@
+            <button class="button-gold-to-gold-same-border button-gold-to-gold shared__button-medium shared__font-bold shared__margin-left-big"
+                    onclick="window.location.href = '@Url.Action("SalariesCompareReport", "User")'">
+                Сравнение Зарплат
+            </button>
+            @*}*@
         </div>
 
         @*<div class="shared__padding-top-tripple shared__padding-bottom-tripple">

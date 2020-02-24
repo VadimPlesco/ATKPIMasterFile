@@ -280,7 +280,10 @@
     <Content Include="Content\themes\original\css\Profile-Setup\profile-setup.css" />
     <Content Include="Content\themes\original\css\Profile\profile.css" />
     <Content Include="Content\themes\original\css\Profile\profile_v4.css" />
+    <Content Include="Content\themes\original\css\Shared\avatar.css" />
     <Content Include="Content\themes\original\css\Shared\buttons.css" />
+    <Content Include="Content\themes\original\css\Shared\core-ui-select.css" />
+    <Content Include="Content\themes\original\css\Shared\jquery.checkbox.css" />
     <Content Include="Content\themes\original\css\Shared\shared.css" />
     <Content Include="Content\themes\original\css\Typeahead\typeahead.css" />
     <Content Include="Content\themes\original\font\kinkylove-iconset.svg" />
@@ -288,11 +291,15 @@
     <Content Include="Content\themes\original\images\Aquatrade.png" />
     <Content Include="Content\themes\original\images\body_noise.png" />
     <Content Include="Content\themes\original\images\chat_iconset.png" />
+    <Content Include="Content\themes\original\images\checkbox.png" />
+    <Content Include="Content\themes\original\images\checkboxwhite.png" />
     <Content Include="Content\themes\original\js\init_controls.js" />
     <Content Include="Content\themes\original\js\jquery.checkbox.js" />
     <Content Include="Content\themes\original\js\jquery.core-ui-select.modify.js" />
     <Content Include="Content\themes\original\js\landing.js" />
     <Content Include="Content\themes\original\js\main__menu.js" />
+    <Content Include="Content\Uploads\female-blank.gif" />
+    <Content Include="Content\Uploads\male-blank.gif" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -325,6 +332,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jtable\extensions\css\icon_excel.png" />
     <Content Include="Scripts\jtable\extensions\jquery.jtable.aspnetpagemethods.js" />
     <Content Include="Scripts\jtable\extensions\jquery.jtable.aspnetpagemethods.min.js" />
     <Content Include="Scripts\jtable\extensions\jquery.jtable.core.js" />
@@ -548,11 +556,11 @@
     <Content Include="Views\User\DetailsLeft.cshtml" />
     <Content Include="Views\User\KPIFilialPlanResult.cshtml" />
     <Content Include="Views\User\KPIFilialPlans.cshtml" />
+    <Content Include="Views\User\SalariesCompareReport.cshtml" />
+    <Content Include="Views\User\AutosCompareReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Uploads\" />
-    <Folder Include="Scripts\jtable\extensions\css\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

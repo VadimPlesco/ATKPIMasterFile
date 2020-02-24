@@ -64,6 +64,8 @@
     <Compile Include="ViewModels\JsonResponse.cs" />
     <Compile Include="ViewModels\RouteEnum.cs" />
     <Compile Include="ViewModels\User\AdminExpenseViewModel.cs" />
+    <Compile Include="ViewModels\User\AutoCompareViewModel.cs" />
+    <Compile Include="ViewModels\User\SalaryCompareViewModel.cs" />
     <Compile Include="ViewModels\User\PublicServiceViewModel.cs" />
     <Compile Include="ViewModels\User\BrendsPlanViewModel.cs" />
     <Compile Include="ViewModels\User\GoodViewModel.cs" />

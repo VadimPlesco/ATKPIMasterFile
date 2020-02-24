@@ -61,5 +61,20 @@ namespace ATKPIMasterFile.BusinessLogic.Model
         [ForeignKey("ProjectId")]
         public virtual Project Project { get; set; }
 
+        public string IDNP { get; set; }
+
+        public double? PensionFund { get; set; } 
+
+        public double? HealthInsurance { get; set; }
+
+        public double? IncomeTax { get; set; }
+
+        public double? Deduction { get; set; }
+
+        public double? SocialFund { get; set; }
+
+        [NotMapped]
+        public double TotalTax { get; set; }
+
     }
 }

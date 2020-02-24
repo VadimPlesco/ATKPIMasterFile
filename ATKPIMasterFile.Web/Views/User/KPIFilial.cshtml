@@ -2,438 +2,464 @@
 @model ATKPIMasterFile.BusinessLogic.ViewModels.User.KPIViewModel
 
 @*<div id="kpiFilials1">*@
-    @if (Model != null)
-    {
-        <script>
-            $(function () {
-                $("#tabs").tabs();
-            });
+@if (Model != null)
+{
+    <script>
+        $(function () {
+            $("#tabs").tabs();
+        });
 
-            $(document).ready(function () {
-                $("table[id^='kpiTbl-']").tablesorter();
-            });
-        </script>
+        $(document).ready(function () {
+            $("table[id^='kpiTbl-']").tablesorter();
+        });
+    </script>
 
 
-        <div @*style="padding-top:60px"*@>
-            <div id="tabs">
-                <ul>
-                    <li><a href="#tabs-1">Реализация</a></li>
-                    <li><a href="#tabs-2">Персонал</a></li>
-                    <li><a href="#tabs-3">Транспорт</a></li>
-                    <li><a href="#tabs-4">Другие расходы</a></li>
-                    @*<li><a href="#tabs-5">Показатели</a></li>*@
-                </ul>
-                <div id="tabs-1">
-                    @if (Model.SalePart.Rows.Count > 0)
+    <div @*style="padding-top:60px"*@>
+        <div id="tabs">
+            <ul>
+                <li><a href="#tabs-1">Реализация</a></li>
+                <li><a href="#tabs-2">Персонал</a></li>
+                <li><a href="#tabs-3">Транспорт</a></li>
+                <li><a href="#tabs-4">Другие расходы</a></li>
+                @*<li><a href="#tabs-5">Показатели</a></li>*@
+            </ul>
+            <div id="tabs-1">
+                @if (Model.SalePart.Rows.Count > 0)
                 {
-                        <div align="center" style="align-content:center">
-                            <table id="kpiTbl-1" class="shared__relative shared__padding-bottom-double">
-                                <thead>
-                                    <tr style="background-color:grey; color:white">
-                                        <th style="width: 300px;">
-                                            P&L филиалов
-                                        </th>
-                                        <th style="width: 150px;">
-                                            План
-                                        </th>
-                                        <th style="width: 150px;">
-                                            Факт
-                                        </th>
-                                        <th style="width: 150px;">
-                                            %
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @for (int i = 0; i < Model.SalePart.Rows.Count; i++)
+                    <div align="center" style="align-content:center">
+                        <table id="kpiTbl-1" class="shared__relative shared__padding-bottom-double">
+                            <thead>
+                                <tr style="background-color:grey; color:white">
+                                    <th style="width: 300px;">
+                                        P&L филиалов
+                                    </th>
+                                    <th style="width: 150px;">
+                                        План
+                                    </th>
+                                    <th style="width: 150px;">
+                                        Факт
+                                    </th>
+                                    <th style="width: 150px;">
+                                        %
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 0; i < Model.SalePart.Rows.Count; i++)
+                                {
+                                    string color = "#F2FBC4";
+                                    //if (i % 2 == 0)
+                                    //{
+                                    //    color = "#FCE4EF";
+                                    //}
+
+                                    if (@Model.SalePart.Rows[i].Name == "Объемы реализации" || @Model.SalePart.Rows[i].Name == "Затраты на персонал")
                                     {
-                                        string color = "#F2FBC4";
-                                        //if (i % 2 == 0)
-                                        //{
-                                        //    color = "#FCE4EF";
-                                        //}
+                                        color = "#FECD05; font-size:20px;";
+                                    }
 
-                                        if (@Model.SalePart.Rows[i].Name == "Объемы реализации" || @Model.SalePart.Rows[i].Name == "Затраты на персонал")
+                                    <tr @( "style=background-color:" + color )>
+                                        <td>
+                                            @Model.SalePart.Rows[i].Name
+                                        </td>
+                                        <td align="right">
+                                            @Model.SalePart.Rows[i].Plan.ToString("N0")
+                                        </td>
+                                        <td align="right">
+                                            @if (!Model.SalePart.Rows[i].Link)
+                                            {
+                                                @Model.SalePart.Rows[i].Fact.ToString("N0")
+                                            }
+                                            else
+                                            {
+                                                <a href="" style="text-decoration:underline" onclick="kinkyApp.modal.showByUrl('@Url.Action("GoodsDetails", "User", new { brendName = Model.SalePart.Rows[i].Name, month = ViewBag.SelectedMonth.SelectedValue, year = ViewBag.SelectedYear.SelectedValue, monthEnd = ViewBag.SelectedMonthEnd.SelectedValue, yearEnd = ViewBag.SelectedYearEnd.SelectedValue, filial = ViewBag.SelectedFilial.SelectedValue })','body'); return false; " class="shared__text-black">@Model.SalePart.Rows[i].Fact.ToString("N0")</a>
+                                            }
+                                        </td>
+                                        @if (Model.SalePart.Rows[i].Percent < -3.00)
                                         {
-                                            color = "#FECD05; font-size:20px;";
-                                        }
-
-                                        <tr @( "style=background-color:" + color )>
-                                            <td>
-                                                @Model.SalePart.Rows[i].Name
+                                            <td bgcolor="#FFB3B3" align="right">
+                                                @Model.SalePart.Rows[i].Percent.ToString("0.000")
                                             </td>
+                                        }
+                                        else
+                                        {
                                             <td align="right">
-                                                @Model.SalePart.Rows[i].Plan.ToString("N0")
+                                                @Model.SalePart.Rows[i].Percent.ToString("0.000")
                                             </td>
+                                        }
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+            </div>
+            <div id="tabs-2">
+                @if (Model.SalaryPart.Rows.Count > 0)
+                {
+                    <div align="center" style="align-content:center">
+                        <table id="kpiTbl-2" class="shared__relative shared__padding-bottom-double">
+                            <thead>
+                                <tr style="background-color:grey; color:white">
+                                    <th style="width: 300px;">
+                                        P&L филиалов
+                                    </th>
+                                    <th style="width: 130px;">
+                                        План @(ViewBag.SelectedYear.SelectedValue.ToString().Substring(2, 2))
+                                    </th>
+                                    <th style="width: 130px;">
+                                        Факт @(ViewBag.SelectedYear.SelectedValue.ToString().Substring(2, 2))
+                                    </th>
+                                    <th style="width: 130px;">
+                                        План vs Факт @(ViewBag.SelectedYear.SelectedValue.ToString().Substring(2, 2))
+                                    </th>
+                                    <th style="width: 10px;">
+
+                                    </th>
+                                    <th style="width: 130px;">
+                                        Факт @((ViewBag.SelectedYear.SelectedValue - 1).ToString().Substring(2, 2))
+                                    </th>
+                                    <th style="width: 150px;">
+                                        Факт @((ViewBag.SelectedYear.SelectedValue - 1).ToString().Substring(2, 2)) vs
+                                        @(ViewBag.SelectedYear.SelectedValue.ToString().Substring(2, 2))
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 0; i < Model.SalaryPart.Rows.Count; i++)
+                                {
+                                    string color = "#F2FBC4";
+                                    //if (i % 2 == 0)
+                                    //{
+                                    //    color = "#FCE4EF";
+                                    //}
+
+                                    if (@Model.SalaryPart.Rows[i].Name == "Количество сотрудников"
+                                        || @Model.SalaryPart.Rows[i].Name == "Затраты на персонал")
+                                    {
+                                        color = "#FECD05; font-size:20px;";
+                                    }
+
+                                    var name = Model.SalaryPart.Rows[i].Name;
+                                    var j = Model.SalaryPartPast.Rows.FindIndex(p => p.Name == name);
+                                    //j = -1;
+                                    string bgcolor = color;
+                                    if (j != -1)
+                                    {
+                                        if (Model.SalaryPartPast.Rows[j].Percent > 3.00)
+                                        {
+                                            bgcolor = "#FFB3B3";
+                                        }
+                                    }
+
+                                    <tr @( "style=background-color:" + color )>
+                                        <td>
+                                            @Model.SalaryPart.Rows[i].Name
+                                        </td>
+                                        <td align="center">
+                                            @Model.SalaryPart.Rows[i].Plan.ToString("N0")
+                                        </td>
+                                        <td align="center">
+                                            @if (!Model.SalaryPart.Rows[i].Link)
+                                            {
+                                                @Model.SalaryPart.Rows[i].Fact.ToString("N0");
+                                            }
+                                            else
+                                            {
+                                                <a href="" style="text-decoration:underline" onclick="kinkyApp.modal.showByUrl('@Url.Action("SalariesDetails", "User", new { salariesName = Model.SalaryPart.Rows[i].Name, month = ViewBag.SelectedMonth.SelectedValue, year = ViewBag.SelectedYear.SelectedValue, monthEnd = ViewBag.SelectedMonthEnd.SelectedValue, yearEnd = ViewBag.SelectedYearEnd.SelectedValue, filial = ViewBag.SelectedFilial.SelectedValue })','body'); return false; " class="shared__text-black">@Model.SalaryPart.Rows[i].Fact.ToString("N0")</a>
+                                            }
+                                        </td>
+                                        @if (Model.SalaryPart.Rows[i].Percent > 3.00)
+                                        {
+                                            <td bgcolor="#FFB3B3" align="right">
+                                                @Model.SalaryPart.Rows[i].Percent.ToString("0.000")
+                                            </td>
+                                        }
+                                        else
+                                        {
                                             <td align="right">
-                                                @if (!Model.SalePart.Rows[i].Link)
+                                                @Model.SalaryPart.Rows[i].Percent.ToString("0.000")
+                                            </td>
+                                        }
+                                        <td></td>
+                                        @if (j != -1)
+                                        {
+                                            <td align="center">
+
+                                                @if (!Model.SalaryPartPast.Rows[j].Link)
                                                 {
-                                                    @Model.SalePart.Rows[i].Fact.ToString("N0")
+                                                    @Model.SalaryPartPast.Rows[j].Fact.ToString("N0");
                                                 }
                                                 else
                                                 {
-                                                    <a href="" style="text-decoration:underline" onclick="kinkyApp.modal.showByUrl('@Url.Action("GoodsDetails", "User", new { brendName = Model.SalePart.Rows[i].Name, month = ViewBag.SelectedMonth.SelectedValue, year = ViewBag.SelectedYear.SelectedValue, monthEnd = ViewBag.SelectedMonthEnd.SelectedValue, yearEnd = ViewBag.SelectedYearEnd.SelectedValue, filial = ViewBag.SelectedFilial.SelectedValue })','body'); return false; " class="shared__text-black">@Model.SalePart.Rows[i].Fact.ToString("N0")</a>
+                                                    <a href="" style="text-decoration:underline"
+                                                       onclick="kinkyApp.modal.showByUrl('@Url.Action("SalariesDetails", "User",
+                                                   new
+                                                   {
+                                                       salariesName = Model.SalaryPartPast.Rows[j].Name,
+                                                       month = ViewBag.SelectedMonth.SelectedValue,
+                                                       year = ViewBag.SelectedYear.SelectedValue - 1,
+                                                       monthEnd = ViewBag.SelectedMonthEnd.SelectedValue,
+                                                       yearEnd = ViewBag.SelectedYearEnd.SelectedValue - 1,
+                                                       filial = ViewBag.SelectedFilial.SelectedValue
+                                                   })','body'); return false; "
+                                                       class="shared__text-black">@Model.SalaryPartPast.Rows[j].Fact.ToString("N0")</a>
                                                 }
-                                            </td>
-                                            @if (Model.SalePart.Rows[i].Percent < -3.00)
-                                            {
-                                                <td bgcolor="#FFB3B3" align="right">
-                                                    @Model.SalePart.Rows[i].Percent.ToString("0.000")
-                                                </td>
-                                            }
-                                            else
-                                            {
-                                                <td align="right">
-                                                    @Model.SalePart.Rows[i].Percent.ToString("0.000")
-                                                </td>
-                                            }
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                    }
-                </div>
-                <div id="tabs-2">
-                    @if (Model.SalaryPart.Rows.Count > 0)
-                {
-                        <div align="center" style="align-content:center">
-                            <table id="kpiTbl-2" class="shared__relative shared__padding-bottom-double">
-                                <thead>
-                                    <tr style="background-color:grey; color:white">
-                                        <th style="width: 300px;">
-                                            P&L филиалов
-                                        </th>
-                                        <th style="width: 130px;">
-                                            План @(ViewBag.SelectedYear.SelectedValue.ToString().Substring(2, 2))
-                                        </th>
-                                        <th style="width: 130px;">
-                                            Факт @(ViewBag.SelectedYear.SelectedValue.ToString().Substring(2, 2))
-                                        </th>
-                                        <th style="width: 130px;">
-                                            План vs Факт @(ViewBag.SelectedYear.SelectedValue.ToString().Substring(2, 2))
-                                        </th>
-                                        <th style="width: 10px;">
 
-                                        </th>
-                                        <th style="width: 130px;">
-                                            Факт @((ViewBag.SelectedYear.SelectedValue - 1).ToString().Substring(2, 2))
-                                        </th>
-                                        <th style="width: 150px;">
-                                            Факт @((ViewBag.SelectedYear.SelectedValue - 1).ToString().Substring(2, 2)) vs
-                                            @(ViewBag.SelectedYear.SelectedValue.ToString().Substring(2, 2))
-                                        </th>
+                                            </td>
+
+                                            <td bgcolor=@bgcolor align="right">
+                                                @Model.SalaryPartPast.Rows[j].Percent.ToString("0.000")
+                                            </td>
+
+                                        }
+                                        else
+                                        {
+                                             <td></td>
+                                             <td></td>
+                                        }
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    @for (int i = 0; i < Model.SalaryPart.Rows.Count; i++)
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+            </div>
+            <div id="tabs-3">
+                @if (Model.AutoPart.Rows.Count > 0)
+                {
+                    <div align="center" style="align-content:center">
+                        <table id="kpiTbl-3" class="shared__relative shared__padding-bottom-double">
+                            <thead>
+                                <tr style="background-color:grey; color:white">
+                                    <th style="width: 300px;">
+                                        P&L филиалов
+                                    </th>
+                                    <th style="width: 130px;">
+                                        План @(ViewBag.SelectedYear.SelectedValue.ToString().Substring(2, 2))
+                                    </th>
+                                    <th style="width: 130px;">
+                                        Факт @(ViewBag.SelectedYear.SelectedValue.ToString().Substring(2, 2))
+                                    </th>
+                                    <th style="width: 130px;">
+                                        План vs Факт @(ViewBag.SelectedYear.SelectedValue.ToString().Substring(2, 2))
+                                    </th>
+                                    <th style="width: 10px;">
+
+                                    </th>
+                                    <th style="width: 130px;">
+                                        Факт @((ViewBag.SelectedYear.SelectedValue - 1).ToString().Substring(2, 2))
+                                    </th>
+                                    <th style="width: 150px;">
+                                        Факт @((ViewBag.SelectedYear.SelectedValue - 1).ToString().Substring(2, 2)) vs
+                                        @(ViewBag.SelectedYear.SelectedValue.ToString().Substring(2, 2))
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{ var t = 0;
+                                    for (int i = 0; i < Model.AutoPart.Rows.Count; i++)
                                     {
+                                        if (@Model.AutoPart.Rows[i].Plan == 0 && Model.AutoPart.Rows[i].Fact == 0)
+                                        {
+                                            continue;
+                                        }
+
                                         string color = "#F2FBC4";
-                                        //if (i % 2 == 0)
+                                        //if (t % 2 == 0)
                                         //{
                                         //    color = "#FCE4EF";
                                         //}
 
-                                        if (@Model.SalaryPart.Rows[i].Name == "Количество сотрудников" || @Model.SalaryPart.Rows[i].Name == "Затраты на персонал")
+                                        if (@Model.AutoPart.Rows[i].Name == "Кол-во авто" || @Model.AutoPart.Rows[i].Name == "Затраты на транспорт")
                                         {
                                             color = "#FECD05; font-size:20px;";
                                         }
 
-                                        <tr @( "style=background-color:" + color )>
-                                            <td>
-                                                @Model.SalaryPart.Rows[i].Name
-                                            </td>
-                                            <td align="center">
-                                                @Model.SalaryPart.Rows[i].Plan.ToString("N0")
-                                            </td>
-                                            <td align="center">
-                                                @if (!Model.SalaryPart.Rows[i].Link)
-                                                {
-                                                    @Model.SalaryPart.Rows[i].Fact.ToString("N0");
-                                                }
-                                                else
-                                                {
-                                                    <a href="" style="text-decoration:underline" onclick="kinkyApp.modal.showByUrl('@Url.Action("SalariesDetails", "User", new { salariesName = Model.SalaryPart.Rows[i].Name, month = ViewBag.SelectedMonth.SelectedValue, year = ViewBag.SelectedYear.SelectedValue, monthEnd = ViewBag.SelectedMonthEnd.SelectedValue, yearEnd = ViewBag.SelectedYearEnd.SelectedValue, filial = ViewBag.SelectedFilial.SelectedValue })','body'); return false; " class="shared__text-black">@Model.SalaryPart.Rows[i].Fact.ToString("N0")</a>
-                                                }
-                                            </td>
-                                            @if (Model.SalaryPart.Rows[i].Percent > 3.00)
-                                            {
-                                                <td bgcolor="#FFB3B3" align="right">
-                                                    @Model.SalaryPart.Rows[i].Percent.ToString("0.000")
-                                                </td>
-                                            }
-                                            else
-                                            {
-                                                <td align="right">
-                                                    @Model.SalaryPart.Rows[i].Percent.ToString("0.000")
-                                                </td>
-                                            }
-                                            <td></td>
-                                            <td align="center">
-                                                @if (!Model.SalaryPartPast.Rows[i].Link)
-                                                {
-                                                    @Model.SalaryPartPast.Rows[i].Fact.ToString("N0");
-                                                }
-                                                else
-                                                {
-                                                    <a href="" style="text-decoration:underline" onclick="kinkyApp.modal.showByUrl('@Url.Action("SalariesDetails", "User", new { salariesName = Model.SalaryPartPast.Rows[i].Name, month = ViewBag.SelectedMonth.SelectedValue, year = ViewBag.SelectedYear.SelectedValue-1, monthEnd = ViewBag.SelectedMonthEnd.SelectedValue, yearEnd = ViewBag.SelectedYearEnd.SelectedValue-1, filial = ViewBag.SelectedFilial.SelectedValue })','body'); return false; " class="shared__text-black">@Model.SalaryPartPast.Rows[i].Fact.ToString("N0")</a>
-                                                }
-                                            </td>
-                                            @if (Model.SalaryPartPast.Rows[i].Percent > 3.00)
-                                            {
-                                                <td bgcolor="#FFB3B3" align="right">
-                                                    @Model.SalaryPartPast.Rows[i].Percent.ToString("0.000")
-                                                </td>
-                                            }
-                                            else
-                                            {
-                                                <td align="right">
-                                                    @Model.SalaryPartPast.Rows[i].Percent.ToString("0.000")
-                                                </td>
-                                            }
-
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                    }
-                </div>
-                <div id="tabs-3">
-                    @if (Model.AutoPart.Rows.Count > 0)
-                {
-                        <div align="center" style="align-content:center">
-                            <table id="kpiTbl-3" class="shared__relative shared__padding-bottom-double">
-                                <thead>
-                                    <tr style="background-color:grey; color:white">
-                                        <th style="width: 300px;">
-                                            P&L филиалов
-                                        </th>
-                                        <th style="width: 130px;">
-                                            План @(ViewBag.SelectedYear.SelectedValue.ToString().Substring(2, 2))
-                                        </th>
-                                        <th style="width: 130px;">
-                                            Факт @(ViewBag.SelectedYear.SelectedValue.ToString().Substring(2, 2))
-                                        </th>
-                                        <th style="width: 130px;">
-                                            План vs Факт @(ViewBag.SelectedYear.SelectedValue.ToString().Substring(2, 2))
-                                        </th>
-                                        <th style="width: 10px;">
-
-                                        </th>
-                                        <th style="width: 130px;">
-                                            Факт @((ViewBag.SelectedYear.SelectedValue - 1).ToString().Substring(2, 2))
-                                        </th>
-                                        <th style="width: 150px;">
-                                            Факт @((ViewBag.SelectedYear.SelectedValue - 1).ToString().Substring(2, 2)) vs
-                                            @(ViewBag.SelectedYear.SelectedValue.ToString().Substring(2, 2))
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @{ var t = 0;
-                                        for (int i = 0; i < Model.AutoPart.Rows.Count; i++)
-                                        {
-                                            if (@Model.AutoPart.Rows[i].Plan == 0 && Model.AutoPart.Rows[i].Fact == 0)
-                                            {
-                                                continue;
-                                            }
-
-                                            string color = "#F2FBC4";
-                                            //if (t % 2 == 0)
-                                            //{
-                                            //    color = "#FCE4EF";
-                                            //}
-
-                                            if (@Model.AutoPart.Rows[i].Name == "Кол-во авто" || @Model.AutoPart.Rows[i].Name == "Затраты на транспорт")
-                                            {
-                                                color = "#FECD05; font-size:20px;";
-                                            }
-
-                                            if (@Model.AutoPart.Rows[i].Name == "Обслуживание автомобилей" || @Model.AutoPart.Rows[i].Name == "Запчасти для ремонтов авто")
-                                            {
-                                                color = "#FFFF66; font-size:20px;";
-                                            }
-
-                                            if (@Model.AutoPart.Rows[i].Name == "ТО")
-                                            {
-                                                color = "#FFFF99; font-size:20px;";
-                                            }
-
-                                            <tr @( "style=background-color:" + color )>
-                                                <td>
-                                                    @Model.AutoPart.Rows[i].Name
-                                                </td>
-                                                <td align="center">
-                                                    @Model.AutoPart.Rows[i].Plan.ToString("N0")
-                                                </td>
-                                                <td align="center">
-                                                    @if (!Model.AutoPart.Rows[i].Link)
-                                                    {
-                                                        @Model.AutoPart.Rows[i].Fact.ToString("N0");
-                                                    }
-                                                    else
-                                                    {
-                                                        <a href="" style="text-decoration:underline" onclick="kinkyApp.modal.showByUrl('@Url.Action("AutosDetails", "User", new { autosName = Model.AutoPart.Rows[i].Name, month = ViewBag.SelectedMonth.SelectedValue, year = ViewBag.SelectedYear.SelectedValue, monthEnd = ViewBag.SelectedMonthEnd.SelectedValue, yearEnd = ViewBag.SelectedYearEnd.SelectedValue, filial = ViewBag.SelectedFilial.SelectedValue })','body'); return false; " class="shared__text-black">@Model.AutoPart.Rows[i].Fact.ToString("N0")</a>
-                                                    }
-                                                </td>
-                                                @if (Model.AutoPart.Rows[i].Percent > 3.00)
-                                                {
-                                                    <td bgcolor="#FFB3B3" align="right">
-                                                        @Model.AutoPart.Rows[i].Percent.ToString("0.000")
-                                                    </td>
-                                                }
-                                                else
-                                                {
-                                                    <td align="right">
-                                                        @Model.AutoPart.Rows[i].Percent.ToString("0.000")
-                                                    </td>
-                                                }
-                                                <td></td>
-                                                <td align="center">
-                                                    @if (!Model.AutoPartPast.Rows[i].Link)
-                                                    {
-                                                        @Model.AutoPartPast.Rows[i].Fact.ToString("N0");
-                                                    }
-                                                    else
-                                                    {
-                                                        <a href="" style="text-decoration:underline" onclick="kinkyApp.modal.showByUrl('@Url.Action("AutosDetails", "User", new { autosName = Model.AutoPartPast.Rows[i].Name, month = ViewBag.SelectedMonth.SelectedValue, year = ViewBag.SelectedYear.SelectedValue-1, monthEnd = ViewBag.SelectedMonthEnd.SelectedValue, yearEnd = ViewBag.SelectedYearEnd.SelectedValue-1, filial = ViewBag.SelectedFilial.SelectedValue })','body'); return false; " class="shared__text-black">@Model.AutoPartPast.Rows[i].Fact.ToString("N0")</a>
-                                                    }
-                                                </td>
-                                                @if (Model.AutoPartPast.Rows[i].Percent > 3.00)
-                                                {
-                                                    <td bgcolor="#FFB3B3" align="right">
-                                                        @Model.AutoPartPast.Rows[i].Percent.ToString("0.000")
-                                                    </td>
-                                                }
-                                                else
-                                                {
-                                                    <td align="right">
-                                                        @Model.AutoPartPast.Rows[i].Percent.ToString("0.000")
-                                                    </td>
-                                                }
-                                            </tr>
-                                            t++;
-                                        }
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                                        }
-                </div>
-                <div id="tabs-4">
-                    @if (Model.AdminPart.Rows.Count > 0)
-                {
-                        <div align="center" style="align-content:center">
-                            <table id="kpiTbl-4" class="shared__relative shared__padding-bottom-double">
-                                <thead>
-                                    <tr style="background-color:grey; color:white">
-                                        <th style="width: 300px;">
-                                            P&L филиалов
-                                        </th>
-                                        <th style="width: 130px;">
-                                            План @(ViewBag.SelectedYear.SelectedValue.ToString().Substring(2, 2))
-                                        </th>
-                                        <th style="width: 130px;">
-                                            Факт @(ViewBag.SelectedYear.SelectedValue.ToString().Substring(2, 2))
-                                        </th>
-                                        <th style="width: 130px;">
-                                            План vs Факт @(ViewBag.SelectedYear.SelectedValue.ToString().Substring(2, 2))
-                                        </th>
-                                        <th style="width: 10px;">
-
-                                        </th>
-                                        <th style="width: 130px;">
-                                            Факт @((ViewBag.SelectedYear.SelectedValue - 1).ToString().Substring(2, 2))
-                                        </th>
-                                        <th style="width: 150px;">
-                                            Факт @((ViewBag.SelectedYear.SelectedValue - 1).ToString().Substring(2, 2)) vs
-                                            @(ViewBag.SelectedYear.SelectedValue.ToString().Substring(2, 2))
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @for (int i = 0; i < Model.AdminPart.Rows.Count; i++)
-                                    {
-                                        string color = "#F2FBC4";
-                                        //if (i % 2 == 0)
-                                        //{
-                                        //    color = "#FCE4EF";
-                                        //}
-
-                                        if (@Model.AdminPart.Rows[i].Name == "Валовый доход от продаж" || @Model.AdminPart.Rows[i].Name == "Чистый доход от продаж"
-                                            || @Model.AdminPart.Rows[i].Name == "Валовая прибыль" || @Model.AdminPart.Rows[i].Name == "Прибыль торгового отдела"
-                                            || @Model.AdminPart.Rows[i].Name == "Суммарно затраты ЦФО")
-                                        {
-                                            color = "#FECD05; font-size:20px;";
-                                        }
-
-                                        if (@Model.AdminPart.Rows[i].Name == "Административные затраты")
+                                        if (@Model.AutoPart.Rows[i].Name == "Обслуживание автомобилей" || @Model.AutoPart.Rows[i].Name == "Запчасти для ремонтов авто")
                                         {
                                             color = "#FFFF66; font-size:20px;";
                                         }
 
+                                        if (@Model.AutoPart.Rows[i].Name == "ТО")
+                                        {
+                                            color = "#FFFF99; font-size:20px;";
+                                        }
+
                                         <tr @( "style=background-color:" + color )>
                                             <td>
-                                                @Model.AdminPart.Rows[i].Name
+                                                @Model.AutoPart.Rows[i].Name
                                             </td>
                                             <td align="center">
-                                                @Model.AdminPart.Rows[i].Plan.ToString("N0")
+                                                @Model.AutoPart.Rows[i].Plan.ToString("N0")
                                             </td>
                                             <td align="center">
-                                                @if (!Model.AdminPart.Rows[i].Link)
+                                                @if (!Model.AutoPart.Rows[i].Link)
                                                 {
-                                                    @Model.AdminPart.Rows[i].Fact.ToString("N0");
+                                                    @Model.AutoPart.Rows[i].Fact.ToString("N0");
                                                 }
                                                 else
                                                 {
-                                                    <a href="" style="text-decoration:underline" onclick="kinkyApp.modal.showByUrl('@Url.Action("PublicServicesDetails", "User", new { month = ViewBag.SelectedMonth.SelectedValue, year = ViewBag.SelectedYear.SelectedValue, monthEnd = ViewBag.SelectedMonthEnd.SelectedValue, yearEnd = ViewBag.SelectedYearEnd.SelectedValue, filial = ViewBag.SelectedFilial.SelectedValue })','body'); return false; " class="shared__text-black">@Model.AdminPart.Rows[i].Fact.ToString("N0")</a>
+                                                    <a href="" style="text-decoration:underline" onclick="kinkyApp.modal.showByUrl('@Url.Action("AutosDetails", "User", new { autosName = Model.AutoPart.Rows[i].Name, month = ViewBag.SelectedMonth.SelectedValue, year = ViewBag.SelectedYear.SelectedValue, monthEnd = ViewBag.SelectedMonthEnd.SelectedValue, yearEnd = ViewBag.SelectedYearEnd.SelectedValue, filial = ViewBag.SelectedFilial.SelectedValue })','body'); return false; " class="shared__text-black">@Model.AutoPart.Rows[i].Fact.ToString("N0")</a>
                                                 }
                                             </td>
-                                            @if (Model.AdminPart.Rows[i].Percent > 3.00)
+                                            @if (Model.AutoPart.Rows[i].Percent > 3.00)
                                             {
                                                 <td bgcolor="#FFB3B3" align="right">
-                                                    @Model.AdminPart.Rows[i].Percent.ToString("0.000")
+                                                    @Model.AutoPart.Rows[i].Percent.ToString("0.000")
                                                 </td>
                                             }
                                             else
                                             {
                                                 <td align="right">
-                                                    @Model.AdminPart.Rows[i].Percent.ToString("0.000")
+                                                    @Model.AutoPart.Rows[i].Percent.ToString("0.000")
                                                 </td>
                                             }
                                             <td></td>
                                             <td align="center">
-                                                @if (!Model.AdminPartPast.Rows[i].Link)
+                                                @if (!Model.AutoPartPast.Rows[i].Link)
                                                 {
-                                                    @Model.AdminPartPast.Rows[i].Fact.ToString("N0");
+                                                    @Model.AutoPartPast.Rows[i].Fact.ToString("N0");
                                                 }
                                                 else
                                                 {
-                                                    <a href="" style="text-decoration:underline" onclick="kinkyApp.modal.showByUrl('@Url.Action("PublicServicesDetails", "User", new { month = ViewBag.SelectedMonth.SelectedValue, year = ViewBag.SelectedYear.SelectedValue-1, monthEnd = ViewBag.SelectedMonthEnd.SelectedValue, yearEnd = ViewBag.SelectedYearEnd.SelectedValue-1, filial = ViewBag.SelectedFilial.SelectedValue })','body'); return false; " class="shared__text-black">@Model.AdminPartPast.Rows[i].Fact.ToString("N0")</a>
+                                                    <a href="" style="text-decoration:underline" onclick="kinkyApp.modal.showByUrl('@Url.Action("AutosDetails", "User", new { autosName = Model.AutoPartPast.Rows[i].Name, month = ViewBag.SelectedMonth.SelectedValue, year = ViewBag.SelectedYear.SelectedValue-1, monthEnd = ViewBag.SelectedMonthEnd.SelectedValue, yearEnd = ViewBag.SelectedYearEnd.SelectedValue-1, filial = ViewBag.SelectedFilial.SelectedValue })','body'); return false; " class="shared__text-black">@Model.AutoPartPast.Rows[i].Fact.ToString("N0")</a>
                                                 }
                                             </td>
-                                            @if (Model.AdminPartPast.Rows[i].Percent > 3.00)
+                                            @if (Model.AutoPartPast.Rows[i].Percent > 3.00)
                                             {
                                                 <td bgcolor="#FFB3B3" align="right">
-                                                    @Model.AdminPartPast.Rows[i].Percent.ToString("0.000")
+                                                    @Model.AutoPartPast.Rows[i].Percent.ToString("0.000")
                                                 </td>
                                             }
                                             else
                                             {
                                                 <td align="right">
-                                                    @Model.AdminPartPast.Rows[i].Percent.ToString("0.000")
+                                                    @Model.AutoPartPast.Rows[i].Percent.ToString("0.000")
                                                 </td>
                                             }
                                         </tr>
+                                        t++;
                                     }
-                                </tbody>
-                            </table>
-                        </div>
-                    }
-                </div>
-                @*<div id="tabs-5">
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                                    }
+            </div>
+            <div id="tabs-4">
+                @if (Model.AdminPart.Rows.Count > 0)
+                {
+                    <div align="center" style="align-content:center">
+                        <table id="kpiTbl-4" class="shared__relative shared__padding-bottom-double">
+                            <thead>
+                                <tr style="background-color:grey; color:white">
+                                    <th style="width: 300px;">
+                                        P&L филиалов
+                                    </th>
+                                    <th style="width: 130px;">
+                                        План @(ViewBag.SelectedYear.SelectedValue.ToString().Substring(2, 2))
+                                    </th>
+                                    <th style="width: 130px;">
+                                        Факт @(ViewBag.SelectedYear.SelectedValue.ToString().Substring(2, 2))
+                                    </th>
+                                    <th style="width: 130px;">
+                                        План vs Факт @(ViewBag.SelectedYear.SelectedValue.ToString().Substring(2, 2))
+                                    </th>
+                                    <th style="width: 10px;">
+
+                                    </th>
+                                    <th style="width: 130px;">
+                                        Факт @((ViewBag.SelectedYear.SelectedValue - 1).ToString().Substring(2, 2))
+                                    </th>
+                                    <th style="width: 150px;">
+                                        Факт @((ViewBag.SelectedYear.SelectedValue - 1).ToString().Substring(2, 2)) vs
+                                        @(ViewBag.SelectedYear.SelectedValue.ToString().Substring(2, 2))
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 0; i < Model.AdminPart.Rows.Count; i++)
+                                {
+                                    string color = "#F2FBC4";
+                                    //if (i % 2 == 0)
+                                    //{
+                                    //    color = "#FCE4EF";
+                                    //}
+
+                                    if (@Model.AdminPart.Rows[i].Name == "Валовый доход от продаж" || @Model.AdminPart.Rows[i].Name == "Чистый доход от продаж"
+                                        || @Model.AdminPart.Rows[i].Name == "Валовая прибыль" || @Model.AdminPart.Rows[i].Name == "Прибыль торгового отдела"
+                                        || @Model.AdminPart.Rows[i].Name == "Суммарно затраты ЦФО")
+                                    {
+                                        color = "#FECD05; font-size:20px;";
+                                    }
+
+                                    if (@Model.AdminPart.Rows[i].Name == "Административные затраты")
+                                    {
+                                        color = "#FFFF66; font-size:20px;";
+                                    }
+
+                                    <tr @( "style=background-color:" + color )>
+                                        <td>
+                                            @Model.AdminPart.Rows[i].Name
+                                        </td>
+                                        <td align="center">
+                                            @Model.AdminPart.Rows[i].Plan.ToString("N0")
+                                        </td>
+                                        <td align="center">
+                                            @if (!Model.AdminPart.Rows[i].Link)
+                                            {
+                                                @Model.AdminPart.Rows[i].Fact.ToString("N0");
+                                            }
+                                            else
+                                            {
+                                                <a href="" style="text-decoration:underline" onclick="kinkyApp.modal.showByUrl('@Url.Action("PublicServicesDetails", "User", new { month = ViewBag.SelectedMonth.SelectedValue, year = ViewBag.SelectedYear.SelectedValue, monthEnd = ViewBag.SelectedMonthEnd.SelectedValue, yearEnd = ViewBag.SelectedYearEnd.SelectedValue, filial = ViewBag.SelectedFilial.SelectedValue })','body'); return false; " class="shared__text-black">@Model.AdminPart.Rows[i].Fact.ToString("N0")</a>
+                                            }
+                                        </td>
+                                        @if (Model.AdminPart.Rows[i].Percent > 3.00)
+                                        {
+                                            <td bgcolor="#FFB3B3" align="right">
+                                                @Model.AdminPart.Rows[i].Percent.ToString("0.000")
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td align="right">
+                                                @Model.AdminPart.Rows[i].Percent.ToString("0.000")
+                                            </td>
+                                        }
+                                        <td></td>
+                                        <td align="center">
+                                            @if (!Model.AdminPartPast.Rows[i].Link)
+                                            {
+                                                @Model.AdminPartPast.Rows[i].Fact.ToString("N0");
+                                            }
+                                            else
+                                            {
+                                                <a href="" style="text-decoration:underline" onclick="kinkyApp.modal.showByUrl('@Url.Action("PublicServicesDetails", "User", new { month = ViewBag.SelectedMonth.SelectedValue, year = ViewBag.SelectedYear.SelectedValue-1, monthEnd = ViewBag.SelectedMonthEnd.SelectedValue, yearEnd = ViewBag.SelectedYearEnd.SelectedValue-1, filial = ViewBag.SelectedFilial.SelectedValue })','body'); return false; " class="shared__text-black">@Model.AdminPartPast.Rows[i].Fact.ToString("N0")</a>
+                                            }
+                                        </td>
+                                        @if (Model.AdminPartPast.Rows[i].Percent > 3.00)
+                                        {
+                                            <td bgcolor="#FFB3B3" align="right">
+                                                @Model.AdminPartPast.Rows[i].Percent.ToString("0.000")
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td align="right">
+                                                @Model.AdminPartPast.Rows[i].Percent.ToString("0.000")
+                                            </td>
+                                        }
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+            </div>
+            @*<div id="tabs-5">
                     @if (Model.TotalPart.Rows.Count > 0)
                 {
                         <div align="center" style="align-content:center">
@@ -480,7 +506,7 @@
                         </div>
                     }
                 </div>*@
-            </div>
         </div>
-     }
-@*</div>*@
+    </div>
+                                    }
+                                    @*</div>*@

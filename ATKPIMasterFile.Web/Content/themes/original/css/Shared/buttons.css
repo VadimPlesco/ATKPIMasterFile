@@ -1757,17 +1757,17 @@ shared__chat-v3-icon {
     }
 
 .shared__icon-font-deny:before {
-    font-family: 'KinkyLoveRegular';
+    font-family: 'ATRegular';
     content: "O";
 }
 
 .shared__icon-font-heart-2:before {
-    font-family: 'KinkyLoveRegular';
+    font-family: 'ATRegular';
     content: "o";
 }
 
 .shared__icon-font-close:before {
-    font-family: 'KinkyLoveRegular';
+    font-family: 'ATRegular';
     content: "S";
     font-size: 11px;
     color: #ffbc30;
@@ -1775,18 +1775,18 @@ shared__chat-v3-icon {
 }
 
 .shared__icon-font-close-2:before {
-    font-family: 'KinkyLoveRegular';
+    font-family: 'ATRegular';
     content: "s";
 }
 
 
 .shared__icon-font-gift:before {
-    font-family: 'KinkyLoveRegular';
+    font-family: 'ATRegular';
     content: "r";
 }
 
 .shared__icon-font-webcam:before {
-    font-family: 'KinkyLoveRegular';
+    font-family: 'ATRegular';
     content: "t";
 }
 
@@ -1839,12 +1839,12 @@ shared__chat-v3-icon {
 }
 
 .shared__icon-font-trash:before {
-    font-family: 'KinkyLoveRegular';
+    font-family: 'ATRegular';
     content: "N";
 }
 
 .shared__icon-font-star:before {
-    font-family: 'KinkyLoveRegular';
+    font-family: 'ATRegular';
     content: "W";
 }
 
@@ -1857,7 +1857,7 @@ shared__chat-v3-icon {
 }
 
 .shared__icon-font-dollar:before {
-    font-family: 'KinkyLoveRegular';
+    font-family: 'ATRegular';
     content: "l";
 }
 
@@ -1870,7 +1870,7 @@ shared__chat-v3-icon {
 }
 
 .shared__icon-font-alert:before {
-    font-family: 'KinkyLoveRegular';
+    font-family: 'ATRegular';
     content: "m";
 }
 
@@ -1884,17 +1884,17 @@ shared__chat-v3-icon {
 
 
 .shared__icon-font-sound-control-on:before {
-    font-family: 'KinkyLoveRegular';
+    font-family: 'ATRegular';
     content: "P";
 }
 
 .shared__icon-font-sound-control-off:before {
-    font-family: 'KinkyLoveRegular';
+    font-family: 'ATRegular';
     content: "M";
 }
 
 .shared__icon-font-window-close:before {
-    font-family: 'KinkyLoveRegular';
+    font-family: 'ATRegular';
     content: "S";
     font-size: 11px;
     color: #ffbc30;
@@ -1906,27 +1906,27 @@ shared__chat-v3-icon {
 
 
 .shared__icon-font-extra-search:before {
-    font-family: 'KinkyLoveRegular';
+    font-family: 'ATRegular';
     content: "R";
 }
 
 .shared__icon-font-private-lock:before {
-    font-family: 'KinkyLoveRegular';
+    font-family: 'ATRegular';
     content: "Q";
 }
 
 .shared__icon-font-messages-limit:before {
-    font-family: 'KinkyLoveRegular';
+    font-family: 'ATRegular';
     content: "T";
 }
 
 .shared__icon-font-profile:before {
-    font-family: 'KinkyLoveRegular';
+    font-family: 'ATRegular';
     content: "V";
 }
 
 .shared__icon-font-speed-timer:before {
-    font-family: 'KinkyLoveRegular';
+    font-family: 'ATRegular';
     content: "U";
 }
 
@@ -1939,7 +1939,7 @@ shared__chat-v3-icon {
 }
 
 .shared__icon-font-question:before {
-    font-family: 'KinkyLoveRegular';
+    font-family: 'ATRegular';
     content: "?";
 }
 
@@ -1951,12 +1951,12 @@ shared__chat-v3-icon {
 
 
 .shared__icon-font-plus:before {
-    font-family: 'KinkyLoveRegular';
+    font-family: 'ATRegular';
     content: "h";
 }
 
 .shared__icon-font-settings:before {
-    font-family: 'KinkyLoveRegular';
+    font-family: 'ATRegular';
     content: "q";
 }
 
@@ -1966,7 +1966,7 @@ shared__chat-v3-icon {
 }
 
 .shared__icon-font-camera:before {
-    font-family: 'KinkyLoveRegular';
+    font-family: 'ATRegular';
     content: "c";
 }
 
@@ -1985,7 +1985,7 @@ shared__chat-v3-icon {
 }
 
 .shared__icon-font-coins:before {
-    font-family: 'KinkyLoveRegular';
+    font-family: 'ATRegular';
     content: "p";
 }
 

@@ -256,7 +256,8 @@
         },
         /* Performs an AJAX call to load data of the table for export
          *************************************************************************/
-        _getExportData: function(completeCallback) {
+        _getExportData: function (completeCallback) {
+            //alert(this.options.title);
             var self = this;
             var paging = this.options.paging;
 

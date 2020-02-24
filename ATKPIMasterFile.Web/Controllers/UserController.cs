@@ -47,7 +47,7 @@ namespace ATKPIMasterFile.Web.Controllers
 
             // if (SelectedYear.HasValue == false) 
             //SelectedYear = (short)(dateTimeNow.Year);
-            var years = new List<short> { 2015, 2016, 2017, 2018, 2019 };
+            var years = new List<short> { 2015, 2016, 2017, 2018, 2019, 2020 };
             ViewBag.SelectedYear = new SelectList(years, (short)dateTimeNow.Year);
 
            // if (SelectedMonth.HasValue == false) SelectedMonth = (short)dateTimeNow.Month;
@@ -83,7 +83,7 @@ namespace ATKPIMasterFile.Web.Controllers
             //var dateTimeNow = DateTime.Now.AddMonths(-1);
             //var ww = ViewBag.SelectedYear;
             //if (SelectedYear.HasValue == false) SelectedYear = (short)(dateTimeNow.Year);
-            var years = new List<short> { 2015, 2016, 2017, 2018, 2019 };
+            var years = new List<short> { 2015, 2016, 2017, 2018, 2019, 2020 };
             ViewBag.SelectedYear = new SelectList(years, SelectedYear);
 
             //if (SelectedMonth.HasValue == false) SelectedMonth = (short)dateTimeNow.Month;
@@ -117,7 +117,7 @@ namespace ATKPIMasterFile.Web.Controllers
             var dateTimeNow = DateTime.Now.AddMonths(-1);
 
            
-            var years = new List<short> { 2019 };
+            var years = new List<short> { 2019, 2020 };
             ViewBag.SelectedYear = new SelectList(years, years[0]);
 
            
@@ -147,7 +147,7 @@ namespace ATKPIMasterFile.Web.Controllers
         public ActionResult KPIFilialPlans(int? SelectedFilial, short? SelectedYear, short? SelectedMonth, short? SelectedYearEnd, short? SelectedMonthEnd, bool SelectedCorr)
         {
             
-            var years = new List<short> { 2019 };
+            var years = new List<short> { 2019, 2020 };
             ViewBag.SelectedYear = new SelectList(years, SelectedYear);
         
             var moths = new List<short> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
@@ -225,7 +225,7 @@ namespace ATKPIMasterFile.Web.Controllers
             var dateTimeNow = DateTime.Now.AddMonths(-1);
 
             if (SelectedYear.HasValue == false) SelectedYear = (short)dateTimeNow.Year;
-            var years = new List<short> { 2015, 2016, 2017, 2018, 2019 };
+            var years = new List<short> { 2015, 2016, 2017, 2018, 2019, 2020 };
             ViewBag.SelectedYear = new SelectList(years, SelectedYear);
 
             if (SelectedMonth.HasValue == false) SelectedMonth = (short)dateTimeNow.Month;
@@ -371,7 +371,7 @@ namespace ATKPIMasterFile.Web.Controllers
             var dateTimeNow = DateTime.Now.AddMonths(-1);
 
             if (SelectedYear.HasValue == false) SelectedYear = (short)dateTimeNow.Year;
-            var years = new List<short> { 2015, 2016, 2017, 2018, 2019 };
+            var years = new List<short> { 2015, 2016, 2017, 2018, 2019, 2020 };
             ViewBag.SelectedYear = new SelectList(years, SelectedYear);
 
             if (SelectedMonth.HasValue == false) SelectedMonth = (short)dateTimeNow.Month;
@@ -393,7 +393,8 @@ namespace ATKPIMasterFile.Web.Controllers
                   new SelectListItem{ Text="Все",              Value="-1"},
                   new SelectListItem{ Text="Обычный",          Value="1"},
                   new SelectListItem{ Text="Поддержка продаж", Value="2"},
-                  new SelectListItem{ Text="Администрация",    Value="3"}
+                  new SelectListItem{ Text="Администрация",    Value="3"},
+                  new SelectListItem{ Text="По договору",    Value="4"}
                 }, "Value", "Text");
 
 
@@ -434,6 +435,175 @@ namespace ATKPIMasterFile.Web.Controllers
                 if (jtPageSize > 0)
                     salaries = salaries.Skip(jtStartIndex).Take(jtPageSize).ToList();
                 var jsonResult = Json(new { Result = "OK", Records = salaries, TotalRecordCount = salariesCount });
+                //jsonResult.MaxJsonLength = int.MaxValue;
+                return jsonResult;
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Result = "ERROR", Message = ex.Message });
+            }
+        }
+
+
+
+        public ActionResult SalariesCompareReport(int? SelectedFilial, short? SelectedYear1, short? SelectedMonth1, short? SelectedYear2,
+           short? SelectedMonth2, short? SelectedCompareType, int? SelectedProject)
+        {
+            var dateTimeNow = DateTime.Now.AddMonths(-1);
+
+            if (SelectedYear1.HasValue == false) SelectedYear1 = (short)dateTimeNow.Year;
+            var years = new List<short> { 2015, 2016, 2017, 2018, 2019, 2020 };
+            ViewBag.SelectedYear1 = new SelectList(years, SelectedYear1);
+
+            if (SelectedMonth1.HasValue == false) SelectedMonth1 = (short)(dateTimeNow.Month - 1);
+            var moths = new List<short> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
+            ViewBag.SelectedMonth1 = new SelectList(moths, SelectedMonth1);
+
+            if (SelectedYear2.HasValue == false) SelectedYear2 = (short)dateTimeNow.Year;
+            ViewBag.SelectedYear2 = new SelectList(years, SelectedYear2);
+
+            if (SelectedMonth2.HasValue == false) SelectedMonth2 = (short)dateTimeNow.Month;
+            ViewBag.SelectedMonth2 = new SelectList(moths, SelectedMonth2);
+
+            if (SelectedFilial.HasValue == false) SelectedFilial = -1;
+            var filials = _userAggregateRoot.GetAllFilialsForReport();
+            ViewBag.SelectedFilial = new SelectList(filials, "FilialId", "Name", SelectedFilial);
+
+            if (SelectedCompareType.HasValue == false) SelectedCompareType = 1;
+            ViewBag.SelectedCompareType = new MultiSelectList(new[]{
+                  new SelectListItem{ Text="Департамент", Value="1"},
+                  new SelectListItem{ Text="Должность", Value="2"},
+                }, "Value", "Text");
+
+
+            if (SelectedProject.HasValue == false) SelectedProject = 0;
+            var projects = _userAggregateRoot.GetAllGetProjectsForReport();
+            ViewBag.SelectedProject = new SelectList(projects, "ProjectId", "Name", SelectedProject);
+
+            ViewBag.SelectedByYear = false;
+
+            if (SelectedFilial.Value == 0)
+                return View();
+
+            return View();
+        }
+
+
+        [HttpPost]
+        public JsonResult SalariesCompareReport(int? SelectedFilial, int? SelectedDepartment, short? SelectedYear1, short? SelectedMonth1,
+           short? SelectedYear2, short? SelectedMonth2, short? SelectedCompareType, int? SelectedProject, bool SelectedByYear,
+           int jtStartIndex = 0, int jtPageSize = 0, string jtSorting = null)
+        {
+
+            if (!SelectedFilial.HasValue)
+                return Json(new { Result = "OK" });
+
+            if (SelectedFilial.Value == -1)
+                return Json(new { Result = "OK" });
+
+
+            try
+            {
+                var goodsSum1 = _userAggregateRoot.GetGoodsSumByFilial(SelectedFilial.Value, SelectedMonth1.Value, SelectedYear1.Value, SelectedByYear);
+                var goodsSum2 = _userAggregateRoot.GetGoodsSumByFilial(SelectedFilial.Value, SelectedMonth2.Value, SelectedYear2.Value, SelectedByYear);
+                var goodsSum = goodsSum1.ToString("N0") + " - " + goodsSum2.ToString("N0") + ";";
+
+                var autosWeight1 = _userAggregateRoot.GetAutosWeightByFilial(SelectedFilial.Value, SelectedMonth1.Value, SelectedYear1.Value, SelectedByYear);
+                var autosWeight2 = _userAggregateRoot.GetAutosWeightByFilial(SelectedFilial.Value, SelectedMonth2.Value, SelectedYear2.Value, SelectedByYear);
+                var weight = autosWeight1.ToString("N0") + " - " + autosWeight2.ToString("N0") + ";";
+
+                var salaries = _userAggregateRoot.GetSalariesCompareReport(SelectedFilial.Value, SelectedDepartment.Value, SelectedMonth1.Value,
+                    SelectedYear1.Value, SelectedMonth2.Value, SelectedYear2.Value, SelectedCompareType.Value, SelectedProject.Value, SelectedByYear, jtSorting);
+
+
+                var salariesCount = salaries.Count;
+                if (jtPageSize > 0)
+                    salaries = salaries.Skip(jtStartIndex).Take(jtPageSize).ToList();
+                var jsonResult = Json(new { Result = "OK", Records = salaries, TotalRecordCount = salariesCount, AutosWeight = weight, GoodsSum = goodsSum });
+                //jsonResult.MaxJsonLength = int.MaxValue;
+                return jsonResult;
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Result = "ERROR", Message = ex.Message });
+            }
+        }
+
+
+        public ActionResult AutosCompareReport(int? SelectedFilial, short? SelectedYear1, short? SelectedMonth1, short? SelectedYear2,
+          short? SelectedMonth2, short? SelectedCompareType, int? SelectedProject)
+        {
+            var dateTimeNow = DateTime.Now.AddMonths(-1);
+
+            if (SelectedYear1.HasValue == false) SelectedYear1 = (short)dateTimeNow.Year;
+            var years = new List<short> { 2015, 2016, 2017, 2018, 2019, 2020 };
+            ViewBag.SelectedYear1 = new SelectList(years, SelectedYear1);
+
+            if (SelectedMonth1.HasValue == false) SelectedMonth1 = (short)(dateTimeNow.Month - 1);
+            var moths = new List<short> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
+            ViewBag.SelectedMonth1 = new SelectList(moths, SelectedMonth1);
+
+            if (SelectedYear2.HasValue == false) SelectedYear2 = (short)dateTimeNow.Year;
+            ViewBag.SelectedYear2 = new SelectList(years, SelectedYear2);
+
+            if (SelectedMonth2.HasValue == false) SelectedMonth2 = (short)dateTimeNow.Month;
+            ViewBag.SelectedMonth2 = new SelectList(moths, SelectedMonth2);
+
+            if (SelectedFilial.HasValue == false) SelectedFilial = -1;
+            var filials = _userAggregateRoot.GetAllFilialsForReport();
+            ViewBag.SelectedFilial = new SelectList(filials, "FilialId", "Name", SelectedFilial);
+
+            if (SelectedCompareType.HasValue == false) SelectedCompareType = 1;
+            ViewBag.SelectedCompareType = new MultiSelectList(new[]{
+                  new SelectListItem{ Text="Департамент", Value="1"},
+                  new SelectListItem{ Text="Марка", Value="2"},
+                }, "Value", "Text");
+
+
+            if (SelectedProject.HasValue == false) SelectedProject = 0;
+            var projects = _userAggregateRoot.GetAllGetProjectsForReport();
+            ViewBag.SelectedProject = new SelectList(projects, "ProjectId", "Name", SelectedProject);
+
+            ViewBag.SelectedByYear = false;
+
+            if (SelectedFilial.Value == 0)
+                return View();
+
+            return View();
+        }
+
+
+        [HttpPost]
+        public JsonResult AutosCompareReport(int? SelectedFilial, int? SelectedDepartment, short? SelectedYear1, short? SelectedMonth1,
+           short? SelectedYear2, short? SelectedMonth2, short? SelectedCompareType, int? SelectedProject, bool SelectedByYear,
+           int jtStartIndex = 0, int jtPageSize = 0, string jtSorting = null)
+        {
+
+            if (!SelectedFilial.HasValue)
+                return Json(new { Result = "OK" });
+
+            if (SelectedFilial.Value == -1)
+                return Json(new { Result = "OK" });
+
+
+            try
+            {
+                //var goodsSum1 = _userAggregateRoot.GetGoodsSumByFilial(SelectedFilial.Value, SelectedMonth1.Value, SelectedYear1.Value, SelectedByYear);
+                //var goodsSum2 = _userAggregateRoot.GetGoodsSumByFilial(SelectedFilial.Value, SelectedMonth2.Value, SelectedYear2.Value, SelectedByYear);
+                //var goodsSum = goodsSum1.ToString("N0") + " - " + goodsSum2.ToString("N0") + ";";
+
+                //var autosWeight1 = _userAggregateRoot.GetAutosWeightByFilial(SelectedFilial.Value, SelectedMonth1.Value, SelectedYear1.Value, SelectedByYear);
+                //var autosWeight2 = _userAggregateRoot.GetAutosWeightByFilial(SelectedFilial.Value, SelectedMonth2.Value, SelectedYear2.Value, SelectedByYear);
+                //var weight = autosWeight1.ToString("N0") + " - " + autosWeight2.ToString("N0") + ";";
+
+                var autos = _userAggregateRoot.GetAutosCompareReport(SelectedFilial.Value, SelectedDepartment.Value, SelectedMonth1.Value,
+                    SelectedYear1.Value, SelectedMonth2.Value, SelectedYear2.Value, SelectedCompareType.Value, SelectedProject.Value, SelectedByYear, jtSorting);
+
+
+                var autosCount = autos.Count;
+                if (jtPageSize > 0)
+                    autos = autos.Skip(jtStartIndex).Take(jtPageSize).ToList();
+                var jsonResult = Json(new { Result = "OK", Records = autos, TotalRecordCount = autosCount, AutosWeight = 0, GoodsSum = 0 });
                 //jsonResult.MaxJsonLength = int.MaxValue;
                 return jsonResult;
             }

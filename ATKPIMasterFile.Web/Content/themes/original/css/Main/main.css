@@ -1,5 +1,5 @@
 ﻿@font-face {
-    font-family: 'KinkyLoveRegular';
+    font-family: 'ATRegular';
     font-style: normal;
     font-weight: normal;
     src: url('/Content/themes/original/font/kinkylove-iconset.eot?v1');
@@ -195,7 +195,7 @@
 }
 
 .menu-holder__menu-item-webcam:before {
-    font-family: 'KinkyLoveRegular';
+    font-family: 'ATRegular';
     content: "t";
     width: 24px;
     height: 24px;
@@ -213,7 +213,7 @@
 }
 
 .menu-holder__menu-item-add:before {
-    font-family: 'KinkyLoveRegular';
+    font-family: 'ATRegular';
     content: "h";
     width: 24px;
     height: 24px;
@@ -245,7 +245,7 @@
 
 
 .menu-holder__menu-item-news:before {
-    font-family: 'KinkyLoveRegular';
+    font-family: 'ATRegular';
     /*content: "i";*/
     width: 35px;
     height: 24px;
@@ -266,7 +266,7 @@
 }
 
 .menu-holder__menu-item-friends:before {
-    font-family: 'KinkyLoveRegular';
+    font-family: 'ATRegular';
     /*content: "j";*/
     width: 29px;
     height: 24px;
@@ -287,7 +287,7 @@
 
 
 .menu-holder__menu-item-events:before {
-    font-family: 'KinkyLoveRegular';
+    font-family: 'ATRegular';
     /*content: "e";*/
     width: 42px;
     height: 24px;
@@ -307,7 +307,7 @@
 }
 
 .menu-holder__menu-item-selected-events:before {
-    font-family: 'KinkyLoveRegular';
+    font-family: 'ATRegular';
     content: "e";
     width: 24px;
     height: 24px;
@@ -322,7 +322,7 @@
 
 
 .menu-holder__menu-item-chat:before {
-    font-family: 'KinkyLoveRegular';
+    font-family: 'ATRegular';
     content: "f";
     width: 24px;
     height: 24px;
@@ -340,7 +340,7 @@
 }
 
 .menu-holder__menu-item-selected-chat:before {
-    font-family: 'KinkyLoveRegular';
+    font-family: 'ATRegular';
     content: "f";
     width: 24px;
     height: 24px;
@@ -366,7 +366,7 @@
 
 
 .menu-holder__menu-item-selected-add:before {
-    font-family: 'KinkyLoveRegular';
+    font-family: 'ATRegular';
     content: "h";
     width: 24px;
     height: 24px;
@@ -379,7 +379,7 @@
 }
 
 .menu-holder__menu-item-selected-news:before {
-    font-family: 'KinkyLoveRegular';
+    font-family: 'ATRegular';
     content: "i";
     width: 24px;
     height: 24px;
@@ -393,7 +393,7 @@
 }
 
 .menu-holder__menu-item-selected-friends:before {
-    font-family: 'KinkyLoveRegular';
+    font-family: 'ATRegular';
     content: "j";
     width: 24px;
     height: 24px;

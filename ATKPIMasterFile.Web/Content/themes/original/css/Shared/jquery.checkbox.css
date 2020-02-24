@@ -1,0 +1,83 @@
+﻿.shared__checkbox input,
+.shared__checkbox-white input,
+.shared__checkbox-small input {
+    opacity: 0;
+}
+
+.shared__checkbox {
+    width: 20px;
+    height: 20px;
+    display: block;
+    cursor: pointer;
+    background: url(/Content/themes/dzen/images/checkbox.png);
+}
+
+.shared__checkbox-white {
+    width: 20px;
+    height: 20px;
+    display: block;
+    cursor: pointer;
+    background: url(/Content/themes/original/images/checkboxwhite.png);
+}
+
+.shared__checkbox-small {
+    width: 14px;
+    height: 14px;
+    display: block;
+    cursor: pointer;
+    background: url(/Content/themes/dzen/images/checkbox_small.png);
+}
+
+.shared__checkbox-small.loading {
+    border:none;
+    display: block;
+    position:relative;
+    width: 14px;
+    height: 14px;
+    background:url(/Content/themes/dzen/images/loading.gif) no-repeat center center;
+    background-position:0 0 !important;
+    background-size:contain;
+}
+
+
+.shared__checkbox-label {
+    display: block;
+    white-space: nowrap;
+    cursor: pointer;
+    padding-top: 2px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+.shared__checkbox-label-small {
+    display: block;
+    white-space: nowrap;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+.shared__sound-on {
+    width: 20px;
+    height: 20px;
+    display: block;
+    cursor: pointer;
+    background: url(/Content/themes/dzen/images/chat_iconset.png) left -771px;
+}
+
+
+.shared__checkbox-description-small{
+    clear:both;
+    padding-top:5px;
+    font-size:11px;
+    white-space: normal;
+    width:250px;
+
+
+}

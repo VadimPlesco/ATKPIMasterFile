@@ -242,6 +242,8 @@ function xlsx(file) {
             //{ Generate sheetX.xml in var s
             worksheet = file.worksheets[w];
             data = worksheet.data;
+            //alert(data);
+            //console.log(data);
             s = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>';
             worksheetXML = {
                 worksheet:{

@@ -58,7 +58,7 @@
 }
 
     .profile-v4-theme-switcher__profile-v4-theme-item.checked:after {
-        font-family: 'KinkyLoveRegular';
+        font-family: 'ATRegular';
         position: absolute;
         content: 'n';
         width: 20px;

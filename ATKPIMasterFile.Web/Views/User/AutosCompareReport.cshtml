@@ -1,0 +1,528 @@
+﻿
+@{
+    ViewBag.Title = "Сравнение Авто Затрат";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+    //Layout = null;
+
+
+}
+@using Mvc.CascadeDropDown
+
+<link href="~/Scripts/jtable/themes/metro/lightgray/jtable.min.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+    .jtable-column-footer {
+        background-color: #EEE;
+    }
+
+    table, th {
+        font-size: 14px;
+        text-align: left;
+    }
+
+   
+  /*input[type=checkbox] 
+   {
+        width: 20px;
+        height: 20px;
+        display: block;
+        cursor: pointer;
+        background: url(/Content/themes/original/images/checkbox.png);
+   }*/
+
+  /*.shared__checkbox input,
+    .shared__checkbox-small input {
+        opacity: 0;
+    }
+
+    .shared__checkbox {
+        width: 20px;
+        height: 20px;
+        display: block;
+        cursor: pointer;
+        background: url(/Content/themes/original/images/checkboxwhite.png);
+    }*/
+   
+   /*input[type=checkbox]:checked
+    {
+        width: 20px;
+        height: 20px;
+        display: block;
+        cursor: pointer;
+        background: url(/Content/themes/original/images/checkbox.png);
+        background-position:0 -20px;
+    }*/
+
+    /*.scroll-content {
+        overflow-y: auto;
+        width: 100%;
+    }*/
+
+    /*div.jtable-main-container {
+        height: 100%;
+    }*/
+</style>
+
+<script type="text/javascript">
+
+            //$(document).ready(function () {
+            //    $("#SelectedDepartment").ultraselect();
+            //});
+
+    function beforeSend(data) {
+        return {
+            filial: $("#SelectedFilial").val(),
+            department: $("#SelectedDepartment").val()
+        }
+    }
+</script>
+
+
+@*<div class="profile-setup-modal__modal-header">
+        <div class="modal-header__header-text">Автомобили</div>
+    </div>*@
+
+<div class="image-folder-top seacrh-users-result__container">
+    @*@using (Html.BeginForm())*@
+    @*@using (Ajax.BeginForm("AutosReport", "User", null, new AjaxOptions { UpdateTargetId = "catTbl", LoadingElementId = "loadingElement", HttpMethod = "Get" }))*@
+    @using (Html.BeginForm())
+    {
+        <div class="">
+
+            @*<div class="shared__left-float shared__margin-right-double">
+                <div class="shared__text-white shared__font-bold shared__font-small shared__margin-bottom-single shared__height-small">
+                    Сотрудник:
+                </div>
+
+                @Html.TextBox("Employee", "", new { id = "Employee", Class = "autoreport-content__input-control", autocomplete = "off", })
+
+            </div>*@
+
+            @*<script type="text/javascript">
+                kinkyApp.fn.initTypeahead('#Employee', 10, '@Url.Action("GetEmployees", "User")', 1, null);
+            </script>*@
+
+            <div class="shared__left-float shared__margin-right-double">
+                <div class="shared__text-white shared__font-bold shared__font-small shared__margin-bottom-single shared__height-small">
+                    Филиал:
+                </div>
+                @*@Html.DropDownList("SelectedFilial",null, new { @class = "chosen-select" })*@
+                @Html.DropDownList("SelectedFilial")
+            </div>
+            @*<script type="text/javascript">
+                $(".chosen-select").chosen();
+            </script>*@
+            <div class="shared__left-float shared__margin-right-double">
+                <div class="shared__text-white shared__font-bold shared__font-small shared__margin-bottom-single shared__height-small">
+                    Департамент:
+                </div>
+
+                @Html.CascadingDropDownList(inputName: "SelectedDepartment",
+                                inputId: "SelectedDepartment",
+                                triggeredByProperty: "SelectedFilial",
+                                url: Url.Action("GetDepartments", "User"),
+                                ajaxActionParamName: "filial",
+                                optionLabel: null,
+                                disabledWhenParentNotSelected: true,
+                                htmlAttributes: new { @style = "width:200px;" },
+                                options: null
+                               )
+
+            </div>
+
+            @*<div class="shared__left-float shared__margin-right-double">
+                <div class="shared__text-white shared__font-bold shared__font-small shared__margin-bottom-single shared__height-small">
+                    Должность:
+                </div>
+                @Html.CascadingDropDownList(inputName: "SelectedPost",
+                                inputId: "SelectedPost",
+                                triggeredByProperty: "SelectedDepartment",
+                                url: Url.Action("GetPosts", "User"),
+                                ajaxActionParamName: "department",
+                                optionLabel: null,
+                                disabledWhenParentNotSelected: true,
+                                htmlAttributes: new { @style = "width:200px;" },
+                                options: new CascadeDropDownOptions
+                                {
+                                    BeforeSend = "beforeSend"
+                                })
+            </div>*@
+            
+
+            <div class="shared__left-float shared__margin-right-double">
+                <div class="shared__text-white shared__font-bold shared__font-small shared__margin-bottom-single shared__height-small">
+                    Что:
+                </div>
+                @Html.DropDownList("SelectedMonth1")
+
+                <div class="seacrh-users-result__age-hint">
+                    <div class="seacrh-users-result__age-hint-left-brace"></div>
+                    Сравнение<div class="seacrh-users-result__age-hint-right-brace"></div>
+                </div>
+            </div>
+
+            <div class="shared__left-float shared__margin-right-double">
+                <div class="shared__text-white shared__font-bold shared__font-small shared__margin-bottom-single shared__height-small">
+
+                </div>
+                @Html.DropDownList("SelectedYear1")
+            </div>
+
+            <div class="shared__left-float shared__margin-right-double">
+                <div class="shared__text-white shared__font-bold shared__font-small shared__margin-bottom-single shared__height-small">
+                    С чем:
+                </div>
+                @Html.DropDownList("SelectedMonth2")
+
+            </div>
+
+            <div class="shared__left-float shared__margin-right-double">
+                <div class="shared__text-white shared__font-bold shared__font-small shared__margin-bottom-single shared__height-small">
+
+                </div>
+                @Html.DropDownList("SelectedYear2")
+            </div>
+
+            <div class="shared__left-float shared__margin-right-double">
+                <div class="shared__text-white shared__font-bold shared__font-small shared__margin-bottom-single shared__height-small">
+                    Года:
+                </div>
+                
+
+                <span class="shared__checkbox-white disable-select" id="SelectedByYearSpan">
+                    @Html.Hidden("SelectedByYear")
+                </span>
+            </div>
+
+            <div class="shared__left-float shared__margin-right-double">
+                <div class="shared__text-white shared__font-bold shared__font-small shared__margin-bottom-single shared__height-small">
+                    Тип:
+                </div>
+                
+                @Html.DropDownList(
+                    "SelectedCompareType",
+                    (IEnumerable<SelectListItem>)ViewBag.SelectedCompareType,
+                    new { @style = "width:120px;" }
+                )
+            </div>
+
+            <div class="shared__left-float shared__margin-right-double">
+                <div class="shared__text-white shared__font-bold shared__font-small shared__margin-bottom-single shared__height-small">
+                    Проект:
+                </div>
+               
+                @Html.DropDownList(
+                    "SelectedProject",
+                    (IEnumerable<SelectListItem>)ViewBag.SelectedProject,
+                    new { @style = "width:130px;" }
+                )
+            </div>
+            
+            
+            <div class="shared__left-float shared__margin-right-double">
+                <button id="LoadRecordsButton" class="button-gold-to-gold-same-border button-gold-to-gold shared__button-medium shared__font-bold button-search" type="submit">Сформировать</button>
+            </div>
+        </div>
+
+    }
+</div>
+
+<div id="SalariesTableContainer" class="jtableadd-container">
+</div>
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+
+        $('#SalariesTableContainer').jtable({
+            title: 'Сравнение Авто Затрат',
+            footer: true,
+            exportData: {
+                toExcel: true,
+                fullTable: true
+            },
+
+            bottomPanel: true,
+            sorting: true,
+            defaultSorting: 'Filial ASC',
+            actions: {
+                listAction: '/User/AutosCompareReport',
+
+            },
+
+            //toolbar: {
+            //    items: [
+            //        {text: 'Тоннаж:'},
+            //        {text: 'ЧД:'}
+            //    ]
+            //},
+
+            fields: {
+                SalaryId: {
+                    key: true,
+                    create: false,
+                    edit: false,
+                    list: false
+                },
+
+                Name1: {
+                    title: $('#SelectedCompareType :selected').text() + ' ' + $('#SelectedMonth1').val() + '/' + $('#SelectedYear1').val(),
+                    width: '14%'
+                },
+
+                SumСombustible1: {
+                    title: 'Топливо',
+                    sorting: false,
+                    width: '12%',
+                    display: function (data) {
+                        return parseFloat(data.record.SumСombustible1.toFixed(0)).toLocaleString();
+                    },
+                    footer: function (data) {
+                        var total = 0;
+                        $.each(data.Records, function (index, record) {
+                            total += Number(record.SumСombustible1);
+                        });
+                        return (parseFloat(total.toFixed(0)).toLocaleString());
+                    }
+                },
+
+                SumExpenses1: {
+                    title: 'ТО',
+                    sorting: false,
+                    width: '12%',
+                    display: function (data) {
+                        return parseFloat(data.record.SumExpenses1.toFixed(0)).toLocaleString();
+                    },
+                    footer: function (data) {
+                        var total = 0;
+                        $.each(data.Records, function (index, record) {
+                            total += Number(record.SumExpenses1);
+                        });
+                        return (parseFloat(total.toFixed(0)).toLocaleString());
+                    }
+                },
+
+
+                Count1: {
+                    title: 'Кол-во',
+                    sorting: false,
+                    width: '5%',
+                    footer: function (data) {
+                        var total = 0;
+                        $.each(data.Records, function (index, record) {
+                            total += Number(record.Count1);
+                        });
+                        return (parseFloat(total.toFixed(0)).toLocaleString());
+                    }
+                },
+
+                Delimiter: {
+                    title: '/',
+                    sorting: false,
+                    width:'1%'
+                },
+
+                Name2: {
+                    title: $('#SelectedCompareType :selected').text() + ' ' + $('#SelectedMonth2').val() + '/' + $('#SelectedYear2').val(),
+                    width: '14%'
+                },
+
+
+                SumСombustible2: {
+                    title: 'Топливо',
+                    sorting: false,
+                    width: '12%',
+                    display: function (data) {
+                        return parseFloat(data.record.SumСombustible2.toFixed(0)).toLocaleString();
+                    },
+                    footer: function (data) {
+                        var total = 0;
+                        $.each(data.Records, function (index, record) {
+                            total += Number(record.SumСombustible2);
+                        });
+                        return (parseFloat(total.toFixed(0)).toLocaleString());
+                    }
+                },
+
+                SumExpenses2: {
+                    title: 'ТО',
+                    sorting: false,
+                    width: '12%',
+                    display: function (data) {
+                        return parseFloat(data.record.SumExpenses2.toFixed(0)).toLocaleString();
+                    },
+                    footer: function (data) {
+                        var total = 0;
+                        $.each(data.Records, function (index, record) {
+                            total += Number(record.SumExpenses2);
+                        });
+                        return (parseFloat(total.toFixed(0)).toLocaleString());
+                    }
+                },
+
+               
+                Count2: {
+                    title: 'Кол-во',
+                    sorting: false,
+                    width: '5%',
+                        footer: function (data) {
+                            var total = 0;
+                            $.each(data.Records, function (index, record) {
+                                total += Number(record.Count2);
+                            });
+                            return (parseFloat(total.toFixed(0)).toLocaleString());
+                        }
+                },
+
+                Difference: {
+                    title: 'Разница',
+                    display: function (data) {
+                        return parseFloat(data.record.Difference.toFixed(0)).toLocaleString();
+                    },
+                    footer: function (data) {
+                        var total = 0;
+                        $.each(data.Records, function (index, record) {
+                            total += Number(record.Difference);
+                        });
+                        return (parseFloat(total.toFixed(0)).toLocaleString());
+                    }
+                }
+
+            },
+
+            recordsLoaded: function (event, data) {
+            for (var i = 0; i < data.records.length; i++) {
+                if (data.records[i].Difference > 20000) {
+                    $(".jtable tbody tr:eq(" + i + ") td:eq(9)").css({ 'background-color': 'red', 'color': 'white' });
+                }
+
+                $(".jtable tbody tr:eq(" + i + ") td:eq(4)").css({ 'background-color': 'gray', 'color': 'white' });
+            }
+
+            //var autosWeight = data.serverResponse['AutosWeight'];
+            //if (typeof autosWeight !== "undefined") {
+            //    var val = autosWeight;//new Date(parseInt(autosReportLastUpdate.substr(6))).toLocaleDateString();
+            //    $('#SalariesTableContainer span.jtable-toolbar-item-text:contains(Тоннаж:)')
+            //        .text('Тоннаж: ' + val);
+            //     //alert(val);
+            //}
+
+            //var goodsSum = data.serverResponse['GoodsSum'];
+            //if (typeof goodsSum !== "undefined") {
+            //    var val = goodsSum;//new Date(parseInt(autosReportLastUpdate.substr(6))).toLocaleDateString();
+            //    $('#SalariesTableContainer span.jtable-toolbar-item-text:contains(ЧД:)')
+            //        .text('ЧД: ' + val);
+            //    //alert(val);
+            //}
+        }
+            
+        });
+
+        //$("#SelectedCompareType").on('change', function () {
+        //    alert('change');
+        //    $('#SalariesTableContainer').jtable('destroy');
+            
+        //});
+
+        //Load student list from server
+        //$('#StudentTableContainer').jtable('load', { Сombustible: 1 });
+
+        //Re-load records when user click 'load records' button.
+        $('#LoadRecordsButton').click(function (e) {
+            e.preventDefault(); 
+
+            //$('#SalariesTableContainer').jtable('destroy');
+            //createjTable();
+
+            var title1 = $('#SelectedCompareType :selected').text();
+            var title2 = $('#SelectedCompareType :selected').text();
+            //alert(title1);
+            if ($('#SelectedByYear').val() == 'true') {
+                title1 += ' ' + $('#SelectedYear1').val();
+                title2 += ' ' + $('#SelectedYear2').val();
+            }
+            else {
+                title1 += ' ' + $('#SelectedMonth1').val() + '/' + $('#SelectedYear1').val();
+                title2 += ' ' + $('#SelectedMonth2').val() + '/' + $('#SelectedYear2').val();
+            }
+
+            
+            $('#SalariesTableContainer').jtable('option',
+                {
+                    fields: {
+                        Name1: { title: title1 },
+                        Name2: { title: title2 }
+                    }
+                });
+
+            $('#SalariesTableContainer').jtable('load', {
+                SelectedFilial: $('#SelectedFilial').val(),
+
+                SelectedDepartment: $('#SelectedDepartment').val(),
+
+                SelectedMonth1: $('#SelectedMonth1').val(),
+
+                SelectedYear1: $('#SelectedYear1').val(),
+
+                SelectedYear2: $('#SelectedYear2').val(),
+
+                SelectedMonth2: $('#SelectedMonth2').val(),
+
+                SelectedCompareType: $('#SelectedCompareType').val(),
+
+                SelectedProject: $('#SelectedProject').val(),
+
+                SelectedByYear: $('#SelectedByYear').val(),
+
+                //Employee: $('#Employee').val()
+
+            });
+
+            
+            var colIndex = -1;
+            $('#SalariesTableContainer').find('th').each(function (idx, obj) {
+                //alert(title1);
+                if (idx == 0) {
+                    $(obj).find('.jtable-column-header-text').text(title1);
+                }
+
+                if (idx == 5) {
+                    $(obj).find('.jtable-column-header-text').text(title2);
+                }
+            });
+
+        });
+
+
+        //Load all records when page is first shown
+        $('#LoadRecordsButton').click();
+
+    });
+
+</script>
+
+<script>
+  
+    //kinkyApp.fn.initSelect("#SelectedFilial");
+    //$(".b-core-ui-select").addClass("b-core-ui-select__middle");
+    //kinkyApp.fn.initCheckbox("#SelectedByYear");
+    kinkyApp.fn.initCheckbox("#SelectedByYearSpan", null, function (checkbox, isChecked) {
+        if (isChecked) {
+            $("#SelectedMonth1").attr('disabled', true).css('background-color', 'whiteSmoke');
+            $("#SelectedMonth2").attr('disabled', true).css('background-color', 'whiteSmoke');
+        }
+        else
+        {
+            $("#SelectedMonth1").attr('disabled', false).css('background-color', '');
+            $("#SelectedMonth2").attr('disabled', false).css('background-color', '');
+        }
+    });
+
+</script>
+
+
+<br /><br />
+
+
+
+

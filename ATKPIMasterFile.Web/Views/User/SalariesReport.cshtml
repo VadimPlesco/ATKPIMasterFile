@@ -266,7 +266,7 @@
                 Type: {
                     title: 'Тип',
                     // list: false
-                    options: { '1': 'Обычный', '2': 'Поддержка продаж', '3': 'Администрация'},
+                    options: { '1': 'Обычный', '2': 'Поддержка продаж', '3': 'Администрация', '4': 'По договору' },
                     //filter: true
                 },
 
@@ -305,7 +305,32 @@
                         });
                         return (parseFloat(total.toFixed(0)).toLocaleString());
                     }
-                }
+                },
+
+                Deduction: {
+                    title: 'Удержания',
+                    // list: false
+                    footer: function (data) {
+                        var total = 0;
+                        $.each(data.Records, function (index, record) {
+                            total += Number(record.Deduction);
+                        });
+                        return (parseFloat(total.toFixed(0)).toLocaleString());
+                    }
+                },
+
+                TotalTax: {
+                    title: 'Налоги',
+                    // list: false
+                    footer: function (data) {
+                        var total = 0;
+                        $.each(data.Records, function (index, record) {
+                            total += Number(record.TotalTax);
+                        });
+                        return (parseFloat(total.toFixed(0)).toLocaleString());
+                    }
+                },
+
             }
             
         });

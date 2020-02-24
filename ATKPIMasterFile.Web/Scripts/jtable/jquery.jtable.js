@@ -423,6 +423,24 @@ THE SOFTWARE.
         /* Used to change options dynamically after initialization.
         *************************************************************************/
         _setOption: function (key, value) {
+            //alert(key+' '+value);
+            if (key == 'fields') {
+                this._changeFieldTitle(value);
+            }
+        },
+
+        _changeFieldTitle: function (field) {//я 02.08.19
+            var self = this;
+            data1 = eval(field);
+            $.each(data1, function (key, value) {
+                var fieldbykey = self.options.fields[key];
+
+                data2 = eval(value);
+                $.each(data2, function (key, value) {
+                    fieldbykey.title = value;
+                });
+
+            });
 
         },
 
@@ -3850,7 +3868,7 @@ THE SOFTWARE.
         *************************************************************************/
         _setOption: function(key, value) {
             base._setOption.apply(this, arguments);
-
+            //alert(key);
             if (key == 'pageSize') {
                 this._changePageSize(parseInt(value));
             }
