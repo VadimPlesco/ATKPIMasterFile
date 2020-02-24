@@ -196,6 +196,17 @@
 
             <div class="shared__left-float shared__margin-right-double">
                 <div class="shared__text-white shared__font-bold shared__font-small shared__margin-bottom-single shared__height-small">
+                    Налог:
+                </div>
+
+
+                <span class="shared__checkbox-white disable-select" id="SelectedTaxSpan">
+                    @Html.Hidden("SelectedTax")
+                </span>
+            </div>
+
+            <div class="shared__left-float shared__margin-right-double">
+                <div class="shared__text-white shared__font-bold shared__font-small shared__margin-bottom-single shared__height-small">
                     Тип:
                 </div>
                 
@@ -505,6 +516,8 @@
 
                 SelectedByYear: $('#SelectedByYear').val(),
 
+                SelectedTax: $('#SelectedTax').val()
+
                 //Employee: $('#Employee').val()
 
             });
@@ -536,7 +549,7 @@
   
     //kinkyApp.fn.initSelect("#SelectedFilial");
     //$(".b-core-ui-select").addClass("b-core-ui-select__middle");
-    //kinkyApp.fn.initCheckbox("#SelectedByYear");
+    kinkyApp.fn.initCheckbox("#SelectedTaxSpan");
     kinkyApp.fn.initCheckbox("#SelectedByYearSpan", null, function (checkbox, isChecked) {
         if (isChecked) {
             $("#SelectedMonth1").attr('disabled', true).css('background-color', 'whiteSmoke');

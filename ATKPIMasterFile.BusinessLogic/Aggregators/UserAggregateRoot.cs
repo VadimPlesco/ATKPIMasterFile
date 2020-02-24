@@ -2397,7 +2397,7 @@ namespace ATKPIMasterFile.BusinessLogic.Aggregators
 
 
         public List<SalaryCompareViewModel> GetSalariesCompareReport(int filialId, int departmentId, short month1, short year1, short month2, short year2,
-            short type, int project, bool byYear, string jtSorting)
+            short type, int project, bool byYear, bool isTax, string jtSorting)
         {
 
             if (filialId == -1)
@@ -2423,7 +2423,7 @@ namespace ATKPIMasterFile.BusinessLogic.Aggregators
                     _userCommands.GetGroupedByPostSalaries(_ade, filialId, departmentId, month2, year2, project, byYear);
             }
 
-            var tempSalaries = GetSalaryCompareViewModel(salariesGroupedByDepartment1, salariesGroupedByDepartment2);
+            var tempSalaries = GetSalaryCompareViewModel(salariesGroupedByDepartment1, salariesGroupedByDepartment2, isTax);
 
             switch (jtSorting)
             {
@@ -2452,33 +2452,41 @@ namespace ATKPIMasterFile.BusinessLogic.Aggregators
             return tempSalaries;
         }
 
-        public List<SalaryCompareViewModel> GetSalaryCompareViewModel(List<SalariesGroupedByDepartment> salariesGrouped1, List<SalariesGroupedByDepartment> salariesGrouped2)
+        public List<SalaryCompareViewModel> GetSalaryCompareViewModel(List<SalariesGroupedByDepartment> salariesGrouped1, 
+            List<SalariesGroupedByDepartment> salariesGrouped2, bool isTax)
         {
             List<SalaryCompareViewModel> salaryCompare = new List<SalaryCompareViewModel>();
 
+            var tax = 0.0;
+
             foreach (var sal in salariesGrouped1)
             {
+                if (isTax) tax = sal.SumTax;
+
                 salaryCompare.Add(new SalaryCompareViewModel
                 {
                     Name1 = sal.Name,
                     SumSal1 = Math.Round(sal.SumSal, 2),
                     SumVac1 = Math.Round(sal.SumVac, 2),
-                    SumTax1 = Math.Round(sal.SumTax, 2),
+                    SumTax1 = Math.Round(tax, 2),
                     Count1 = sal.Count,
-                    Difference = Math.Round(0 - sal.SumVac - sal.SumSal - sal.SumTax, 2)
+                    Difference = Math.Round(0 - sal.SumVac - sal.SumSal - tax, 2)
                 });
             }
 
+            tax = 0.0;
 
             foreach (var sal in salariesGrouped2)
             {
+                if (isTax) tax = sal.SumTax;
+
                 var existingSal = salaryCompare.FirstOrDefault(x => x.Name1 == sal.Name);
                 if (existingSal != null)
                 {
                     existingSal.Name2 = sal.Name;
                     existingSal.SumVac2 = Math.Round(sal.SumVac, 2);
                     existingSal.SumSal2 = Math.Round(sal.SumSal, 2);
-                    existingSal.SumTax2 = Math.Round(sal.SumTax, 2);
+                    existingSal.SumTax2 = Math.Round(tax, 2);
                     existingSal.Count2 = sal.Count;
                     existingSal.Difference = Math.Round(existingSal.SumSal2 + existingSal.SumVac2 + existingSal.SumTax2 - existingSal.SumSal1 - existingSal.SumVac1 - existingSal.SumTax1, 2);
                     //existingPost.Percent = (double)(existingPost.Fact - post.Count) / post.Count * 100;
@@ -2490,9 +2498,9 @@ namespace ATKPIMasterFile.BusinessLogic.Aggregators
                         Name2 = sal.Name,
                         SumSal2 = Math.Round(sal.SumSal, 2),
                         SumVac2 = Math.Round(sal.SumVac, 2),
-                        SumTax2 = Math.Round(sal.SumTax, 2),
+                        SumTax2 = Math.Round(tax, 2),
                         Count2 = sal.Count,
-                        Difference = Math.Round(sal.SumSal + sal.SumVac + sal.SumTax, 2)
+                        Difference = Math.Round(sal.SumSal + sal.SumVac + tax, 2)
                     });
                 }
             }

@@ -481,6 +481,7 @@ namespace ATKPIMasterFile.Web.Controllers
             ViewBag.SelectedProject = new SelectList(projects, "ProjectId", "Name", SelectedProject);
 
             ViewBag.SelectedByYear = false;
+            ViewBag.SelectedTax = true;
 
             if (SelectedFilial.Value == 0)
                 return View();
@@ -491,7 +492,7 @@ namespace ATKPIMasterFile.Web.Controllers
 
         [HttpPost]
         public JsonResult SalariesCompareReport(int? SelectedFilial, int? SelectedDepartment, short? SelectedYear1, short? SelectedMonth1,
-           short? SelectedYear2, short? SelectedMonth2, short? SelectedCompareType, int? SelectedProject, bool SelectedByYear,
+           short? SelectedYear2, short? SelectedMonth2, short? SelectedCompareType, int? SelectedProject, bool SelectedByYear, bool SelectedTax,
            int jtStartIndex = 0, int jtPageSize = 0, string jtSorting = null)
         {
 
@@ -513,7 +514,8 @@ namespace ATKPIMasterFile.Web.Controllers
                 var weight = autosWeight1.ToString("N0") + " - " + autosWeight2.ToString("N0") + ";";
 
                 var salaries = _userAggregateRoot.GetSalariesCompareReport(SelectedFilial.Value, SelectedDepartment.Value, SelectedMonth1.Value,
-                    SelectedYear1.Value, SelectedMonth2.Value, SelectedYear2.Value, SelectedCompareType.Value, SelectedProject.Value, SelectedByYear, jtSorting);
+                    SelectedYear1.Value, SelectedMonth2.Value, SelectedYear2.Value, SelectedCompareType.Value, SelectedProject.Value, 
+                    SelectedByYear, SelectedTax, jtSorting);
 
 
                 var salariesCount = salaries.Count;
