@@ -68,7 +68,6 @@
     <Compile Include="Model\DefectDiscount.cs" />
     <Compile Include="Model\PostByFilial.cs" />
     <Compile Include="Model\SalaryCommonPlan.cs" />
-    <Compile Include="Model\ShooryMooryException.cs" />
     <Compile Include="Model\Supplier.cs" />
     <Compile Include="Model\SalaryPlan.cs" />
     <Compile Include="Model\Salary.cs" />

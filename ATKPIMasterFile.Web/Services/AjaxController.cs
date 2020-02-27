@@ -218,7 +218,7 @@ namespace System.Web.Mvc
 
         protected override void HandleUnknownAction(string actionName)
         {
-            throw new ShooryMooryException(ResponseCode.NotFound);
+            throw new Exception("UnknownAction");
         }
     }
 }

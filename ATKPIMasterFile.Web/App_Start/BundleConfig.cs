@@ -77,7 +77,7 @@ namespace ATKPIMasterFile.Web
                   .Include("~/Scripts/ATKPIMFApp/viewModel.notificationsViewModel.js")
                   .Include("~/Scripts/ATKPIMFApp/viewModel.chatViewModel.js")
                   .Include("~/Scripts/ATKPIMFApp/viewModel.js")
-                  //.Include("~/Scripts/KinkyApp/viewModel.eventsHub.js")
+                //.Include("~/Scripts/ATKPIMFApp/viewModel.eventsHub.js")
                 );
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryui.js")
