@@ -1,4 +1,4 @@
-﻿kinkyApp.FeedGridModel = function (wrapperMaxHeight) {
+﻿atkpimfApp.FeedGridModel = function (wrapperMaxHeight) {
     var colCount = 0;
     var colWidth = 0;
     var margin = 0;

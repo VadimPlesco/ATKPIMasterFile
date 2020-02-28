@@ -22,7 +22,7 @@
 
 <div class="profile-setup-modal__modal-header">
     <div class="modal-header__header-text">Пользователи</div>
-    @*<div class="shared__header__close" onclick="kinkyApp.modal.hide()"></div>*@
+    @*<div class="shared__header__close" onclick="atkpimfApp.modal.hide()"></div>*@
 </div>
 
 
@@ -103,16 +103,16 @@
                     <td>
                             @using (Ajax.BeginForm("ManageUsers", "Admin", null, new AjaxOptions { UpdateTargetId = "body", LoadingElementId = "loadingElement", HttpMethod = "Post" }))
                             {
-                                <button onclick="kinkyApp.modal.showTopByUrl('@Url.Action("ManageUser", "Admin", new { categoryId = 1 })'); return false;">
+                                <button onclick="atkpimfApp.modal.showTopByUrl('@Url.Action("ManageUser", "Admin", new { categoryId = 1 })'); return false;">
                                     Edit
                                 </button>
-                                <button onclick = "kinkyApp.modal.showByUrl('@Url.Action("ManageUser", "Admin")','body'); return false; " >
+                                <button onclick = "atkpimfApp.modal.showByUrl('@Url.Action("ManageUser", "Admin")','body'); return false; " >
                                        Test
                                   </button >
-                                <button onclick="kinkyApp.modal.showByUrl('/Admin/ManageUser'); return false;">
+                                <button onclick="atkpimfApp.modal.showByUrl('/Admin/ManageUser'); return false;">
                                     Test2
                                 </button>
-                                <button onclick="kinkyApp.updateElementById('@Url.Action("ManageUser", "Admin")', 'body');return false;">
+                                <button onclick="atkpimfApp.updateElementById('@Url.Action("ManageUser", "Admin")', 'body');return false;">
                                     Test3
                                 </button>
                                    <button type="submit" id="deleteBnt" onclick="return confirm('Вы действительно хотите удалить категорию?');">

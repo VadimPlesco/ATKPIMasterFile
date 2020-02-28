@@ -1,4 +1,4 @@
-﻿kinkyApp.NotificationsViewModel = function (parentViewModel) {
+﻿atkpimfApp.NotificationsViewModel = function (parentViewModel) {
     var parentViewModel = parentViewModel;
     var self = this;
 
@@ -64,20 +64,20 @@
 
     this.clickAvatarNotification = function (data, event) {
         if (data.Type == 1 || data.Type == 2 || data.Type == 3 || data.Type == 4 || data.Type == 40 || data.Type == 5 || data.Type == 6 || data.Type == 9 || data.Type == 12)
-            kinkyApp.updateElementById(data.LiteUser.Url, 'body');
+            atkpimfApp.updateElementById(data.LiteUser.Url, 'body');
         if (data.Type == 7 || data.Type == 10)
-            kinkyApp.modal.showByUrl(data.Url, null, true);
+            atkpimfApp.modal.showByUrl(data.Url, null, true);
     };
 
     this.clickBodyNotification = function (data, event) {       
         if (data.Type == 2 || data.Type == 3 || data.Type == 5 || data.Type == 7 || data.Type == 14)
-            kinkyApp.modal.showByUrl(data.Url, null, true);
+            atkpimfApp.modal.showByUrl(data.Url, null, true);
         if (data.Type == 4)
-            kinkyApp.updateElementById(data.Url, 'body');
+            atkpimfApp.updateElementById(data.Url, 'body');
         if (data.Type == 6)
             parentViewModel.showChat(data.LiteUser.UserId);
         if (data.Type == 40)
-            kinkyApp.updateElementById(data.LiteUser.Url, 'body');
+            atkpimfApp.updateElementById(data.LiteUser.Url, 'body');
     };
 };
 

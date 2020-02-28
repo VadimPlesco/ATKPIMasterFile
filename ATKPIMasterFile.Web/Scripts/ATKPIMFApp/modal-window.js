@@ -1,4 +1,4 @@
-﻿kinkyApp.modal = (function () {
+﻿atkpimfApp.modal = (function () {
     var self = {};
 
     $(document).ready(function () {
@@ -57,12 +57,12 @@
             return;
         }
 
-//        if (kinkyApp.viewModel && kinkyApp.viewModel.publishVideoModal && !kinkyApp.viewModel.publishVideoModal.isPublishing) {
-//            kinkyApp.viewModel.publishVideoModal.hide();
+//        if (atkpimfApp.viewModel && atkpimfApp.viewModel.publishVideoModal && !atkpimfApp.viewModel.publishVideoModal.isPublishing) {
+//            atkpimfApp.viewModel.publishVideoModal.hide();
         //        }
         
-        if (kinkyApp.viewModel && kinkyApp.viewModel.broadcastingModel && kinkyApp.viewModel.broadcastingModel.isBroadcastingWindowVisible() && !kinkyApp.viewModel.broadcastingModel.isBroadcasting()) {
-            kinkyApp.viewModel.broadcastingModel.hide();
+        if (atkpimfApp.viewModel && atkpimfApp.viewModel.broadcastingModel && atkpimfApp.viewModel.broadcastingModel.isBroadcastingWindowVisible() && !atkpimfApp.viewModel.broadcastingModel.isBroadcasting()) {
+            atkpimfApp.viewModel.broadcastingModel.hide();
         }
         
         $("#main__overflow").children(".main__modal").hide();
@@ -71,7 +71,7 @@
         $("body").css("overflow", "auto");
         $("#main_modal").html("");
         if ($("#main_modal").attr("data-setUrlInAddressBar") == "true")
-            kinkyApp.replaceState();
+            atkpimfApp.replaceState();
     };
 
     self.hideTop = function () {
@@ -83,14 +83,14 @@
 
     self.hideAndReloadBody = function () {
         self.hide();
-        kinkyApp.reloadBody();
+        atkpimfApp.reloadBody();
     };
 
     self.showByUrl = function (url, event, setUrlInAddressBar, isDenyCloseByOverflowClick, successCallBack) {
-        console.log(url);
-        if (kinkyApp.fn.isMobile()) {
-            return true;
-        }
+        //console.log(url);
+        //if (atkpimfApp.fn.isMobile()) {
+        //    return true;
+        //}
 
         var data = {
         };
@@ -113,7 +113,7 @@
             error: function (e) { console.log(e); }
         });
         
-        //kinkyApp.asyncRequest({
+        //atkpimfApp.asyncRequest({
         //    url: url,
         //    id: "main_modal",
         //    setUrlInAddressBar: setUrlInAddressBar,
@@ -138,7 +138,7 @@
     };
 
     self.showTopByUrl = function (url) {
-        kinkyApp.asyncRequest({
+        atkpimfApp.asyncRequest({
             url: url,
             id: "main_modal-top",
             success: function (data) {
@@ -157,7 +157,7 @@
         if (IsShown())
             self.showByUrl(url, null, true);
         else
-            kinkyApp.updateElementById(url, "body");
+            atkpimfApp.updateElementById(url, "body");
 
         return false;
     };
@@ -165,6 +165,6 @@
     return self;
 })();
 
-kinkyApp.preventBodyScrolling = function () {
+atkpimfApp.preventBodyScrolling = function () {
     return false;
 };

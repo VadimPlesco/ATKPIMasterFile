@@ -1,5 +1,5 @@
 ﻿
-kinkyApp.PublishVideoModel = function(videoContainerId) {
+atkpimfApp.PublishVideoModel = function(videoContainerId) {
     var me = this,
         devicesInitialized = false,
         videoWrapper,
@@ -122,7 +122,7 @@ kinkyApp.PublishVideoModel = function(videoContainerId) {
 
     var notifyAboutBroadcast = function(videoId, isPrivate) {
         try {
-            if (kinkyApp.viewModel.broadcastingModel.isBroadcasting()) {
+            if (atkpimfApp.viewModel.broadcastingModel.isBroadcasting()) {
                 var broadcastVideo = $('#' + videoId).length > 0 ? $('#' + videoId)[0] : null;
 
                 if (broadcastVideo != null) {
@@ -131,8 +131,8 @@ kinkyApp.PublishVideoModel = function(videoContainerId) {
 
                     if (screen.length > 10000) {
                         
-                        kinkyApp.asyncRequest({
-                            url: kinkyApp.data.urlTmpl.StreamTalkNotifyUsersOfBroadcasting,
+                        atkpimfApp.asyncRequest({
+                            url: atkpimfApp.data.urlTmpl.StreamTalkNotifyUsersOfBroadcasting,
                             type: "POST",
                             data: {
                                 sessionId: me.currentBroadcastSessionId,
@@ -166,8 +166,8 @@ kinkyApp.PublishVideoModel = function(videoContainerId) {
             //            debugger;
             me.notifierStarted(false);
             me.isPrivate(isPrivate);
-            kinkyApp.asyncRequest({
-                url: kinkyApp.data.urlTmpl.StreamTalkStartBroadcasting,
+            atkpimfApp.asyncRequest({
+                url: atkpimfApp.data.urlTmpl.StreamTalkStartBroadcasting,
                 type: "POST",
                 success: function (data) {
                     me.currentBroadcastSessionId = data.sessionId;
@@ -177,7 +177,7 @@ kinkyApp.PublishVideoModel = function(videoContainerId) {
                     var videoId = 'broadcast-publisher';
                     var videoHandlerName = 'handleMyBroadcast_' + me.currentBroadcastSessionId;
 
-                    kinkyApp.videoHandlers[videoHandlerName] = function(state) {
+                    atkpimfApp.videoHandlers[videoHandlerName] = function(state) {
                         
                         if (state == 33) {
                             var vid = $('#' + videoId).length > 0 ? $('#' + videoId)[0] : null;
@@ -217,7 +217,7 @@ kinkyApp.PublishVideoModel = function(videoContainerId) {
                                     var watchdogVideoId = 'watchdog-' + videoId;
                                     var watchdogHandlerName = 'watchdog_' + me.currentBroadcastSessionId;
                                     
-                                    kinkyApp.videoHandlers[watchdogHandlerName] = function(watchdogState) {
+                                    atkpimfApp.videoHandlers[watchdogHandlerName] = function(watchdogState) {
                                         console.info('watchdog handler: ' + watchdogHandlerName + ', current state: ' + watchdogState);
                                         
                                         var watchdogVideo = $('#' + watchdogVideoId).length > 0 ? $('#' + watchdogVideoId)[0] : null;
@@ -243,12 +243,12 @@ kinkyApp.PublishVideoModel = function(videoContainerId) {
 
                                     var wFlashvars = {
                                         __type: 'viewer',
-                                        __rtmp: 'rtmp://88.198.39.25:1935/kinkylove',
+                                        __rtmp: 'rtmp://88.198.39.28:1940/',
                                         __stream: data.sessionId,
                                         __autoplay: '1',
                                         __log: '1',
                                         __sign: data.signature,
-                                        __setStatusJS: 'kinkyApp.videoHandlers["' + watchdogHandlerName + '"]'
+                                        __setStatusJS: 'atkpimfApp.videoHandlers["' + watchdogHandlerName + '"]'
                                     };
                                     var wParams = {
                                         menu: 'false',
@@ -272,13 +272,13 @@ kinkyApp.PublishVideoModel = function(videoContainerId) {
                     };
                     var flashvars = {
                         __type: 'publisher',
-                        __rtmp: 'rtmp://88.198.39.25:1935/kinkylove',
+                        __rtmp: 'rtmp://88.198.39.28:1940/',
                         __stream: data.sessionId,
                         __autoplay: '0',
                         __log: '1',
                         __sign: data.signature,
                         __getParamFunJS: 'getVideoParamsHandler', //TODO: repair this shit
-                        __setStatusJS: 'kinkyApp.videoHandlers["' + videoHandlerName + '"]'
+                        __setStatusJS: 'atkpimfApp.videoHandlers["' + videoHandlerName + '"]'
                     };
                     var params = {
                         menu: 'true',
@@ -321,8 +321,8 @@ kinkyApp.PublishVideoModel = function(videoContainerId) {
             var videoHandlerName = 'handleMyBroadcast_' + me.currentBroadcastSessionId;
             var watchdogHandlerName = 'watchdog_' + me.currentBroadcastSessionId;
             
-            delete kinkyApp.videoHandlers[videoHandlerName];
-            delete kinkyApp.videoHandlers[watchdogHandlerName];
+            delete atkpimfApp.videoHandlers[videoHandlerName];
+            delete atkpimfApp.videoHandlers[watchdogHandlerName];
             
             sendToServer(function (serverHub) {
                 serverHub.endBroadcasting();
@@ -354,7 +354,7 @@ kinkyApp.PublishVideoModel = function(videoContainerId) {
 };
 
 getVideoParamsHandler = function(id, param, value) {
-    if (kinkyApp.viewModel && kinkyApp.viewModel.broadcastingModel) {
+    if (atkpimfApp.viewModel && atkpimfApp.viewModel.broadcastingModel) {
         if (param == 'screen') {
 
         }

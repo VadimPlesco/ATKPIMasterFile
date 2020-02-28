@@ -1,11 +1,11 @@
-kinkyApp.fn.initCheckbox = function (selector, ajaxRequestFunc, onChangeCallback) {
+atkpimfApp.fn.initCheckbox = function (selector, ajaxRequestFunc, onChangeCallback) {
     //alert('1');
     if ($(selector).attr("data-initCheckbox")) return;
     $(selector).attr("data-initCheckbox", "true");
 
     $(selector).mousedown(
         function () {
-            kinkyApp.fn.changeCheck($(this), onChangeCallback);
+            atkpimfApp.fn.changeCheck($(this), onChangeCallback);
         });
 
     if (ajaxRequestFunc)
@@ -19,11 +19,11 @@ kinkyApp.fn.initCheckbox = function (selector, ajaxRequestFunc, onChangeCallback
 
     $(selector).each(
         function () {
-            kinkyApp.fn.changeCheckStart($(this));
+            atkpimfApp.fn.changeCheckStart($(this));
         });
 };
 
-kinkyApp.fn.changeCheck = function (el, onChangeCallback) {
+atkpimfApp.fn.changeCheck = function (el, onChangeCallback) {
     //alert('2');
     input = el.find("input").eq(0);
     input_hidden = el.find("input[type='hidden']").eq(0);
@@ -47,7 +47,7 @@ kinkyApp.fn.changeCheck = function (el, onChangeCallback) {
     return true;
 };
 
-kinkyApp.fn.changeCheckStart = function (el) {
+atkpimfApp.fn.changeCheckStart = function (el) {
     //alert('3');
     var input = el.find("input[type='checkbox']").eq(0);
     var input_hidden = el.find("input[type='hidden']").eq(0);
@@ -74,7 +74,7 @@ kinkyApp.fn.changeCheckStart = function (el) {
 
 //}
 
-kinkyApp.fn.childrenCheckBoxClick = function (id) {
+atkpimfApp.fn.childrenCheckBoxClick = function (id) {
     //var children = $("." + id);
     var childrenChecked = $("." + id + "[checked='checked']");
     if (childrenChecked.length == 0) {

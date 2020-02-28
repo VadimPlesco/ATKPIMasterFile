@@ -1,5 +1,5 @@
 ﻿/*
-kinkyApp.fn.activeButton = function (el) {
+atkpimfApp.fn.activeButton = function (el) {
     $(el).css({ "line-height": "36px", "padding-bottom": "19px" });
 };
 */
@@ -32,21 +32,21 @@ jQuery.fn.extend({
     }
 });
 
-kinkyApp.fn.hasScrollBar = function () {
+atkpimfApp.fn.hasScrollBar = function () {
     return this.get(0).scrollHeight > this.height();
 };
 
-kinkyApp.fn.initTextarea = function (selector) {
+atkpimfApp.fn.initTextarea = function (selector) {
     $("#" + selector).each(function (index) { $(this).val($(this).attr("title")); });
     $("#" + selector).focus(function () { if ($(this).val() == $(this).attr("title")) { $(this).css({ "color": "#000" }).val(""); }; }).focusout(function () { if ($(this).val().length == 0) { $(this).val($(this).attr("title")).css({ "color": "#bebebe" }); } else { $(this).css({ "color": "#121212" }); }; });
 };
 
-kinkyApp.fn.initSelect = function (selector, options) {
+atkpimfApp.fn.initSelect = function (selector, options) {
 
     return $(selector).coreUISelect(options || {});
 };
 
-kinkyApp.fn.initSelectAddEditPhoto = function (selector) {
+atkpimfApp.fn.initSelectAddEditPhoto = function (selector) {
 
     $(selector).coreUISelect(
         {
@@ -88,14 +88,14 @@ kinkyApp.fn.initSelectAddEditPhoto = function (selector) {
 
 };
 
-kinkyApp.fn.initInput = function (selector) {
+atkpimfApp.fn.initInput = function (selector) {
     selector.each(function () { $(this).val($(this).val() + " " + $(this).attr("ei")); });
     selector.focusin(function () { $(this).val($(this).val().replace(/[^0-9]/g, '')); });
     selector.focusout(function () { $(this).val().replace(/[^0-9]/g, '') != "" ? ($(this).val($(this).val() + " " + $(this).attr("ei"))) : "11" });
 };
 
 
-kinkyApp.fn.initRadio = function () {
+atkpimfApp.fn.initRadio = function () {
     $(".shared__radiobutton").mousedown(
     function () {
         $(this).parent("div").parent("div").find(".shared__radiobutton").css("background-position", "0 0");
@@ -110,7 +110,7 @@ kinkyApp.fn.initRadio = function () {
     });
 };
 
-kinkyApp.fn.initRadioGroup = function (groupName, onChangeCallback) {
+atkpimfApp.fn.initRadioGroup = function (groupName, onChangeCallback) {
     $('input[name=' + groupName + ']').parent('.shared__radiobutton').on('mousedown', function () {
         $('input[name=' + groupName + ']').removeAttr('checked')
             .parent('.shared__radiobutton')
@@ -133,14 +133,14 @@ kinkyApp.fn.initRadioGroup = function (groupName, onChangeCallback) {
     });
 };
 
-kinkyApp.fn.buttonGroupMouseover = function (el) {
-    if (kinkyApp.fn.isMobile() === false) {
-        $(el).find(".two-button-group").removeClass("invisible");
-    }
+atkpimfApp.fn.buttonGroupMouseover = function (el) {
+    //if (atkpimfApp.fn.isMobile() === false) {
+    //    $(el).find(".two-button-group").removeClass("invisible");
+    //}
     
 };
 
-kinkyApp.fn.buttonGroupMouseout = function (el) {
+atkpimfApp.fn.buttonGroupMouseout = function (el) {
     var buttons = $(el).find(".two-button-group");
     var mainPopup = $(el).find("#main__popup");
     if (mainPopup.length == 0 || mainPopup.css("display") == "none") {
@@ -152,7 +152,7 @@ kinkyApp.fn.buttonGroupMouseout = function (el) {
 };
 
 
-kinkyApp.fn.initCurrentLink = function () {
+atkpimfApp.fn.initCurrentLink = function () {
     $("[data-href]").each(function () {
         var el = $(this);
 
@@ -171,7 +171,7 @@ kinkyApp.fn.initCurrentLink = function () {
 };
 
 
-kinkyApp.fn.initTypeahead = function (selector, limit, searchUrl, minLength, callback) {
+atkpimfApp.fn.initTypeahead = function (selector, limit, searchUrl, minLength, callback) {
     var tagSelector = $(selector);
     tagSelector.typeahead({
         limit: limit,
@@ -185,7 +185,7 @@ kinkyApp.fn.initTypeahead = function (selector, limit, searchUrl, minLength, cal
 
 
 
-//kinkyApp.fn.initUserDetailsAddButton = function (profileAddButtonSelector, profileAddButtonBlockInnerSelector) {
+//atkpimfApp.fn.initUserDetailsAddButton = function (profileAddButtonSelector, profileAddButtonBlockInnerSelector) {
 //    var profileAddButton = $(profileAddButtonSelector);
 //    $(profileAddButtonBlockInnerSelector).hover(
 //        function () { profileAddButton.addClass("profile__add-button-hover") },
@@ -194,7 +194,7 @@ kinkyApp.fn.initTypeahead = function (selector, limit, searchUrl, minLength, cal
 //};
 
 
-kinkyApp.fn.initUserDetailsUpdateStatus = function (userStatusSelector, url) {
+atkpimfApp.fn.initUserDetailsUpdateStatus = function (userStatusSelector, url) {
     var userStatus = $(userStatusSelector);
     var lastText = userStatus.text();
 
@@ -233,7 +233,7 @@ kinkyApp.fn.initUserDetailsUpdateStatus = function (userStatusSelector, url) {
     });
 };
 
-kinkyApp.fn.socialShare = function (socialNetwork, e, element) {
+atkpimfApp.fn.socialShare = function (socialNetwork, e, element) {
     var windowOptions = 'toolbar=0,resizable=0,status=1,width=450,height=430';
     var modal = document.getElementById("modal-outer");
 
@@ -244,6 +244,6 @@ kinkyApp.fn.socialShare = function (socialNetwork, e, element) {
         element.href = element.dataset.shareUrl;
         element.target = "_blank"; 
     }
-    kinkyApp.analytics.trackEvent(kinkyApp.analytics.eventType.share, { 'network': socialNetwork });
+    atkpimfApp.analytics.trackEvent(atkpimfApp.analytics.eventType.share, { 'network': socialNetwork });
 
 };

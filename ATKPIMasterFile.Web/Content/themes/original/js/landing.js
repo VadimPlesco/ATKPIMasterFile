@@ -1,5 +1,5 @@
 ﻿
-kinkyApp.fn.detectBandwidth = function () {
+atkpimfApp.fn.detectBandwidth = function () {
     var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
     var bandwidthChange;
 
@@ -21,7 +21,7 @@ kinkyApp.fn.detectBandwidth = function () {
 
 };
 
-kinkyApp.fn.switchLng = function (lng, fakeLng) {
+atkpimfApp.fn.switchLng = function (lng, fakeLng) {
     if (fakeLng) {
         localStorage.setItem("language", fakeLng);
     }
@@ -29,7 +29,7 @@ kinkyApp.fn.switchLng = function (lng, fakeLng) {
     document.location.href = "/" + lng;
 };
 
-kinkyApp.fn.lngSave = function () {
+atkpimfApp.fn.lngSave = function () {
     var noLanguage = localStorage.getItem("language") == null ? true : false;
     if (noLanguage) {
 
@@ -37,7 +37,7 @@ kinkyApp.fn.lngSave = function () {
     
 };
 
-//kinkyApp.fn.switchLngClick = function(that) {
+//atkpimfApp.fn.switchLngClick = function(that) {
 //    if ($(that).hasClass("lang-switch_closed")) {
 //        $(that).removeClass("lang-switch_closed").addClass("lang-switch_opened");
 //    }
@@ -46,27 +46,27 @@ kinkyApp.fn.lngSave = function () {
 //    }
 //}
 
-kinkyApp.fn.switchLngHover = function (that) {
+atkpimfApp.fn.switchLngHover = function (that) {
     document.getElementById('language-switcher').setAttribute("data-state", "active");
 }
 
-kinkyApp.fn.switchLngOut = function (that) {
+atkpimfApp.fn.switchLngOut = function (that) {
     document.getElementById('language-switcher').setAttribute("data-state", "");
 }
 
-kinkyApp.registerInputBlur = function (element) {
+atkpimfApp.registerInputBlur = function (element) {
     var closeButton = element.parentElement.lastElementChild;
     if (closeButton !== null) {
         element.value == "" ? closeButton.setAttribute("data-hidden", "true") : closeButton.setAttribute("data-hidden", "false");
     }
 };
 
-kinkyApp.registerInputFocus = function (element) {
+atkpimfApp.registerInputFocus = function (element) {
     var closeButton = element.parentElement.lastElementChild;
     element.value == "" ? closeButton.setAttribute("data-hidden", "true") : closeButton.setAttribute("data-hidden", "false");
 };
 
-kinkyApp.registerClearInput = function (element) {
+atkpimfApp.registerClearInput = function (element) {
     var closeButton = element.parentElement;
     var input = closeButton.parentElement.firstElementChild;
     input.value = "";
@@ -74,7 +74,7 @@ kinkyApp.registerClearInput = function (element) {
 };
 
 
-kinkyApp.validateInputValue = function (element, type) {
+atkpimfApp.validateInputValue = function (element, type) {
     validationCheck = $(element).parent(".landing__input-block").children(".input-block__validation-check");
     validationValue = $(element).val();
     re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

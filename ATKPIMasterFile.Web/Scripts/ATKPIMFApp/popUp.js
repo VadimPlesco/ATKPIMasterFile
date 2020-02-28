@@ -1,4 +1,4 @@
-﻿kinkyApp.popUp = (function () {
+﻿atkpimfApp.popUp = (function () {
 
     var popUpTimer = null;
 
@@ -16,11 +16,11 @@
 
     self.showByUrl = function (selector, url, popUpType, showBeforeSend) {
         var popUpHtml;
-        kinkyApp.asyncRequest({
+        atkpimfApp.asyncRequest({
             url: url,
             beforeSend: (showBeforeSend ? function (data) {
-                $('body').on('mousewheel', kinkyApp.preventBodyScrolling);
-                self.show(selector, '<div class="main__popdown main__popdown-big" onmouseleave="kinkyApp.popUp.hideBig(this);"><div class="shared__ajax-loader-src" style="display:block;margin:0 auto;padding-top:100px;"></div></div>', popUpType);
+                $('body').on('mousewheel', atkpimfApp.preventBodyScrolling);
+                self.show(selector, '<div class="main__popdown main__popdown-big" onmouseleave="atkpimfApp.popUp.hideBig(this);"><div class="shared__ajax-loader-src" style="display:block;margin:0 auto;padding-top:100px;"></div></div>', popUpType);
             } : null),
             success: function (data) {
                 if (showBeforeSend) {
@@ -130,7 +130,7 @@
     }
 
     self.hideBig = function (popup) {
-        $('body').off('mousewheel', kinkyApp.preventBodyScrolling);
+        $('body').off('mousewheel', atkpimfApp.preventBodyScrolling);
 
         $(popup).animate({ opacity: 0 }, "fast", null, function () {
             $(popup).hide();
@@ -138,7 +138,7 @@
     };
 
     self.hide = function () {
-        $('body').off('mousewheel', kinkyApp.preventBodyScrolling);
+        $('body').off('mousewheel', atkpimfApp.preventBodyScrolling);
 
         var popup = $("#main__popup");
         if (popup.length > 0) {
@@ -150,10 +150,10 @@
 })();
 
 
-var kinkyApp = kinkyApp || {};
-kinkyApp.hover = {};
+var atkpimfApp = atkpimfApp || {};
+atkpimfApp.hover = {};
 
-kinkyApp.hover = (function () {
+atkpimfApp.hover = (function () {
     var self = this;
     self.show = function (element) {
         $(element).find("[data-hover]").show();
@@ -166,9 +166,9 @@ kinkyApp.hover = (function () {
 })();
 
 
-var kinkyApp = kinkyApp || {};
-kinkyApp.photoEdit = {};
-kinkyApp.photoEdit = (function () {
+var atkpimfApp = atkpimfApp || {};
+atkpimfApp.photoEdit = {};
+atkpimfApp.photoEdit = (function () {
     var self = this;
     self.removePhoto = function (element) {
         $(element).closest("[data-remove]").remove();

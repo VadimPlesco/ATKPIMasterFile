@@ -1,5 +1,5 @@
 ﻿
-kinkyApp.WatchVideoModel = function(chat, userId) {
+atkpimfApp.WatchVideoModel = function(chat, userId) {
     var me = this,
         currentBroadcastSessionId = '',
         forcedClose = false;

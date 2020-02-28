@@ -2,7 +2,7 @@
 @using System.Configuration
 
 <script>
-    kinkyApp.viewModel.MyUser(@Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(Model)));
+    atkpimfApp.viewModel.MyUser(@Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(Model)));
     
 </script>
 
@@ -15,10 +15,10 @@
     <div class="menu-holder__user-pad">
         <div class="user-pad__avatar-holder shared__padding-top-double shared__padding-bottom-single">
             <div id="menuAvatar" class="menu-user-avatar shared__margin-bottom-single" style="margin: 0 auto; background-image: url(@Model.AvatarUrl); width: @(Model.AvatarWidth)px;"
-                 data-bind="style: { backgroundImage: 'url(' + UserInfo().AvatarUrl + ')', width: UserInfo().AvatarWidth + 'px' }, attr: { onclick: 'kinkyApp.updateElementById(\''+MyUser().Url+'\',\'body\')' }"
+                 data-bind="style: { backgroundImage: 'url(' + UserInfo().AvatarUrl + ')', width: UserInfo().AvatarWidth + 'px' }, attr: { onclick: 'atkpimfApp.updateElementById(\''+MyUser().Url+'\',\'body\')' }"
                 onclick="window.location.href = '@Url.Action("Details", "User")'">
-                 @*onclick="kinkyApp.updateElementById('@Url.Action("AvatarDetails", "User", new {user = Model.UserId})', 'body') ">*@
-                 @*onclick="kinkyApp.updateElementById('@Model.Url', 'body') ">*@
+                 @*onclick="atkpimfApp.updateElementById('@Url.Action("AvatarDetails", "User", new {user = Model.UserId})', 'body') ">*@
+                 @*onclick="atkpimfApp.updateElementById('@Model.Url', 'body') ">*@
             </div>
         </div>
 
@@ -34,11 +34,11 @@
 
             <div class="user-pad__profile-drop-down-menu">
                 @*<div class="profile-drop-down-menu__item profile-drop-down-menu__item-first"
-                     data-bind="attr: { onclick: 'kinkyApp.updateElementById(\''+MyUser().Url+'\',\'body\')' }"
-                     onclick="kinkyApp.updateElementById('@Model.Url','body')">
+                     data-bind="attr: { onclick: 'atkpimfApp.updateElementById(\''+MyUser().Url+'\',\'body\')' }"
+                     onclick="atkpimfApp.updateElementById('@Model.Url','body')">
                     Profile
                 </div>
-                <div class="profile-drop-down-menu__item" onclick="kinkyApp.modal.showByUrl('@Url.Action("Edit", "Account")',null,null,true)">
+                <div class="profile-drop-down-menu__item" onclick="atkpimfApp.modal.showByUrl('@Url.Action("Edit", "Account")',null,null,true)">
                     Settings
                 </div>*@
                 <div class="profile-drop-down-menu__item profile-drop-down-menu__item-last"
@@ -55,7 +55,7 @@
 
 
 
-        @*<div class="shared__text-center shared__padding-bottom-double shared__padding-top-single shared__pointer" onclick="kinkyApp.updateElementById('@Url.Action("LinkUsers", "Search")','body')">
+        @*<div class="shared__text-center shared__padding-bottom-double shared__padding-top-single shared__pointer" onclick="atkpimfApp.updateElementById('@Url.Action("LinkUsers", "Search")','body')">
                 <div class="shared__text-grey shared__font-tiny">@InterestResources.Followers</div>
                 <div class="shared__text-white shared__font-big shared__font-bold shared__letter-spacing-double">
                     <span data-bind="text: MyUser().SubscriptionsCount">@Model.SubscriptionsCount</span>
@@ -68,8 +68,8 @@
         }*@
 
       @*<div class="menu-money-block shared__text-center shared__padding-bottom-double shared__padding-top-single shared__pointer"
-           data-bind="attr: { onclick: 'kinkyApp.modal.showByUrl(\''+(MyUser().IsModel ? '@Url.Action("Choice", "Payment")' : '@Url.Action("Index", "Payment")')+'\')' }"
-           @if (Model.IsModel) { <text> onclick="kinkyApp.modal.showByUrl('@Url.Action("Choice", "Payment")') " </text>      } else { <text> onclick="kinkyApp.modal.showByUrl('@Url.Action("Index", "Payment")') " </text>      }>
+           data-bind="attr: { onclick: 'atkpimfApp.modal.showByUrl(\''+(MyUser().IsModel ? '@Url.Action("Choice", "Payment")' : '@Url.Action("Index", "Payment")')+'\')' }"
+           @if (Model.IsModel) { <text> onclick="atkpimfApp.modal.showByUrl('@Url.Action("Choice", "Payment")') " </text>      } else { <text> onclick="atkpimfApp.modal.showByUrl('@Url.Action("Index", "Payment")') " </text>      }>
         <div class="shared__text-grey shared__font-tiny">Balance</div>
         <div class="shared__text-white shared__font-big shared__font-bold shared__letter-spacing-double"
           <span data-bind="text: (MyUser().IsModel ? '$' : '') + MyUser().Diamonds">0</span>
@@ -83,7 +83,7 @@
     </div>*@
 
     @*<div class="tutorial-v2-webcam">
-        <div class="menu-holder__menu-item menu-holder__menu-item-webcam tutorial-v2-webcam-tab @(!Model.IsModel ? "hidden" : "")" data-bind="css : { hidden: !MyUser().IsModel}" onclick="if(!kinkyApp.viewModel.broadcastingModel.isBroadcasting()) { kinkyApp.viewModel.broadcastingModel.startModelBroadcasting(false); }">
+        <div class="menu-holder__menu-item menu-holder__menu-item-webcam tutorial-v2-webcam-tab @(!Model.IsModel ? "hidden" : "")" data-bind="css : { hidden: !MyUser().IsModel}" onclick="if(!atkpimfApp.viewModel.broadcastingModel.isBroadcasting()) { atkpimfApp.viewModel.broadcastingModel.startModelBroadcasting(false); }">
             Broadcast
         </div>
     </div>*@
@@ -95,7 +95,7 @@
             }
 
     @*<div class="menu-holder__menu-item menu-holder__menu-item-news"
-         onclick="kinkyApp.updateElementById('@Url.Action("Feed", "Feed")', 'body') "
+         onclick="atkpimfApp.updateElementById('@Url.Action("Feed", "Feed")', 'body') "
          data-href="@Url.Action("Feed", "Feed")"
          data-normal="menu-holder__menu-item menu-holder__menu-item-news"
          data-selected="menu-holder__menu-item-selected menu-holder__menu-item-selected-news">
@@ -104,7 +104,7 @@
 
     <div id = "menu-item-dating"
          class="menu-holder__menu-item menu-holder__menu-item-friends"
-         onclick="kinkyApp.updateElementById('@datingUrl','body')"
+         onclick="atkpimfApp.updateElementById('@datingUrl','body')"
          data-href="@datingUrl"
          data-normal="menu-holder__menu-item menu-holder__menu-item-friends"
          data-selected="menu-holder__menu-item-selected menu-holder__menu-item-selected-friends">
@@ -113,7 +113,7 @@
 
     
         @*<div class="menu-holder__menu-item menu-holder__menu-item-friends"
-        onclick="kinkyApp.updateElementById('@Url.Action("LinkUsers", "Search")','body')"
+        onclick="atkpimfApp.updateElementById('@Url.Action("LinkUsers", "Search")','body')"
         data-href="@Url.Action("LinkUsers", "Search")"
         data-normal="menu-holder__menu-item menu-holder__menu-item-friends"
         data-selected="menu-holder__menu-item-selected menu-holder__menu-item-selected-friends"
@@ -122,7 +122,7 @@
         </div>*@
 
     <div class="menu-holder__menu-item menu-holder__menu-item-events"
-         onclick="kinkyApp.modal.showByUrl('@Url.Action("ManageUser", "Admin")'); "
+         onclick="atkpimfApp.modal.showByUrl('@Url.Action("ManageUser", "Admin")'); "
          @*data-href="@Url.Action("AutosReport", "User", new {type = "events"})"*@
          data-normal="menu-holder__menu-item menu-holder__menu-item-events"
          data-selected="menu-holder__menu-item-selected menu-holder__menu-item-selected-events">
@@ -132,7 +132,7 @@
 
 
     @*<div class="menu-holder__menu-item menu-holder__menu-item-events"
-         onclick="kinkyApp.updateElementById('@Url.Action("LastEvents", "Feed", new {type = "events"})','body')"
+         onclick="atkpimfApp.updateElementById('@Url.Action("LastEvents", "Feed", new {type = "events"})','body')"
          data-href="@Url.Action("LastEvents", "Feed", new {type = "events"})"
          data-normal="menu-holder__menu-item menu-holder__menu-item-events"
          data-selected="menu-holder__menu-item-selected menu-holder__menu-item-selected-events">
@@ -144,14 +144,14 @@
             <div class="messages-bar__contact-holder">
 
                 <div class="shared__user-avatar"
-                     data-bind="click: function (data) { kinkyApp.viewModel.showChat(data.BuddyUserId); }, attr: { title: BuddyUserObservable().Name + ', ' + BuddyUserObservable().Age }, style: { backgroundColor: 'grey', backgroundImage: 'url(' + BuddyUserObservable().AvatarUrl + ')' }">
+                     data-bind="click: function (data) { atkpimfApp.viewModel.showChat(data.BuddyUserId); }, attr: { title: BuddyUserObservable().Name + ', ' + BuddyUserObservable().Age }, style: { backgroundColor: 'grey', backgroundImage: 'url(' + BuddyUserObservable().AvatarUrl + ')' }">
                     <div class="user-avatar__user-online" data-bind="css: { hidden: !(BuddyUserObservable().IsOnline || BuddyUserObservable().WasRecently), recent : BuddyUserObservable().WasRecently  }, attr: { title: BuddyUserObservable().WasRecently?'OnlineStatus_WasRecent':'OnlineStatus_IsNowOnline' }"></div>
                 </div>
                 <div class="shared__bubble-gold shared__bubble-contacts shared__bubble-gold-talk"
                      data-bind="text: UnreadCount, css: { hidden: UnreadCount <= 0 }">
                 </div>
 
-                <div class="message-block__popup-menu-message-holder" style="display: none;" data-bind="click: function (data) { kinkyApp.viewModel.showChat(data.BuddyUserId); }, css: { hidden: UnreadCount <= 0 }">
+                <div class="message-block__popup-menu-message-holder" style="display: none;" data-bind="click: function (data) { atkpimfApp.viewModel.showChat(data.BuddyUserId); }, css: { hidden: UnreadCount <= 0 }">
                     <div class="message-block__popup-menu-message-floater shared__font-small"
                          data-bind="text: LastMessage">
                     </div>
@@ -159,14 +159,14 @@
 
             </div>
         </div>
-        <div class="messages-bar__dots hidden" onclick=" kinkyApp.fn.showChatDialogs() " data-bind="css: { hidden: Contacts().length <= 0 }">
+        <div class="messages-bar__dots hidden" onclick=" atkpimfApp.fn.showChatDialogs() " data-bind="css: { hidden: Contacts().length <= 0 }">
             @*<div class="shared__bubble-gold shared__bubble-more shared__bubble-gold-talk shared__bubble-gold-talk-menu" data-bind="text: 'еще '+ UnreadCount(), css: { hidden: UnreadCount() <= 0 }"></div>*@
 
             <div class="shared__bubble-gold shared__bubble-more shared__bubble-gold-right" data-bind="text: UnreadCount, css: { hidden: UnreadCount() <= 0 }"></div>
         </div>
     </div>
 
-    <div class="main__menu-logo" @*onclick="kinkyApp.updateElementById('/','body')"*@>
+    <div class="main__menu-logo" @*onclick="atkpimfApp.updateElementById('/','body')"*@>
         <div id="loadingElement" style="display: none;" class="menu-ajax-loader-src-wrapper">
             <div class="shared__ajax-loader-src menu-ajax-loader-src"></div>
         </div>
@@ -190,14 +190,14 @@
 </div>*@
 
 
-@*<div id="buy-premium-label" class="club-card-enable pointer" style="display: none;" onclick="kinkyApp.modal.showByUrl('@Url.Action("PremiumDetails", "User")', 'body') ">
+@*<div id="buy-premium-label" class="club-card-enable pointer" style="display: none;" onclick="atkpimfApp.modal.showByUrl('@Url.Action("PremiumDetails", "User")', 'body') ">
     <button class=" premium-enable-button">
         <span class="feedback-button-text">Club_card</span>
         <span class="icon shared__icon-star-white-small"></span>
     </button>
 </div>
 
-<div id="premium-label" class="club-card-enable pointer" style="display: none;" onclick="kinkyApp.modal.showByUrl('@Url.Action("PremiumDetails", "User")', 'body') ">
+<div id="premium-label" class="club-card-enable pointer" style="display: none;" onclick="atkpimfApp.modal.showByUrl('@Url.Action("PremiumDetails", "User")', 'body') ">
     <button class="premium-enable-button">
         <span class="feedback-button-text">Club_card</span>
         <span class="icon shared__icon-star-white-small"></span>
@@ -207,7 +207,7 @@
 @*@if (!Model.IsAffiliatedMan())
 {
     <button class="glue-button feedback-button"
-            onclick="kinkyApp.modal.showByUrl('@Url.Action("FeedBack", "Menu")', null, null, true)">
+            onclick="atkpimfApp.modal.showByUrl('@Url.Action("FeedBack", "Menu")', null, null, true)">
         <span class="feedback-button-text">@MenuSharedResources.Support_service</span>
     </button>
 }*@

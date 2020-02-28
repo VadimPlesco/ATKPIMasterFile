@@ -105,10 +105,10 @@
 
 
         // Append input bar (!! kpa)
-        this.settings.createFolderInside ? this.dropdown.prepend('<div class="modal__ui-select__input-bar"><div onclick="' + this.settings.createFolderInside + '" class="shared__button shared__button-no-icon button-gold-to-gold button-create shared__width_90">' + kinkyApp.data.localization.coreUISelectCreateFolder + '</div><div class="shared__ajax-preloader shared__right-float shared__display-none"></div>') : null;
-        this.settings.appendInputBarFull ? this.dropdown.prepend('<div class="modal__ui-select__input-bar"><input class="modal-content__input-control modal-content__input-control-full core-ui-select-input"/><div class="shared__button shared__button-no-icon button-gold-to-gold button-create">' + kinkyApp.data.localization.coreUISelectCreateFolder + '</div><div class="shared__ajax-preloader shared__right-float shared__display-none"></div>') : null;
-        this.settings.appendInputBarSmall ? this.dropdown.prepend('<div class="modal__ui-select__input-bar"><input class="modal-content__input-control modal-content__input-control-small core-ui-select-input"/><div class="shared__button shared__button-no-icon button-gold-to-gold button-create-small">' + kinkyApp.data.localization.coreUISelectCreate + '</div><div class="shared__ajax-preloader shared__right-float shared__display-none"></div>') : null;
-        this.settings.appendInputBarOverlay ? this.dropdown.prepend('<div class="coreui-input-block-overlay"><button type="button" class="shared__button shared__button-no-icon button-gold-to-gold coreui-input-block-button button-create-overlay">' + kinkyApp.data.localization.coreUISelectCreate + '</button><div class="coreui-input-overlay-container"><input placeholder="' + kinkyApp.data.localization.coreUISelectCreateFolderTip + '" class="coreui-input-overlay"/></div><div class="shared__ajax-preloader shared__right-float shared__display-none"></div></div>') : null;
+        this.settings.createFolderInside ? this.dropdown.prepend('<div class="modal__ui-select__input-bar"><div onclick="' + this.settings.createFolderInside + '" class="shared__button shared__button-no-icon button-gold-to-gold button-create shared__width_90">' + atkpimfApp.data.localization.coreUISelectCreateFolder + '</div><div class="shared__ajax-preloader shared__right-float shared__display-none"></div>') : null;
+        this.settings.appendInputBarFull ? this.dropdown.prepend('<div class="modal__ui-select__input-bar"><input class="modal-content__input-control modal-content__input-control-full core-ui-select-input"/><div class="shared__button shared__button-no-icon button-gold-to-gold button-create">' + atkpimfApp.data.localization.coreUISelectCreateFolder + '</div><div class="shared__ajax-preloader shared__right-float shared__display-none"></div>') : null;
+        this.settings.appendInputBarSmall ? this.dropdown.prepend('<div class="modal__ui-select__input-bar"><input class="modal-content__input-control modal-content__input-control-small core-ui-select-input"/><div class="shared__button shared__button-no-icon button-gold-to-gold button-create-small">' + atkpimfApp.data.localization.coreUISelectCreate + '</div><div class="shared__ajax-preloader shared__right-float shared__display-none"></div>') : null;
+        this.settings.appendInputBarOverlay ? this.dropdown.prepend('<div class="coreui-input-block-overlay"><button type="button" class="shared__button shared__button-no-icon button-gold-to-gold coreui-input-block-button button-create-overlay">' + atkpimfApp.data.localization.coreUISelectCreate + '</button><div class="coreui-input-overlay-container"><input placeholder="' + atkpimfApp.data.localization.coreUISelectCreateFolderTip + '" class="coreui-input-overlay"/></div><div class="shared__ajax-preloader shared__right-float shared__display-none"></div></div>') : null;
 
         // Build dropdown
         var self = this;
@@ -124,13 +124,13 @@
             });
         }
         else {
-            var fakeFolders = eval(kinkyApp.data.localization["FakeFolders"]);
+            var fakeFolders = eval(atkpimfApp.data.localization["FakeFolders"]);
             var self = this;
-            this.domSelect.append("<option value='modal-input-create-folder'>" + kinkyApp.data.localization["Name_your_folder"] + "</option>").find('option').each($.proxy(this, 'addItems'));
+            this.domSelect.append("<option value='modal-input-create-folder'>" + atkpimfApp.data.localization["Name_your_folder"] + "</option>").find('option').each($.proxy(this, 'addItems'));
 
             this.dropdown.css("max-height", "800px");
 
-            this.dropdown.find("ul").append("<li class='b-core-ui-select__dropdown__item-title'>" + kinkyApp.data.localization["Suggestions_folder_name"] + "</li>");
+            this.dropdown.find("ul").append("<li class='b-core-ui-select__dropdown__item-title'>" + atkpimfApp.data.localization["Suggestions_folder_name"] + "</li>");
             $.each(fakeFolders, function(i, val) {
                 self.dropdown.find("ul").append("<li class='b-core-ui-select__dropdown__item-fake' value='" + val + "'>" + val + "</li>");
             });
@@ -334,7 +334,7 @@
             if (this.inputBar.val()) {
                 this.createButton.hide();
                 $(".shared__ajax-preloader").css({ "width": this.settings.appendInputBarFull ? 140 : 105 }).show();
-                kinkyApp.fn.createRequest(this, this.inputBar.val());
+                atkpimfApp.fn.createRequest(this, this.inputBar.val());
                 event.preventDefault();
             }
             return false;
@@ -386,7 +386,7 @@
             this.dropdown.find("li.b-core-ui-select__dropdown__item-title").remove();
             this.dropdown.find("li.b-core-ui-select__dropdown__item-fake").remove();
             $(".shared__ajax-preloader").css({ "width": this.settings.appendInputBarFull ? 140 : 105 }).show();
-            kinkyApp.fn.createRequest(this, this.inputBar.val());
+            atkpimfApp.fn.createRequest(this, this.inputBar.val());
         }
     };
 

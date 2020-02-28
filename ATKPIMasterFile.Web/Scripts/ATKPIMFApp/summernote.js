@@ -1258,7 +1258,7 @@
                         fakeContainer.remove();
                     };
 
-                    kinkyApp.uploadImageForTextPost(successCb);
+                    atkpimfApp.uploadImageForTextPost(successCb);
 
                 } else if (sEvent === 'showHelpDialog') {
                     dialog.showHelpDialog(welDialog);
@@ -1395,7 +1395,7 @@
   var Renderer = function() {
     var aToolbarItem = {
       picture:
-        '<button type="button" class="btn btn-default btn-sm btn-small btn-picture" title="' + kinkyApp.data.localization.textEditorImage + '" data-event="uploadImageDialog" tabindex="-1"><i class="icon-picture"></i>' + kinkyApp.data.localization.textEditorAddImageText + '</button>',
+        '<button type="button" class="btn btn-default btn-sm btn-small btn-picture" title="' + atkpimfApp.data.localization.textEditorImage + '" data-event="uploadImageDialog" tabindex="-1"><i class="icon-picture"></i>' + atkpimfApp.data.localization.textEditorAddImageText + '</button>',
       link:
         '<button type="button" class="btn btn-default btn-sm btn-small" title="Link" data-event="showLinkDialog" data-shortcut="Ctrl+K" data-mac-shortcut="⌘+K" tabindex="-1"><i class="icon-link"></i></button>',
       table:
@@ -1435,49 +1435,49 @@
         '<li><a data-event="fontSize" data-value="36"><i class="icon-ok"></i> 36</a></li>' +
         '</ul>',
       color:
-        '<button type="button" class="btn btn-default btn-sm btn-small note-recent-color" title="' + kinkyApp.data.localization.textEditorColor + '" data-event="color" data-value=\'{"foreColor":"#949494","backColor":"yellow"}\' tabindex="-1"><i class="icon-font" style="color:#949494;background-color:yellow;"></i></button>' +
-        '<button type="button" class="btn btn-default btn-sm btn-small dropdown-toggle btn-color-dropdown" title="' + kinkyApp.data.localization.textEditorChooseColor + '" data-toggle="dropdown" tabindex="-1">' +
+        '<button type="button" class="btn btn-default btn-sm btn-small note-recent-color" title="' + atkpimfApp.data.localization.textEditorColor + '" data-event="color" data-value=\'{"foreColor":"#949494","backColor":"yellow"}\' tabindex="-1"><i class="icon-font" style="color:#949494;background-color:yellow;"></i></button>' +
+        '<button type="button" class="btn btn-default btn-sm btn-small dropdown-toggle btn-color-dropdown" title="' + atkpimfApp.data.localization.textEditorChooseColor + '" data-toggle="dropdown" tabindex="-1">' +
         '<span class="caret"></span>' +
         '</button>' +
         '<ul class="dropdown-menu">' +
         '<li>' +
         '<div class="btn-group">' +
-        '<div class="note-palette-title">' + kinkyApp.data.localization.textEditorBackColor + '</div>' +
+        '<div class="note-palette-title">' + atkpimfApp.data.localization.textEditorBackColor + '</div>' +
         '<div class="note-color-palette" data-target-event="backColor"></div>' +
         '</div>' +
         '<div class="btn-group">' +
-        '<div class="note-palette-title">' + kinkyApp.data.localization.textEditorFontColor + '</div>' +
+        '<div class="note-palette-title">' + atkpimfApp.data.localization.textEditorFontColor + '</div>' +
         '<div class="note-color-palette" data-target-event="foreColor"></div>' +
         '</div>' +
         '</li>' +
         '</ul>',
       bold:
-        '<button type="button" class="btn btn-default btn-sm btn-small btn-bold" title="' + kinkyApp.data.localization.textEditorFontWeightBold + '" data-shortcut="Ctrl+B" data-mac-shortcut="⌘+B" data-event="bold" tabindex="-1"><i class="icon-bold"></i></button>',
+        '<button type="button" class="btn btn-default btn-sm btn-small btn-bold" title="' + atkpimfApp.data.localization.textEditorFontWeightBold + '" data-shortcut="Ctrl+B" data-mac-shortcut="⌘+B" data-event="bold" tabindex="-1"><i class="icon-bold"></i></button>',
       italic:
-        '<button type="button" class="btn btn-default btn-sm btn-small" title="' + kinkyApp.data.localization.textEditorFontStyleItalics + '" data-shortcut="Ctrl+I" data-mac-shortcut="⌘+I" data-event="italic" tabindex="-1"><i class="icon-italic"></i></button>',
+        '<button type="button" class="btn btn-default btn-sm btn-small" title="' + atkpimfApp.data.localization.textEditorFontStyleItalics + '" data-shortcut="Ctrl+I" data-mac-shortcut="⌘+I" data-event="italic" tabindex="-1"><i class="icon-italic"></i></button>',
       underline:
-        '<button type="button" class="btn btn-default btn-sm btn-small btn-underline" title="' + kinkyApp.data.localization.textEditorTextDecorationUnderline + '" data-shortcut="Ctrl+U" data-mac-shortcut="⌘+U" data-event="underline" tabindex="-1"><i class="icon-underline"></i></button>',
+        '<button type="button" class="btn btn-default btn-sm btn-small btn-underline" title="' + atkpimfApp.data.localization.textEditorTextDecorationUnderline + '" data-shortcut="Ctrl+U" data-mac-shortcut="⌘+U" data-event="underline" tabindex="-1"><i class="icon-underline"></i></button>',
       clear:
         '<button type="button" class="btn btn-default btn-sm btn-small" title="Remove Font Style" data-shortcut="Ctrl+\\" data-mac-shortcut="⌘+\\" data-event="removeFormat" tabindex="-1"><i class="icon-eraser"></i></button>',
       ul:
-        '<button type="button" class="btn btn-default btn-sm btn-small btn-unordered-list" title="' + kinkyApp.data.localization.textEditorUnorderedList + '" data-shortcut="Ctrl+Shift+8" data-mac-shortcut="⌘+⇧+7" data-event="insertUnorderedList" tabindex="-1"><i class="icon-list-ul"></i></button>',
+        '<button type="button" class="btn btn-default btn-sm btn-small btn-unordered-list" title="' + atkpimfApp.data.localization.textEditorUnorderedList + '" data-shortcut="Ctrl+Shift+8" data-mac-shortcut="⌘+⇧+7" data-event="insertUnorderedList" tabindex="-1"><i class="icon-list-ul"></i></button>',
       ol:
-        '<button type="button" class="btn btn-default btn-sm btn-small" title="' + kinkyApp.data.localization.textEditorOrderedList + '" data-shortcut="Ctrl+Shift+7" data-mac-shortcut="⌘+⇧+8" data-event="insertOrderedList" tabindex="-1"><i class="icon-list-ol"></i></button>',
+        '<button type="button" class="btn btn-default btn-sm btn-small" title="' + atkpimfApp.data.localization.textEditorOrderedList + '" data-shortcut="Ctrl+Shift+7" data-mac-shortcut="⌘+⇧+8" data-event="insertOrderedList" tabindex="-1"><i class="icon-list-ol"></i></button>',
       paragraph:
-        '<button type="button" class="btn btn-default btn-sm btn-small dropdown-toggle btn-paragraph-dropdown" title="' + kinkyApp.data.localization.textEditorTextAlign + '" data-toggle="dropdown" tabindex="-1"><i class="icon-align-left"></i>  <span class="caret"></span></button>' +
+        '<button type="button" class="btn btn-default btn-sm btn-small dropdown-toggle btn-paragraph-dropdown" title="' + atkpimfApp.data.localization.textEditorTextAlign + '" data-toggle="dropdown" tabindex="-1"><i class="icon-align-left"></i>  <span class="caret"></span></button>' +
         '<ul class="dropdown-menu">' +
           '<li>' +
           '<div class="note-align btn-group">' +
-          '<button type="button" class="btn btn-default btn-sm btn-small" title="' + kinkyApp.data.localization.textEditorTextAlignLeft + '" data-shortcut="Ctrl+Shift+L" data-mac-shortcut="⌘+⇧+L" data-event="justifyLeft" tabindex="-1"><i class="icon-align-left"></i></button>' +
-          '<button type="button" class="btn btn-default btn-sm btn-small" title="' + kinkyApp.data.localization.textEditorTextAlignCenter + '" data-shortcut="Ctrl+Shift+E" data-mac-shortcut="⌘+⇧+E" data-event="justifyCenter" tabindex="-1"><i class="icon-align-center"></i></button>' +
-          '<button type="button" class="btn btn-default btn-sm btn-small" title="' + kinkyApp.data.localization.textEditorTextAlignRight + '" data-shortcut="Ctrl+Shift+R" data-mac-shortcut="⌘+⇧+R" data-event="justifyRight" tabindex="-1"><i class="icon-align-right"></i></button>' +
-          '<button type="button" class="btn btn-default btn-sm btn-small" title="' + kinkyApp.data.localization.textEditorJustifyFull + '" data-shortcut="Ctrl+Shift+J" data-mac-shortcut="⌘+⇧+J" data-event="justifyFull" tabindex="-1"><i class="icon-align-justify"></i></button>' +
+          '<button type="button" class="btn btn-default btn-sm btn-small" title="' + atkpimfApp.data.localization.textEditorTextAlignLeft + '" data-shortcut="Ctrl+Shift+L" data-mac-shortcut="⌘+⇧+L" data-event="justifyLeft" tabindex="-1"><i class="icon-align-left"></i></button>' +
+          '<button type="button" class="btn btn-default btn-sm btn-small" title="' + atkpimfApp.data.localization.textEditorTextAlignCenter + '" data-shortcut="Ctrl+Shift+E" data-mac-shortcut="⌘+⇧+E" data-event="justifyCenter" tabindex="-1"><i class="icon-align-center"></i></button>' +
+          '<button type="button" class="btn btn-default btn-sm btn-small" title="' + atkpimfApp.data.localization.textEditorTextAlignRight + '" data-shortcut="Ctrl+Shift+R" data-mac-shortcut="⌘+⇧+R" data-event="justifyRight" tabindex="-1"><i class="icon-align-right"></i></button>' +
+          '<button type="button" class="btn btn-default btn-sm btn-small" title="' + atkpimfApp.data.localization.textEditorJustifyFull + '" data-shortcut="Ctrl+Shift+J" data-mac-shortcut="⌘+⇧+J" data-event="justifyFull" tabindex="-1"><i class="icon-align-justify"></i></button>' +
           '</div>' +
           '</li>' +
           '<li>' +
           '<div class="note-list btn-group">' +
-          '<button type="button" class="btn btn-default btn-sm btn-small" title="' + kinkyApp.data.localization.textEditorOutdent + '" data-shortcut="Ctrl+[" data-mac-shortcut="⌘+[" data-event="outdent" tabindex="-1"><i class="icon-indent-left"></i></button>' +
-          '<button type="button" class="btn btn-default btn-sm btn-small" title="' + kinkyApp.data.localization.textEditorIndent + '" data-shortcut="Ctrl+]" data-mac-shortcut="⌘+]" data-event="indent" tabindex="-1"><i class="icon-indent-right"></i></button>' +
+          '<button type="button" class="btn btn-default btn-sm btn-small" title="' + atkpimfApp.data.localization.textEditorOutdent + '" data-shortcut="Ctrl+[" data-mac-shortcut="⌘+[" data-event="outdent" tabindex="-1"><i class="icon-indent-left"></i></button>' +
+          '<button type="button" class="btn btn-default btn-sm btn-small" title="' + atkpimfApp.data.localization.textEditorIndent + '" data-shortcut="Ctrl+]" data-mac-shortcut="⌘+]" data-event="indent" tabindex="-1"><i class="icon-indent-right"></i></button>' +
           '</li>' +
         '</ul>',
       height:

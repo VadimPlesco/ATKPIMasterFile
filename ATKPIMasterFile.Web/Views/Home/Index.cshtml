@@ -5,7 +5,7 @@
 
 <div class="profile-setup-modal__modal-header">
     <div class="modal-header__header-text">Модерация категорий</div>
-    @*<div class="shared__header__close" onclick="kinkyApp.modal.hide()"></div>*@
+    @*<div class="shared__header__close" onclick="atkpimfApp.modal.hide()"></div>*@
 </div>
 
 @*<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/base/jquery-ui.css" type="text/css" />
@@ -93,7 +93,7 @@
                     <td>
                         @using (Ajax.BeginForm("EditCategories", "Admin", null, new AjaxOptions { UpdateTargetId = "body", LoadingElementId = "loadingElement", HttpMethod = "Post" }))
                         {
-                            <button onclick="kinkyApp.modal.showTopByUrl('@Url.Action("EditCategory", "Admin", new { categoryId = 1 })'); return false;">
+                            <button onclick="atkpimfApp.modal.showTopByUrl('@Url.Action("EditCategory", "Admin", new { categoryId = 1 })'); return false;">
                                 Edit
                             </button>
                             <button type="submit" id="deleteBnt" onclick="return confirm('Вы действительно хотите удалить категорию?');">

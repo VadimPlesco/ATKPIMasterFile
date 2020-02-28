@@ -68,7 +68,6 @@ namespace ATKPIMasterFile.Web
               .Include("~/Scripts/ATKPIMFApp/feed.js")
               .Include("~/Scripts/ATKPIMFApp/typeahead.js")
               .Include("~/Scripts/ATKPIMFApp/summernote.js")
-              .Include("~/Scripts/ATKPIMFApp/analytics.js")
              );
 
             bundles.Add(new ScriptBundle("~/bundles/additional.js")

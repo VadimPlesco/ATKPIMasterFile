@@ -2,7 +2,7 @@
 @{ Layout = null;}
 @*<div class="main__modal-fixed ">
     <div class="modal-header">
-        <div class="shared__header__close" onclick="kinkyApp.modal.hide()"></div>
+        <div class="shared__header__close" onclick="atkpimfApp.modal.hide()"></div>
         <hr class="modal-header__thumb-bar-dev" />
         <div class="modal-header__thumb-bar">
             <div class="modal-header__tab-item  modal-header__tab-item-selected shared__margin-left-double" data-tab-id="tab-photo">
@@ -25,7 +25,7 @@
       
             <div class="modal-content-tab-photo__photo-upload-container">
                 <div id="modal-add-photo-click" class="add-photo-container__drop-down-area"
-                     onclick="kinkyApp.startImageUpload('@Url.Action("SavePhoto", "InterestItem")','addItemTabPhotoTab', modalFirstPhotoUpload);">
+                     onclick="atkpimfApp.startImageUpload('@Url.Action("SavePhoto", "InterestItem")','addItemTabPhotoTab', modalFirstPhotoUpload);">
                     <div id="modal-add-photo-pic" class="shared__ajax-photocam-src pointer" data-selector="first-upload" data-hidden="false"></div>
                     <div id="modal-add-photo-title" class="add-photo-container__sub-title pointer" data-selector="first-upload" data-hidden="false">
                         InterestResources.Upload_photos_computer
@@ -47,7 +47,7 @@
 <div class="text-edit-modal">
     <div class="profile-setup-modal__modal-header">
         <div class="modal-header__header-text">Меню</div>
-        <div class="shared__header__close" onclick="kinkyApp.modal.hide()"></div>
+        <div class="shared__header__close" onclick="atkpimfApp.modal.hide()"></div>
     </div>
 
     <div class="profile-setup-modal__user-info shared__padding-top-single shared__padding-bottom-single">
@@ -56,13 +56,13 @@
         <div class="shared__padding-top-tripple shared__padding-bottom-tripple">
             <button class="button-gold-to-gold-same-border button-gold-to-gold shared__button-medium shared__font-bold"
                     onclick="window.location.href = '@Url.Action("Index", "User")'">
-                @*onclick="kinkyApp.modal.showByUrl('@Url.Action("Index", "User")', 'body');return false;">*@
+                @*onclick="atkpimfApp.modal.showByUrl('@Url.Action("Index", "User")', 'body');return false;">*@
                 Отчет KPI План-Факт
             </button>
 
             <button class="button-gold-to-gold-same-border button-gold-to-gold shared__button-medium shared__font-bold shared__margin-left-big"
                     onclick="window.location.href = '@Url.Action("KPIFilialPlans", "User")'">
-                @*onclick="kinkyApp.modal.showByUrl('@Url.Action("Index", "User")', 'body');return false;">*@
+                @*onclick="atkpimfApp.modal.showByUrl('@Url.Action("Index", "User")', 'body');return false;">*@
                 KPI Планы
             </button>
         </div>
@@ -113,7 +113,7 @@
 
         @*<div class="shared__padding-top-tripple shared__padding-bottom-tripple">
             <button class="button-gold-to-gold-same-border button-gold-to-gold shared__button-medium shared__font-bold"
-                    onclick="kinkyApp.modal.showByUrl('@Url.Action("Index", "Home")', 'body');return false;">
+                    onclick="atkpimfApp.modal.showByUrl('@Url.Action("Index", "Home")', 'body');return false;">
                 Админ Расходы
             </button>
 
@@ -135,7 +135,7 @@
 
         @*<div class="shared__padding-top-tripple shared__padding-bottom-tripple">
             <button class="button-gold-to-gold-same-border button-gold-to-gold shared__button-medium shared__font-bold"
-                    onclick="kinkyApp.updateElementById('@Url.Action("EditCategories", "Admin")', 'body');">
+                    onclick="atkpimfApp.updateElementById('@Url.Action("EditCategories", "Admin")', 'body');">
                 Кап. Затраты
             </button>
 
@@ -151,21 +151,21 @@
 
         @*<div class="shared__padding-top-tripple shared__padding-bottom-tripple">
             <button class="button-gold-to-gold-same-border button-gold-to-gold shared__button-medium shared__font-bold"
-                    onclick="kinkyApp.updateElementById('@Url.Action("CategoryItemsSelect", "Test")', 'body');">
+                    onclick="atkpimfApp.updateElementById('@Url.Action("CategoryItemsSelect", "Test")', 'body');">
                 Редактирование картинок для представления категорий
             </button>
         </div>
 
         <div class="shared__padding-top-tripple shared__padding-bottom-tripple">
             <button class="button-gold-to-gold-same-border button-gold-to-gold shared__button-medium shared__font-bold"
-                    onclick="kinkyApp.updateElementById('@Url.Action("Users", "Admin")','body')">
+                    onclick="atkpimfApp.updateElementById('@Url.Action("Users", "Admin")','body')">
                 Немодерированные пользователи
             </button>
         </div>
 
         <div class="shared__padding-top-tripple shared__padding-bottom-tripple">
             <button class="button-gold-to-gold-same-border button-gold-to-gold shared__button-medium shared__font-bold"
-                    onclick="kinkyApp.updateElementById('@Url.Action("ChatUsers", "Admin")','body')">
+                    onclick="atkpimfApp.updateElementById('@Url.Action("ChatUsers", "Admin")','body')">
                 Пользователи для переписки
             </button>
         </div>*@
@@ -176,7 +176,7 @@
                 UpdateTargetId = "body",
                 LoadingElementId = "loadingElement",
                 HttpMethod = "GET",
-                OnSuccess = "kinkyApp.modal.hide();"
+                OnSuccess = "atkpimfApp.modal.hide();"
             }))
         {
             <div class="shared__padding-top-tripple shared__padding-bottom-tripple" style="height:40px">

@@ -1,5 +1,5 @@
-﻿kinkyApp.fn.chatDialogsInit = function () {
-    ko.applyBindings(kinkyApp.viewModel, document.getElementById("chat-dialogs-modal"));
+﻿atkpimfApp.fn.chatDialogsInit = function () {
+    ko.applyBindings(atkpimfApp.viewModel, document.getElementById("chat-dialogs-modal"));
 
     $("#chat-dialogs-modal").draggable({ "handle": ".chat-dialogs-modal__modal-header", "containment": "window" });
     var loading = false;
@@ -14,7 +14,7 @@
                 if (mcs.draggerBottom < 150 && !loading && needLoadMore) {
                     loading = true;
                     cp.fadeIn("fast");
-                    kinkyApp.viewModel.getMoreContacts(function (contactCountLoaded) {
+                    atkpimfApp.viewModel.getMoreContacts(function (contactCountLoaded) {
                         cp.fadeOut("fast");
                         var dragger = sb.find(".mCSB_dragger");
                         var container = sb.find(".mCSB_container");
@@ -33,7 +33,7 @@
     $(".chat-dialogs-modal__chat-dialogs-holder").find(".mCSB_scrollTools").css({ "top": 5, "bottom": 8 });
 };
 
-kinkyApp.fn.showChatDialogs = function () {
+atkpimfApp.fn.showChatDialogs = function () {
 
 
     var actualContacts = $(".chat-dialogs-floater__message-block").length;
@@ -55,16 +55,16 @@ kinkyApp.fn.showChatDialogs = function () {
 
     $("#chat-dialogs-modal")
     .on('mouseenter', function () {
-        $('body').on('mousewheel', kinkyApp.preventBodyScrolling);
+        $('body').on('mousewheel', atkpimfApp.preventBodyScrolling);
     })
     .on('mouseleave', function () {
-        $('body').off('mousewheel', kinkyApp.preventBodyScrolling);
+        $('body').off('mousewheel', atkpimfApp.preventBodyScrolling);
     });
 
 
     $("#chat-dialogs-modal").show();
 };
 
-kinkyApp.fn.hideChatDialogs = function () {
+atkpimfApp.fn.hideChatDialogs = function () {
     $("#chat-dialogs-modal").hide();
 };

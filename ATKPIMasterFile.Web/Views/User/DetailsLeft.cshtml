@@ -50,7 +50,7 @@
             <div class="profile__private-block-photo-wrapper">
 
                
-                    <div class="profile__private-block-photo-main" onmouseover="kinkyApp.hover.show(this)" onmouseout="kinkyApp.hover.hide(this)">
+                    <div class="profile__private-block-photo-main" onmouseover="atkpimfApp.hover.show(this)" onmouseout="atkpimfApp.hover.hide(this)">
 
 
                         <div  data-userid="@Model.UserId">
@@ -70,11 +70,11 @@
                             </div>
                             <script>
                                 $('#updateAvatar').on('click', function () {
-                                    kinkyApp.UploadPhoto('@Url.Action("Avatar", "User")', function () {
+                                    atkpimfApp.UploadPhoto('@Url.Action("Avatar", "User")', function () {
                                         //alert("1111");
-                                        kinkyApp.updateElementById('@Url.Action("AvatarDetails", "User", new {user = Model.UserId})', 'body');
-                                        @*kinkyApp.updateBodyByUrl('@Url.Action("Details", "User", new {user = Model.UserId})');*@
-                                        @*kinkyApp.asyncRequest('body', '@Url.Action("Details", "User", new { user = Model.UserId })');*@
+                                        atkpimfApp.updateElementById('@Url.Action("AvatarDetails", "User", new {user = Model.UserId})', 'body');
+                                        @*atkpimfApp.updateBodyByUrl('@Url.Action("Details", "User", new {user = Model.UserId})');*@
+                                        @*atkpimfApp.asyncRequest('body', '@Url.Action("Details", "User", new { user = Model.UserId })');*@
                                         @*unobtrusiveAjax.asyncRequest('body', '@Url.Action("Details", "User", new {user = Model.UserId})')*@
                                         @*$.ajax({
                                             url: '@Url.Action("Details", "User", new {user = Model.UserId})',
@@ -98,7 +98,7 @@
             </div>
             @if (!Model.IsMy && !Model.IsInMaskMode && !Model.IsDeleted)
             {
-                <button class="theme-item__button shared__button-medium shared__font-bold shared__width_100 shared__margin-bottom-single shared__margin-top-tripple" onclick="kinkyApp.viewModel.showChat(@Model.UserId)" type="button">
+                <button class="theme-item__button shared__button-medium shared__font-bold shared__width_100 shared__margin-bottom-single shared__margin-top-tripple" onclick="atkpimfApp.viewModel.showChat(@Model.UserId)" type="button">
                     <span class="shared__icon shared__icon-topic-medium"></span>
 
 
@@ -123,7 +123,7 @@
                     {
                         <div class="ask-to-upload-avatar-button-container">
                             <button id="ask-to-upload-avatar-button" class="button-gold-to-gold-same-border button-gold-to-gold shared__button-medium shared__font-bold shared__width_100"
-                                    onclick="kinkyApp.fn.askedAvatar(this, @Model.UserId, event)">
+                                    onclick="atkpimfApp.fn.askedAvatar(this, @Model.UserId, event)">
                                 Ask_download
                             </button>
                         </div>
@@ -166,7 +166,7 @@
                 </div>
                 <script>
                     function askedFill(userId) {
-                        kinkyApp.viewModel.sendAskPersonalInfo(userId);
+                        atkpimfApp.viewModel.sendAskPersonalInfo(userId);
                         $('#notInf').hide();
                         $('#fillButton').hide();
                         $('#sendReq').show();

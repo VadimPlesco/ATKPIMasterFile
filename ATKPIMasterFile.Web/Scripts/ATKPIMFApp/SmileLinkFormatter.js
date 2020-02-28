@@ -1,4 +1,4 @@
-﻿kinkyApp.SmileLinkFormatter = function() {
+﻿atkpimfApp.SmileLinkFormatter = function() {
 
 
     var tagsToReplace = {
@@ -24,7 +24,7 @@
     }
 
     function replaceEmoticons(text) {
-        var emoticons = { ';-)': 'wink.png', ';)': 'wink.png', ':-)': 'smile.png', ':)': 'smile.png', ':-D': 'laughing.png', ':D': 'laughing.png', ':-[': 'confused.png', ':[': 'confused.png', 'B-)': 'cool.png', 'B)': 'cool.png', ':-o': 'gasp.png', '|-o': 'footinmouth.png', '*smile*': 'smile.png', '*minismile*': 'minismile.png', '*wink*': 'wink.png', '*content*': 'content.png', '*cool*': 'cool.png', '*laughing*': 'laughing.png', '*grin*': 'grin.png', '*sarcastic*': 'sarcastic.png', '*crazy*': 'crazy.png', '*hearteyes*': 'hearteyes.png', '*kiss*': 'kiss.png', '*innocent*': 'innocent.png', '*yuck*': 'yuck.png', '*yum*': 'yum.png', '*confused*': 'confused.png', '*slant*': 'slant.png', '*ambivalent*': 'ambivalent.png', '*frown*': 'frown.png', '*minifrown*': 'minifrown.png', '*embarrassed*': 'embarrassed.png', '*footinmouth*': 'footinmouth.png', '*angry*': 'angry.png', '*naughty*': 'naughty.png', '*cry*': 'cry.png', '*gasp*': 'gasp.png', '*moneymouth*': 'moneymouth.png', '*nerd*': 'nerd.png', '*notamused*': 'notamused.png', '*sealed*': 'sealed.png', '*sick*': 'sick.png', '*heart*': 'heart.png', '*thumbsup*': 'thumbsup.png', '*thumbsdown*': 'thumbsdown.png' }, url = kinkyApp.data.contentCdnPath + "Content/themes/dzen/images/smiles/", patterns = [],
+        var emoticons = { ';-)': 'wink.png', ';)': 'wink.png', ':-)': 'smile.png', ':)': 'smile.png', ':-D': 'laughing.png', ':D': 'laughing.png', ':-[': 'confused.png', ':[': 'confused.png', 'B-)': 'cool.png', 'B)': 'cool.png', ':-o': 'gasp.png', '|-o': 'footinmouth.png', '*smile*': 'smile.png', '*minismile*': 'minismile.png', '*wink*': 'wink.png', '*content*': 'content.png', '*cool*': 'cool.png', '*laughing*': 'laughing.png', '*grin*': 'grin.png', '*sarcastic*': 'sarcastic.png', '*crazy*': 'crazy.png', '*hearteyes*': 'hearteyes.png', '*kiss*': 'kiss.png', '*innocent*': 'innocent.png', '*yuck*': 'yuck.png', '*yum*': 'yum.png', '*confused*': 'confused.png', '*slant*': 'slant.png', '*ambivalent*': 'ambivalent.png', '*frown*': 'frown.png', '*minifrown*': 'minifrown.png', '*embarrassed*': 'embarrassed.png', '*footinmouth*': 'footinmouth.png', '*angry*': 'angry.png', '*naughty*': 'naughty.png', '*cry*': 'cry.png', '*gasp*': 'gasp.png', '*moneymouth*': 'moneymouth.png', '*nerd*': 'nerd.png', '*notamused*': 'notamused.png', '*sealed*': 'sealed.png', '*sick*': 'sick.png', '*heart*': 'heart.png', '*thumbsup*': 'thumbsup.png', '*thumbsdown*': 'thumbsdown.png' }, url = atkpimfApp.data.contentCdnPath + "Content/themes/dzen/images/smiles/", patterns = [],
             metachars = /[[\]{}()*+?.\\|^$\-,&#\s]/g;
 
         // build a regex pattern for each defined property
@@ -63,4 +63,4 @@
     };
 };
 
-kinkyApp.smileLinkFormatter = new kinkyApp.SmileLinkFormatter();
+atkpimfApp.smileLinkFormatter = new atkpimfApp.SmileLinkFormatter();

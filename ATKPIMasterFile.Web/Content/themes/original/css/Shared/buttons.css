@@ -1118,17 +1118,11 @@ button.shared__font-bold[disabled="disabled"] {
 
 
 
-/*.logo-and-loader {width:78%; height: 86%; margin-bottom:-3px;background:url(/Content/themes/dzen/images/kinkylove-logo-techno.png) no-repeat; background-position: center; 
--webkit-background-size: 75px;
--o-background-size: 75px;
--moz-background-size: 75px;                 
-background-size: 75px;}*/
-
 .logo-and-loader {
     width: 90px;
     height: 17px;
     margin-bottom: -3px;
-    background: url(/Content/themes/dzen/images/kinkylogo-small.png) no-repeat;
+    background: url(/Content/themes/dzen/images/atkpimf-small.png) no-repeat;
     background-position: center;
     -webkit-background-size: 90px;
     -o-background-size: 90px;
@@ -1527,7 +1521,7 @@ background-size: 75px;}*/
 
 
 
-/* kinkylove-iconset-2 */
+/* atkpimf-iconset-2 */
 
 .shared__svg-icon-to-features {
     position: relative;
@@ -1575,47 +1569,8 @@ background-size: 75px;}*/
 
 
 
-.shared__png-icon-messages {
-    position: relative;
-    width: 30px;
-    height: 30px;
-    background: url(/Content/themes/dzen/images/kinkylove-iconset-2.png) 0 0 no-repeat;
-}
 
-.shared__png-icon-heart {
-    position: relative;
-    width: 30px;
-    height: 30px;
-    background: url(/Content/themes/dzen/images/kinkylove-iconset-2.png) -93px 0 no-repeat;
-}
 
-.shared__png-icon-eye {
-    position: relative;
-    width: 30px;
-    height: 30px;
-    background: url(/Content/themes/dzen/images/kinkylove-iconset-2.png) -31px 0 no-repeat;
-}
-
-.shared__png-icon-pencil {
-    position: relative;
-    width: 30px;
-    height: 30px;
-    background: url(/Content/themes/dzen/images/kinkylove-iconset-2.png) -124px 0 no-repeat;
-}
-
-.shared__png-icon-key {
-    position: relative;
-    width: 30px;
-    height: 30px;
-    background: url(/Content/themes/dzen/images/kinkylove-iconset-2.png) -62px 0 no-repeat;
-}
-
-.shared__png-icon-binocular {
-    position: relative;
-    width: 30px;
-    height: 30px;
-    background: url(/Content/themes/dzen/images/kinkylove-iconset-2.png) -155px 0 no-repeat;
-}
 
 
 /* Share buttons */
@@ -2012,11 +1967,3 @@ shared__chat-v3-icon {
 
     */
 
-.flag-complain {
-    width: 16px;
-    height: 27px;
-    background-image: url(/Content/themes/dzen/images/chat_iconset.png) ;
-    background-position: 0 -1825px;
-    background-repeat: no-repeat;
-
-}

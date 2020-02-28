@@ -81,7 +81,7 @@
     }
 
     function asyncRequest(element, options) {
-    //kinkyApp.asyncRequest = function (element, options) {
+    //atkpimfApp.asyncRequest = function (element, options) {
         var confirm, loading, method, duration;
 
         confirm = element.getAttribute("data-ajax-confirm");

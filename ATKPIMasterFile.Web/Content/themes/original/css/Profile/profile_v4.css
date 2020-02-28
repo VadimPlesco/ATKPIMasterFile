@@ -1,27 +1,4 @@
-﻿.profile-v4__kinkystars-logo {
-    width: 258px;
-    position: relative;
-    height: 110px;
-    background: url(/Content/themes/dzen/images/kinkystars_logo.png) center center no-repeat;
-    background-size: 258px 110px;
-    margin-left: 10px;
-    margin-bottom: 20px;
-}
-
-.profile-v4__kinkystars-logo__username {
-    position: absolute;
-    font-size: 40px;
-    font-weight: bold;
-    width: 100%;
-    text-align: center;
-    top: 0;
-}
-
-.themePurpleBlack  .profile-v4__kinkystars-logo__username {
-    color: white;
-}
-
-
+﻿
 .profile-v4__user-avatar-status {
     position: absolute;
     width: 70px;
@@ -133,7 +110,7 @@
     .theme-item__wave-border:after, .theme-item__location-icon:after, .theme-item__dot-icon:after, .theme-item__views-icon:after, .theme-item__apprecations-icon:after, .theme-item__followers-icon:after, .theme-item__following-icon:after, .theme-item__edit-icon:after {
         position: absolute;
         content: '';
-        background-image: url(/Content/themes/dzen/images/kinkystars_sprite.png);
+        background-image: url(/Content/themes/dzen/images/atkpimf_sprite.png);
     }
 
 .theme-item__dot-icon:after {

@@ -1,6 +1,6 @@
 ﻿$().ready(function () {
     var checkstate = function () {
-        if (kinkyApp.viewModel && kinkyApp.viewModel.MaxContactsMenuCount && $(".main__menu-logo").length > 0) kinkyApp.viewModel.MaxContactsMenuCount(Math.floor(($(".main__menu-logo").position().top - $(".menu-holder__messages-bar").position().top - 40) / 55));
+        if (atkpimfApp.viewModel && atkpimfApp.viewModel.MaxContactsMenuCount && $(".main__menu-logo").length > 0) atkpimfApp.viewModel.MaxContactsMenuCount(Math.floor(($(".main__menu-logo").position().top - $(".menu-holder__messages-bar").position().top - 40) / 55));
     };
 
     checkstate();
@@ -30,10 +30,10 @@
 
 
 
-kinkyApp.fn.datingClick = function (succesUrl, forbiddenUrl) {
-    kinkyApp.updateElementById(succesUrl, 'body');
-//    if (kinkyApp.viewModel.MyUser().CanSendMessages)
-//        kinkyApp.updateElementById(succesUrl, 'body');
+atkpimfApp.fn.datingClick = function (succesUrl, forbiddenUrl) {
+    atkpimfApp.updateElementById(succesUrl, 'body');
+//    if (atkpimfApp.viewModel.MyUser().CanSendMessages)
+//        atkpimfApp.updateElementById(succesUrl, 'body');
 //    else
-//        kinkyApp.modal.showByUrl(forbiddenUrl);
+//        atkpimfApp.modal.showByUrl(forbiddenUrl);
 };

@@ -1,4 +1,4 @@
-﻿kinkyApp.fileUpload = function (parameters) {
+﻿atkpimfApp.fileUpload = function (parameters) {
     var defaultOptions = {
         acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
         maxFileSize: 10 * 1024 * 1024,
@@ -116,23 +116,23 @@
     }
 };
 
-kinkyApp.UploadPhoto = function (url, done, event, callback) {
+atkpimfApp.UploadPhoto = function (url, done, event, callback) {
     
-    kinkyApp.fileUpload({
+    atkpimfApp.fileUpload({
         url: url,
         done: done,
         event: event,
         beforeFormAppend: callback,//callback,!!!!
         fail: function () {
             console.log(data);
-            alert("Unable_upload_photo");//(kinkyApp.data.localization["Unable_upload_photo"]);
+            alert("Unable_upload_photo");//(atkpimfApp.data.localization["Unable_upload_photo"]);
         }
     });
 };
 
-kinkyApp.uploadImage = function (sk, successCb, progress) {
-    kinkyApp.fileUpload({
-        url: kinkyApp.data.urlTmpl.InterestItemUploadPhoto,
+atkpimfApp.uploadImage = function (sk, successCb, progress) {
+    atkpimfApp.fileUpload({
+        url: atkpimfApp.data.urlTmpl.InterestItemUploadPhoto,
         formData: sk,
         done: function (ajax, successCb) {
             var response = JSON.parse(ajax.response);
@@ -140,7 +140,7 @@ kinkyApp.uploadImage = function (sk, successCb, progress) {
             var onloadedCb = function () {
                 var scrollTop = 0;
                 var imageContainer = $('#uploaded-image-container');
-                var imageWrapper = $('<div class="modal-photo-add-edit-img-pos" onmouseout="kinkyApp.hover.hide(this)" data-remove=""></div>');
+                var imageWrapper = $('<div class="modal-photo-add-edit-img-pos" onmouseout="atkpimfApp.hover.hide(this)" data-remove=""></div>');
                 var closeButton = $('<i class="close-button modal-photo-add-edit-close-button" data-hover=""></i>');
                 var image = $('<img id="img-' + imageData.key + '" />')
                     .addClass('modal-photo-add-edit-img-multiple')
@@ -151,12 +151,12 @@ kinkyApp.uploadImage = function (sk, successCb, progress) {
                     var imgCount = imageContainer.find('img').length;
 
                     if (imgCount > 1) {
-                        kinkyApp.hover.show(this);
+                        atkpimfApp.hover.show(this);
                     }
                 });
 
                 closeButton.on('click', function () {
-                    kinkyApp.photoEdit.removePhoto(this);
+                    atkpimfApp.photoEdit.removePhoto(this);
 
                     var imgCount = imageContainer.find('img').length;
 
@@ -198,20 +198,20 @@ kinkyApp.uploadImage = function (sk, successCb, progress) {
         doneSuccess: successCb,
         progress: progress,
         fail: function () {
-            alert(kinkyApp.data.localization["Unable_upload_photo"]);
+            alert(atkpimfApp.data.localization["Unable_upload_photo"]);
         }
     });
 };
 
 
-kinkyApp.uploadImageForTextPost = function (successCb) {
+atkpimfApp.uploadImageForTextPost = function (successCb) {
     var syncKey = (new Date()).getTime();
-    var imgId = kinkyApp.viewModel.MyUser().UserId + '-' + syncKey;
-    kinkyApp.fileUpload({
-        url: kinkyApp.data.urlTmpl.InterestItemUploadPhoto,
+    var imgId = atkpimfApp.viewModel.MyUser().UserId + '-' + syncKey;
+    atkpimfApp.fileUpload({
+        url: atkpimfApp.data.urlTmpl.InterestItemUploadPhoto,
         formData: { sk: syncKey, forTextPost: true },
         fail: function () {
-            alert(kinkyApp.data.localization["Unable_upload_photo"]);
+            alert(atkpimfApp.data.localization["Unable_upload_photo"]);
         },
         reader: function (file, success) {
             var reader = new FileReader();
@@ -231,26 +231,26 @@ kinkyApp.uploadImageForTextPost = function (successCb) {
 
 };
 
-kinkyApp.startImageUpload = function (editUrl, targetContainerId, progressFunc) {
+atkpimfApp.startImageUpload = function (editUrl, targetContainerId, progressFunc) {
     var syncKey = (new Date()).getTime();
 
-    editUrl = kinkyApp.addPramToLink(editUrl, "sk", syncKey);
-    kinkyApp.uploadImage(syncKey, function (onloadedCb) {
+    editUrl = atkpimfApp.addPramToLink(editUrl, "sk", syncKey);
+    atkpimfApp.uploadImage(syncKey, function (onloadedCb) {
         if (targetContainerId) {
-            kinkyApp.updateElementById(editUrl, targetContainerId, onloadedCb);
+            atkpimfApp.updateElementById(editUrl, targetContainerId, onloadedCb);
         }
         else {
-            kinkyApp.modal.showByUrl(editUrl, null, null, null, onloadedCb);
+            atkpimfApp.modal.showByUrl(editUrl, null, null, null, onloadedCb);
         }
     }, progressFunc);
 };
 
-kinkyApp.closedHintTime = function (element, hintType) {
+atkpimfApp.closedHintTime = function (element, hintType) {
     element.parentNode.style.display = "none";
     localStorage[hintType + "-" + "hintClosedTime"] = new Date();
 };
 
-kinkyApp.checkClosedHintTime = function (hintType) {
+atkpimfApp.checkClosedHintTime = function (hintType) {
     var oneDay = 24 * 60 * 60 * 1000;
     var seconds = 10 * 1000;
     var currentTime = new Date();
@@ -266,16 +266,16 @@ kinkyApp.checkClosedHintTime = function (hintType) {
     return null;
 };
 
-kinkyApp.remove = function (elementId) {
+atkpimfApp.remove = function (elementId) {
     var element = document.getElementById(elementId);
     element.parentNode.removeChild(element);
 };
 
-kinkyApp.buyRequestQueueAdd = function (name, item) {
+atkpimfApp.buyRequestQueueAdd = function (name, item) {
     localStorage.setItem(name, item);
 };
 
-kinkyApp.buyRequestQueueGet = function (name) {
+atkpimfApp.buyRequestQueueGet = function (name) {
     var item = localStorage.getItem(name);
 
     if (item != null) {
@@ -302,8 +302,8 @@ kinkyApp.buyRequestQueueGet = function (name) {
 //    } : vCallback, nDelay);
 //};
 
-kinkyApp.tooltip = {
-    tipId: "kinkyapp-tooltip",
+atkpimfApp.tooltip = {
+    tipId: "atapp-tooltip",
     defaultOffsetFromCursorY: 15,
     offsetFromCursorY: undefined,
     offsetFromCursorX: undefined,
@@ -468,4 +468,4 @@ kinkyApp.tooltip = {
     }
 };
 
-kinkyApp.tooltip.init();
+atkpimfApp.tooltip.init();

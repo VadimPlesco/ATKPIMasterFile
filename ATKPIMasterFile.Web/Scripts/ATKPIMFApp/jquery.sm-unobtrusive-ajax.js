@@ -1,14 +1,14 @@
-﻿(function ($, kinkyApp) {
+﻿(function ($, atkpimfApp) {
 
-    //kinkyApp.updateElementById = function (url, id, ajaxcallback) {
+    //atkpimfApp.updateElementById = function (url, id, ajaxcallback) {
     //    //alert('1');
-    //    kinkyApp.asyncRequest({
+    //    atkpimfApp.asyncRequest({
     //        url: url,
     //        id: id,
     //        success: function (data) { //alert(data)
     //            //if (id == "body") {
     //            //    $(window).scrollTop(0);
-    //            //    kinkyApp.modal.hide();
+    //            //    atkpimfApp.modal.hide();
     //            //}
     //            //alert('success');
     //            console.log(data.Html);
@@ -21,7 +21,7 @@
     //    return false;
     //};
 
-    kinkyApp.updateElementById = function (url, id, ajaxcallback) {
+    atkpimfApp.updateElementById = function (url, id, ajaxcallback) {
         
         var loading = $("#loadingElement");
 
@@ -57,12 +57,12 @@
         return false;
     };
 
-    kinkyApp.updateBodyByUrl = function (url, ajaxcallback) {
-        kinkyApp.asyncRequest({
+    atkpimfApp.updateBodyByUrl = function (url, ajaxcallback) {
+        atkpimfApp.asyncRequest({
             url: url,
             id: "body",
             success: function (data) {
-                kinkyApp.updateBody(data.Html);
+                atkpimfApp.updateBody(data.Html);
                 if (ajaxcallback != null)
                     ajaxcallback(data);
             }
@@ -70,21 +70,21 @@
         return false;
     };
 
-    kinkyApp.updateBody = function (html) {
+    atkpimfApp.updateBody = function (html) {
         $(window).scrollTop(0);
-        kinkyApp.modal.hide();
+        atkpimfApp.modal.hide();
         $("#body").html(html);
         return false;
     };
 
 
-    kinkyApp.addPramToLink = function (link, key, val) {
+    atkpimfApp.addPramToLink = function (link, key, val) {
         return link + (link.indexOf('?') > -1 ? '&' : '?') + key + '=' + val;
     };
 
 
     var reload = function (id, url) {
-        kinkyApp.asyncRequest({
+        atkpimfApp.asyncRequest({
             url: url,
             isReload: true,
             id: id,
@@ -94,7 +94,7 @@
         });
     };
 
-    kinkyApp.banUser = function (url, userId, success) {
+    atkpimfApp.banUser = function (url, userId, success) {
         $.ajax({
             url: url,
             type: 'POST',
@@ -106,12 +106,12 @@
         });
     };
 
-    kinkyApp.asyncRequest = function (options) {
+    atkpimfApp.asyncRequest = function (options) {
 
         var loading = $("#loadingElement");
         //alert("123");
         //alert(options.url);
-        options.url = kinkyApp.addPramToLink(options.url, "X-Requested-With", "XMLHttpRequest");
+        options.url = atkpimfApp.addPramToLink(options.url, "X-Requested-With", "XMLHttpRequest");
 
         var success = options.success;
         var complete = options.complete;
@@ -142,14 +142,14 @@
                 //alert(data.Status);
                 ///console.log(data);
                 if (data.RedirectUrl) {
-                    if (data.Status == kinkyApp.statusCodes.redirectToBody)
-                        kinkyApp.updateBodyByUrl(data.RedirectUrl);
+                    if (data.Status == atkpimfApp.statusCodes.redirectToBody)
+                        atkpimfApp.updateBodyByUrl(data.RedirectUrl);
                     else
                         document.location.href = data.RedirectUrl;
                     return;
                 }
 
-                if (data.Status == kinkyApp.statusCodes.ok || data.Status == null) {
+                if (data.Status == atkpimfApp.statusCodes.ok || data.Status == null) {
                     if (success)
                         success(data);
 
@@ -157,34 +157,34 @@
                         if (!options.isReload)
                             setHistory(data, options.id, options.setUrlInAddressBar, options.replaceUrlInAddressBar);
 
-                        if (kinkyApp.fn.initCurrentLink)
-                            kinkyApp.fn.initCurrentLink();
+                        if (atkpimfApp.fn.initCurrentLink)
+                            atkpimfApp.fn.initCurrentLink();
 
                         $("#" + options.id + " form").each(function () {
                             $.validator.unobtrusive.parse(this);
                         });
 
                         if (!options.isReload)
-                            kinkyApp.analytics.trackPageView(data.Url, data.Title, true)/*Track(data.Url, data.Title)*/;
+                            atkpimfApp.analytics.trackPageView(data.Url, data.Title, true)/*Track(data.Url, data.Title)*/;
                     }
                 }
-                else if (data.Status == kinkyApp.statusCodes.authenticationHasExpired) {
-                    kinkyApp.modal.show(data.Html, true);
+                else if (data.Status == atkpimfApp.statusCodes.authenticationHasExpired) {
+                    atkpimfApp.modal.show(data.Html, true);
                 }
-                else if (data.Status == kinkyApp.statusCodes.blocker) {
+                else if (data.Status == atkpimfApp.statusCodes.blocker) {
                     $(window).scrollTop(0);
-                    kinkyApp.modal.showTop(data.Html);
+                    atkpimfApp.modal.showTop(data.Html);
                 }
-                else if (data.Status == kinkyApp.statusCodes.blockerBottom) {
+                else if (data.Status == atkpimfApp.statusCodes.blockerBottom) {
                     $(window).scrollTop(0);
-                    kinkyApp.modal.show(data.Html);
+                    atkpimfApp.modal.show(data.Html);
                 }
-                else if (data.Status == kinkyApp.statusCodes.hideModal) {
-                    kinkyApp.modal.hide();
-                    kinkyApp.modal.hideTop();
-                    kinkyApp.reloadBody();
+                else if (data.Status == atkpimfApp.statusCodes.hideModal) {
+                    atkpimfApp.modal.hide();
+                    atkpimfApp.modal.hideTop();
+                    atkpimfApp.reloadBody();
                 }
-                else if (data.Status == kinkyApp.statusCodes.error) {
+                else if (data.Status == atkpimfApp.statusCodes.error) {
                     success(data);
                 }
 
@@ -207,7 +207,7 @@
 
 
     //////////
-    //kinkyApp.asyncRequest = function (element, options) {
+    //atkpimfApp.asyncRequest = function (element, options) {
     //    var confirm, loading, method, duration;
 
     //    confirm = element.getAttribute("data-ajax-confirm");
@@ -259,7 +259,7 @@
 
     var bodyState = { pageTitle: document.title, url: document.location.href, id: "body", html: null };
 
-    kinkyApp.reloadBody = function () {
+    atkpimfApp.reloadBody = function () {
         if (bodyState.url != null) {
             reload('body', bodyState.url);
         }
@@ -272,7 +272,7 @@
         }
     });
 
-    kinkyApp.replaceState = function () {
+    atkpimfApp.replaceState = function () {
         window.history.pushState(bodyState, bodyState.pageTitle, bodyState.url);
         document.title = bodyState.pageTitle;
     };
@@ -303,13 +303,13 @@
         //console.log(e.state);
         if (e.state) {
             if (e.state.id == "body") {
-                kinkyApp.modal.hide();
+                atkpimfApp.modal.hide();
                 //$("#" + e.state.id).html(e.state.html)
                 reload(e.state.id, e.state.url);
                 document.title = e.state.pageTitle;
             }
             else if (e.state.id == "main_modal") {
-                kinkyApp.modal.show(e.state.html);
+                atkpimfApp.modal.show(e.state.html);
                 document.title = e.state.url;
             }
         }
@@ -410,26 +410,26 @@
                 successHandler(data, status, xhr);
                 if (data.RedirectUrl) {
                     //alert(data.RedirectUrl);
-                    if (data.Status == kinkyApp.statusCodes.redirectToBody)
-                        kinkyApp.updateBodyByUrl(data.RedirectUrl);
+                    if (data.Status == atkpimfApp.statusCodes.redirectToBody)
+                        atkpimfApp.updateBodyByUrl(data.RedirectUrl);
                     else
                         document.location.href = data.RedirectUrl;
                     return;
                 }
-                //else if (data.Status == kinkyApp.statusCodes.blocker) {
+                //else if (data.Status == atkpimfApp.statusCodes.blocker) {
                 //    $(window).scrollTop(0);
-                //    kinkyApp.modal.showTop(data.Html);
-                //    alert('11'); alert(data.Status); alert(kinkyApp.statusCodes.blocker);
+                //    atkpimfApp.modal.showTop(data.Html);
+                //    alert('11'); alert(data.Status); alert(atkpimfApp.statusCodes.blocker);
                 //    return;
-                //} else if (data.Status == kinkyApp.statusCodes.blockerBottom) {
+                //} else if (data.Status == atkpimfApp.statusCodes.blockerBottom) {
                 //    $(window).scrollTop(0);
-                //    kinkyApp.modal.show(data.Html);
+                //    atkpimfApp.modal.show(data.Html);
                 //    alert('12');
                 //    return;
-                //} else if (data.Status == kinkyApp.statusCodes.hideModal) {
-                //    kinkyApp.modal.hide();
-                //    kinkyApp.modal.hideTop();
-                //    kinkyApp.reloadBody();
+                //} else if (data.Status == atkpimfApp.statusCodes.hideModal) {
+                //    atkpimfApp.modal.hide();
+                //    atkpimfApp.modal.hideTop();
+                //    atkpimfApp.reloadBody();
                 //    alert('13');
                 //    return;
                 //}
@@ -545,4 +545,4 @@
             data: $(form).serializeArray()
         });
     });
-}(jQuery, kinkyApp));
+}(jQuery, atkpimfApp));

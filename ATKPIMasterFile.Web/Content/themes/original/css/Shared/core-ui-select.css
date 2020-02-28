@@ -280,14 +280,3 @@ padding-left:10px;
 }
 
 
-.personal-settings__kinky-factors {
-    float:left;
-    margin-top:-14px;
-    margin-left:70px;
-}
-
-    .personal-settings__kinky-factors ~ .b-core-ui-select__dropdown {
-        margin-left:-152px;
-        left:0px !important;
-        top:41px !important;
-    }

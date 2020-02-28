@@ -1,4 +1,4 @@
-﻿kinkyApp.FeedScroll = function (scrollSelector) {
+﻿atkpimfApp.FeedScroll = function (scrollSelector) {
     this.Url = "";
     this.loading = false;
     this.timer = null;
@@ -26,7 +26,7 @@
                     $(self.scrollSelector).scroll(self.onScroll);
                 }
                 if (self.feedGridModel == null)
-                    self.feedGridModel = new kinkyApp.FeedGridModel(feedwrapperMaxHeight);
+                    self.feedGridModel = new atkpimfApp.FeedGridModel(feedwrapperMaxHeight);
                 self.feedGridModel.setupBlocks(self.feedwrapperId, self.feedBlockSelector);
             } catch (e) {
                 alert(e);
@@ -104,7 +104,7 @@
                     return;
                 self.loading = true;
 
-                kinkyApp.asyncRequest({
+                atkpimfApp.asyncRequest({
                     url: self.Url,
                     //replaceUrlInAddressBar: self.showPaging,
                     id: self.showPaging ? self.feedwrapperId : null,
@@ -152,6 +152,6 @@
     }
 };
 
-kinkyApp.feedScroll = new kinkyApp.FeedScroll(window);
-kinkyApp.feedScrollMainOverflow = new kinkyApp.FeedScroll('#main__overflow');
+atkpimfApp.feedScroll = new atkpimfApp.FeedScroll(window);
+atkpimfApp.feedScrollMainOverflow = new atkpimfApp.FeedScroll('#main__overflow');
 

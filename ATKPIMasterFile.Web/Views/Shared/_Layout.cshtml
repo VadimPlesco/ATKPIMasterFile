@@ -20,9 +20,9 @@
     @Scripts.Render("~/bundles/jquery.js")
     @Scripts.Render("~/bundles/jqueryui.js")
     <script type="text/javascript">
-        var kinkyApp = { fn: {}, data: {} };
-        kinkyApp.statusCodes = 'Ok';
-        kinkyApp.data.localization = '';
+        var atkpimfApp = { fn: {}, data: {} };
+        atkpimfApp.statusCodes = 'Ok';
+        atkpimfApp.data.localization = '';
     </script>
     @Scripts.Render("~/bundles/knockout.js")
     <script type='text/javascript' src="~/Scripts/knockout-3.4.2.js"></script>
@@ -49,9 +49,9 @@
     else
     {
         <script>
-            kinkyApp.viewModel = { showChat: function () { kinkyApp.modal.showByUrl("/Register"); } };
-            kinkyApp.viewModel.sendAskPhoto = kinkyApp.viewModel.showChat;
-            kinkyApp.viewModel.sendAskAvatar = kinkyApp.viewModel.showChat;
+            atkpimfApp.viewModel = { showChat: function () { atkpimfApp.modal.showByUrl("/Register"); } };
+            atkpimfApp.viewModel.sendAskPhoto = atkpimfApp.viewModel.showChat;
+            atkpimfApp.viewModel.sendAskAvatar = atkpimfApp.viewModel.showChat;
         </script>
     }
 
@@ -90,16 +90,16 @@
 
         <script>
             $(document).ready(function () {
-                var scrollPage = function (that, selector) {
-                    if ($(that).scrollTop() > 100 && !kinkyApp.fn.isMobile())
-                        $(selector).fadeIn();
-                    else
-                        $(selector).fadeOut();
-                };
-                $(window).scroll(function () { scrollPage(this, "#scroll-to-top-block"); });
-                $("#no-modal-outer").scroll(function () { scrollPage(this, "#scroll-to-top-block"); });
-                $("#main__overflow").scroll(function () { scrollPage(this, "#scroll-to-top-block_overflow"); });
-                kinkyApp.fn.initCurrentLink();
+                //var scrollPage = function (that, selector) {
+                //    if ($(that).scrollTop() > 100 && !atkpimfApp.fn.isMobile())
+                //        $(selector).fadeIn();
+                //    else
+                //        $(selector).fadeOut();
+                //};
+                //$(window).scroll(function () { scrollPage(this, "#scroll-to-top-block"); });
+                //$("#no-modal-outer").scroll(function () { scrollPage(this, "#scroll-to-top-block"); });
+                //$("#main__overflow").scroll(function () { scrollPage(this, "#scroll-to-top-block_overflow"); });
+                atkpimfApp.fn.initCurrentLink();
             });
     </script>
         

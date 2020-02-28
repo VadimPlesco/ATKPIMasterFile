@@ -1,4 +1,4 @@
-﻿kinkyApp.ChangeSubscribeToInterest = function (element, userId, interestId) {
+﻿atkpimfApp.ChangeSubscribeToInterest = function (element, userId, interestId) {
     var clickedElement = $(element);
     var spinner = $("<span>").addClass("icon button-loading-icon");
     clickedElement.children("[data-subspan]").hide();
@@ -6,12 +6,12 @@
     clickedElement.prop("disabled", true);
     var url;
     if (clickedElement.attr('data-subscribeInterest') == 'true') {
-        url = kinkyApp.data.urlTmpl.InterestUnsubscribe;
+        url = atkpimfApp.data.urlTmpl.InterestUnsubscribe;
     } else {
-        url = kinkyApp.data.urlTmpl.InterestSubscribe;
+        url = atkpimfApp.data.urlTmpl.InterestSubscribe;
     }
 
-    kinkyApp.asyncRequest({
+    atkpimfApp.asyncRequest({
         url: url,
         type: "POST",
         data: {
@@ -51,8 +51,8 @@
             if (data.subscribe) {
                 button.attr('data-subscribeInterest', 'true');
                 button.children("[data-subspan=icon]").removeClass("shared__icon-plus-medium").addClass("shared__icon-minus-medium");
-                button.children("[data-subspan=text]").text(kinkyApp.data.localization["Unfollow"]);
-                button.children("[data-subspan=textuser]").text(kinkyApp.data.localization["UnfollowUser"]);
+                button.children("[data-subspan=text]").text(atkpimfApp.data.localization["Unfollow"]);
+                button.children("[data-subspan=textuser]").text(atkpimfApp.data.localization["UnfollowUser"]);
                 if (button.length == 1) { //чекбокс у первой подписки
                     if ($("#ch" + userId + '-' + interestId).addClass("selected").length == 1) {
                         isFirstSubscription = true;
@@ -61,34 +61,34 @@
                 }
 
                 if (isFirstSubscription) {
-                    kinkyApp.analytics.addEventToQueue(kinkyApp.analytics.eventType.interestSubscription);
+                    atkpimfApp.analytics.addEventToQueue(atkpimfApp.analytics.eventType.interestSubscription);
                 }
                 else {
-                    kinkyApp.analytics.trackEvent(kinkyApp.analytics.eventType.interestSubscription);
+                    atkpimfApp.analytics.trackEvent(atkpimfApp.analytics.eventType.interestSubscription);
                 }
             }
             else {
                 button.attr('data-subscribeInterest', 'false');
                 button.children("[data-subspan=icon]").removeClass("shared__icon-minus-medium").addClass("shared__icon-plus-medium");
-                button.children("[data-subspan=text]").text(kinkyApp.data.localization["Follow"]);
-                button.children("[data-subspan=textuser]").text(kinkyApp.data.localization["FollowUser"]);
+                button.children("[data-subspan=text]").text(atkpimfApp.data.localization["Follow"]);
+                button.children("[data-subspan=textuser]").text(atkpimfApp.data.localization["FollowUser"]);
                 if (button.length == 1) { //чекбокс у первой подписки
                     if ($("#ch" + userId + '-' + interestId).removeClass("selected").length == 1)
                         button.removeClass("button-light-grey").addClass("button-gold-to-gold");
                 }
             }
 
-            if (kinkyApp.fn.subscribeSucess)
-                kinkyApp.fn.subscribeSucess(data, $('[data-subscribeInterest=true]').length);
+            if (atkpimfApp.fn.subscribeSucess)
+                atkpimfApp.fn.subscribeSucess(data, $('[data-subscribeInterest=true]').length);
             clickedElement.prop("disabled", false);
 
         }
     });
 };
 
-kinkyApp.ChangeLikeInterestItem = function (element, userId, itemId) {
-    if (kinkyApp.viewModel.MyUser().IsAffiliated && kinkyApp.viewModel.MyUser().Sex == 1 && !kinkyApp.viewModel.MyUser().IsPremium) {
-        kinkyApp.modal.showTopByUrl(kinkyApp.data.urlTmpl.BuyClubCard, null, false, true);
+atkpimfApp.ChangeLikeInterestItem = function (element, userId, itemId) {
+    if (atkpimfApp.viewModel.MyUser().IsAffiliated && atkpimfApp.viewModel.MyUser().Sex == 1 && !atkpimfApp.viewModel.MyUser().IsPremium) {
+        atkpimfApp.modal.showTopByUrl(atkpimfApp.data.urlTmpl.BuyClubCard, null, false, true);
 
         return;
     }
@@ -101,14 +101,14 @@ kinkyApp.ChangeLikeInterestItem = function (element, userId, itemId) {
 
     var url;
     if ($(element).attr('data-likeItem') == 'true') {
-        url = kinkyApp.data.urlTmpl.InterestItemUnlikeInterestItem;
+        url = atkpimfApp.data.urlTmpl.InterestItemUnlikeInterestItem;
         //buttonFeedBig.attr('data-likeItem', 'false').removeClass('selected');
     } else {
-        url = kinkyApp.data.urlTmpl.InterestItemLikeInterestItem;
+        url = atkpimfApp.data.urlTmpl.InterestItemLikeInterestItem;
         //buttonFeedBig.attr('data-likeItem', 'true').addClass('selected');
     }
 
-    kinkyApp.asyncRequest({
+    atkpimfApp.asyncRequest({
         url: url,
         type: "POST",
         data: {
@@ -130,14 +130,14 @@ kinkyApp.ChangeLikeInterestItem = function (element, userId, itemId) {
                 buttonFeed.attr('data-likeItem', 'true');
                 //buttonFeedBig.attr('data-likeItem', 'true').addClass('selected');
 
-                buttonFullview.html(kinkyApp.data.localization.Dislike);
+                buttonFullview.html(atkpimfApp.data.localization.Dislike);
 
                 if (buttonFeed.hasClass('right-button-small'))
                     buttonFeed.append($("<span>").addClass("shared__icon shared__icon-dislike-small"));
                 else
-                    buttonFeed.html(kinkyApp.data.localization.Dislike);
+                    buttonFeed.html(atkpimfApp.data.localization.Dislike);
 
-                kinkyApp.analytics.trackEvent(kinkyApp.analytics.eventType.like);
+                atkpimfApp.analytics.trackEvent(atkpimfApp.analytics.eventType.like);
             } else {
                 //right-button-small
 
@@ -146,10 +146,10 @@ kinkyApp.ChangeLikeInterestItem = function (element, userId, itemId) {
                 //buttonFeedBig.attr('data-likeItem', 'false').removeClass('selected');
 
                 buttonFullview.append($("<span>").addClass("icon shared__icon-like-medium"))
-                    .append($("<span>").css("margin-left", "5px").text(kinkyApp.data.localization.Like));
+                    .append($("<span>").css("margin-left", "5px").text(atkpimfApp.data.localization.Like));
                 buttonFeed.append($("<span>").addClass("shared__icon shared__icon-like-small"));
                 if (!buttonFeed.hasClass('right-button-small'))
-                    buttonFeed.append($("<span>").css("margin-left", "3px").text(kinkyApp.data.localization.Like));
+                    buttonFeed.append($("<span>").css("margin-left", "3px").text(atkpimfApp.data.localization.Like));
             }
 
             $('[data-likeItemDisplay=true][data-likeItemId=' + itemId + ']').html(data.likes);
@@ -157,18 +157,18 @@ kinkyApp.ChangeLikeInterestItem = function (element, userId, itemId) {
     });
 };
 
-kinkyApp.ReblogPhotoSuccessUpdate = function (data) {
+atkpimfApp.ReblogPhotoSuccessUpdate = function (data) {
     $('[data-reblogDisplay=true][data-reblogInterestItemId=' + data.interestItemId + ']').html(data.reblogCount);
-    kinkyApp.analytics.trackEvent(kinkyApp.analytics.eventType.reblog)/*mixTrack('Reblog', 'Reblog')*/;
+    atkpimfApp.analytics.trackEvent(atkpimfApp.analytics.eventType.reblog)/*mixTrack('Reblog', 'Reblog')*/;
 };
 
-kinkyApp.fn.createRequest = function (select, text) {
-    kinkyApp.asyncRequest({
-        url: kinkyApp.data.urlTmpl.InterestAdd,
+atkpimfApp.fn.createRequest = function (select, text) {
+    atkpimfApp.asyncRequest({
+        url: atkpimfApp.data.urlTmpl.InterestAdd,
         type: "POST",
         data: { "name": text },
         success: function (result) {
-            if (result.Status == kinkyApp.statusCodes.ok) {
+            if (result.Status == atkpimfApp.statusCodes.ok) {
                 if (document.getElementById("repost-submit-button")) {
                     $("#repost-submit-button").removeAttr("disabled");
                 }
@@ -181,17 +181,17 @@ kinkyApp.fn.createRequest = function (select, text) {
                 $.fn.successVisual(select, result.CustomData.Name, result.CustomData.InterestId, result.CustomData.IsPersonal ? "1" : "");
             }
             else {
-                kinkyApp.popUp.hide();
+                atkpimfApp.popUp.hide();
                 alert(result.ErrorMessage);
-                //kinkyApp.modal.show(result.ErorrMessage);
+                //atkpimfApp.modal.show(result.ErorrMessage);
             }
         }
     });
 };
 
-kinkyApp.RateItem = function (userId, itemId, rate) {
-    kinkyApp.asyncRequest({
-        url: kinkyApp.data.urlTmpl.InterestItemRate,
+atkpimfApp.RateItem = function (userId, itemId, rate) {
+    atkpimfApp.asyncRequest({
+        url: atkpimfApp.data.urlTmpl.InterestItemRate,
         type: "POST",
         data: {
             userId: userId,

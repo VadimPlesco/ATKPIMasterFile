@@ -1,4 +1,4 @@
-﻿kinkyApp.ChatViewModel = function (parentViewModel, user) {
+﻿atkpimfApp.ChatViewModel = function (parentViewModel, user) {
     user.chat = this;
     var self = this;
 
@@ -17,7 +17,7 @@
     });
     var checkPromoVideo = function (buddyUser) {
         //debugger;
-        if (buddyUser.PromoVideoLink && buddyUser.PromoVideoLink != self.promoVideoLink() && kinkyApp.viewModel.MyUser().IsAffiliated && !kinkyApp.viewModel.MyUser().IsPremium) {
+        if (buddyUser.PromoVideoLink && buddyUser.PromoVideoLink != self.promoVideoLink() && atkpimfApp.viewModel.MyUser().IsAffiliated && !atkpimfApp.viewModel.MyUser().IsPremium) {
             
             var seenLink = localStorage.getItem('promo-video-' + buddyUser.UserId, buddyUser.PromoVideoLink);
             console.log('check promo link', seenLink, buddyUser);
@@ -44,7 +44,7 @@
             }
         }
 
-        if (buddyUser.PromoStub && kinkyApp.viewModel.MyUser().IsAffiliated && !kinkyApp.viewModel.MyUser().IsPremium) {
+        if (buddyUser.PromoStub && atkpimfApp.viewModel.MyUser().IsAffiliated && !atkpimfApp.viewModel.MyUser().IsPremium) {
             self.isPromoVideo(false);
             self.isPromoStub(true);
         }
@@ -95,8 +95,8 @@
 
     this.Title = ko.observable("---");
 
-    //this.watchVideoModal = new kinkyApp.WatchVideoModal(user.UserId);
-    this.watchVideoModel = new kinkyApp.WatchVideoModel(this, user.UserId);
+    //this.watchVideoModal = new atkpimfApp.WatchVideoModal(user.UserId);
+    this.watchVideoModel = new atkpimfApp.WatchVideoModel(this, user.UserId);
 
     this.bringToFront = function() {
         zIndexTop($("#chat" + self.BuddyUser().UserId));
@@ -115,7 +115,7 @@
             
             self.toggleSexyChat(parentViewModel.MyUser().SexyChatEnabled);
 
-            var contact = ko.utils.arrayFirst(kinkyApp.viewModel.Contacts(), function (item) {
+            var contact = ko.utils.arrayFirst(atkpimfApp.viewModel.Contacts(), function (item) {
                 return item.BuddyUserId == self.BuddyUser().UserId;
             });
 
@@ -222,10 +222,10 @@
 
         chatDiv
             .on('mouseenter', function () {
-                $('body').on('mousewheel', kinkyApp.preventBodyScrolling);
+                $('body').on('mousewheel', atkpimfApp.preventBodyScrolling);
             })
             .on('mouseleave', function () {
-                $('body').off('mousewheel', kinkyApp.preventBodyScrolling);
+                $('body').off('mousewheel', atkpimfApp.preventBodyScrolling);
             });
 
         self.chatWindow = chatDiv;
@@ -317,7 +317,7 @@
         //debugger;
         if (self.privateVideoMode() && !skipPrivateCheck) {
 //            debugger;
-            kinkyApp.modal.showTopByUrl(kinkyApp.data.urlTmpl.ModalBlockerConfirmCloseVideoChat + '?userId=' + self.BuddyUser().UserId + '&close=true');
+            atkpimfApp.modal.showTopByUrl(atkpimfApp.data.urlTmpl.ModalBlockerConfirmCloseVideoChat + '?userId=' + self.BuddyUser().UserId + '&close=true');
 
             return;
         }
@@ -335,7 +335,7 @@
                     return msgs[i].Id == item.Id;
                 });
                 if (msg)
-                    kinkyApp.mapAsObservable(msg, "ReadTS", self.formatDate(msgs[i].ReadTS, kinkyApp.data.localization["Not_read"], kinkyApp.data.localization["Read_in"] + " "));
+                    atkpimfApp.mapAsObservable(msg, "ReadTS", self.formatDate(msgs[i].ReadTS, atkpimfApp.data.localization["Not_read"], atkpimfApp.data.localization["Read_in"] + " "));
             }
         }
         catch (ex) {
@@ -398,18 +398,18 @@
     this.putChatMessages = function (messages, isHistory) {
         try {
             if (canMessagesGroup(self.parMsg, messages[0])) {
-                messages[0].Text = kinkyApp.smileLinkFormatter.formatMessage(messages[0].Text);
+                messages[0].Text = atkpimfApp.smileLinkFormatter.formatMessage(messages[0].Text);
                 self.parMsg.Texts.push(messages[0].Text);
                 return;
             }
             for (var i = 0; i < messages.length; i++) {
                 self.ChatMessages.remove(function (item) { return item.Id == messages[i].Id; });
-                kinkyApp.mapAsObservable(messages[i], "ReadTS", self.formatDate(messages[i].ReadTS, kinkyApp.data.localization["Not_read"], kinkyApp.data.localization["Read_in"] + " "));
+                atkpimfApp.mapAsObservable(messages[i], "ReadTS", self.formatDate(messages[i].ReadTS, atkpimfApp.data.localization["Not_read"], atkpimfApp.data.localization["Read_in"] + " "));
 
                 if (messages[i].Texts == null)
                     messages[i].Texts = ko.observableArray([]);
 
-                messages[i].Text = kinkyApp.smileLinkFormatter.formatMessage(messages[i].Text);
+                messages[i].Text = atkpimfApp.smileLinkFormatter.formatMessage(messages[i].Text);
                 if (canMessagesGroup(self.parMsg, messages[i]))
                     self.parMsg.Texts.push(messages[i].Text);
                 else {
@@ -507,21 +507,21 @@
     };
 
     this.selectGift = function () {
-        if (kinkyApp.viewModel.MyUser().IsAffiliated && kinkyApp.viewModel.MyUser().Sex == 1 && !kinkyApp.viewModel.MyUser().IsPremium) {
-            kinkyApp.modal.showTopByUrl(kinkyApp.data.urlTmpl.BuyClubCard, null, false, true);
+        if (atkpimfApp.viewModel.MyUser().IsAffiliated && atkpimfApp.viewModel.MyUser().Sex == 1 && !atkpimfApp.viewModel.MyUser().IsPremium) {
+            atkpimfApp.modal.showTopByUrl(atkpimfApp.data.urlTmpl.BuyClubCard, null, false, true);
 
             return;
         }
         
-        kinkyApp.modal.showByUrl(kinkyApp.data.urlTmpl.SelectGift + '?buddyUserId=' + self.BuddyUser().UserId);
+        atkpimfApp.modal.showByUrl(atkpimfApp.data.urlTmpl.SelectGift + '?buddyUserId=' + self.BuddyUser().UserId);
     };
 
     this.toggleSexyChat = ko.observable(false);
     this.ShowBanConfirmationPanel = ko.observable(false);
     
     this.openBanPanel = function () {
-        if (kinkyApp.viewModel.MyUser().IsAffiliated && kinkyApp.viewModel.MyUser().Sex == 1 && !kinkyApp.viewModel.MyUser().IsPremium) {
-            kinkyApp.modal.showTopByUrl(kinkyApp.data.urlTmpl.BuyClubCard, null, false, true);
+        if (atkpimfApp.viewModel.MyUser().IsAffiliated && atkpimfApp.viewModel.MyUser().Sex == 1 && !atkpimfApp.viewModel.MyUser().IsPremium) {
+            atkpimfApp.modal.showTopByUrl(atkpimfApp.data.urlTmpl.BuyClubCard, null, false, true);
 
             return;
         }
@@ -579,8 +579,8 @@
     });
 
     this.tryShowDeleteCorrespondencePanel = function () {
-        if (kinkyApp.viewModel.MyUser().IsAffiliated && kinkyApp.viewModel.MyUser().Sex == 1 && !kinkyApp.viewModel.MyUser().IsPremium) {
-            kinkyApp.modal.showTopByUrl(kinkyApp.data.urlTmpl.BuyClubCard, null, false, true);
+        if (atkpimfApp.viewModel.MyUser().IsAffiliated && atkpimfApp.viewModel.MyUser().Sex == 1 && !atkpimfApp.viewModel.MyUser().IsPremium) {
+            atkpimfApp.modal.showTopByUrl(atkpimfApp.data.urlTmpl.BuyClubCard, null, false, true);
 
             return;
         }
@@ -588,7 +588,7 @@
         sendToServer(function (serverHub) {
             serverHub.checkUserIsPremium().done(function (isPremium) {
                 if (!isPremium) {
-                    kinkyApp.modal.showTopByUrl(kinkyApp.data.urlTmpl.DeleteMessagesPremiumBlocker);
+                    atkpimfApp.modal.showTopByUrl(atkpimfApp.data.urlTmpl.DeleteMessagesPremiumBlocker);
                 }
                 else {
                     self.showDeleteCorrespondencePanel(true);
@@ -598,8 +598,8 @@
     };
 
     this.sexyChatClickHandle = function () {
-        if (kinkyApp.viewModel.MyUser().IsAffiliated && kinkyApp.viewModel.MyUser().Sex == 1 && !kinkyApp.viewModel.MyUser().IsPremium) {
-            kinkyApp.modal.showTopByUrl(kinkyApp.data.urlTmpl.BuyClubCard, null, false, true);
+        if (atkpimfApp.viewModel.MyUser().IsAffiliated && atkpimfApp.viewModel.MyUser().Sex == 1 && !atkpimfApp.viewModel.MyUser().IsPremium) {
+            atkpimfApp.modal.showTopByUrl(atkpimfApp.data.urlTmpl.BuyClubCard, null, false, true);
 
             return;
         }
@@ -709,8 +709,8 @@
     };
 
     this.sendMessage = function () {
-        if (kinkyApp.viewModel.MyUser().IsAffiliated && kinkyApp.viewModel.MyUser().Sex == 1 && !kinkyApp.viewModel.MyUser().IsPremium) {
-            kinkyApp.modal.showTopByUrl(kinkyApp.data.urlTmpl.BuyClubCard, null, false, true);
+        if (atkpimfApp.viewModel.MyUser().IsAffiliated && atkpimfApp.viewModel.MyUser().Sex == 1 && !atkpimfApp.viewModel.MyUser().IsPremium) {
+            atkpimfApp.modal.showTopByUrl(atkpimfApp.data.urlTmpl.BuyClubCard, null, false, true);
 
             return;
         }
@@ -722,7 +722,7 @@
                 if (self.ShowUploadPhotoPanel()) {
 
                     $.ajax({
-                        url: kinkyApp.data.urlTmpl.SendChatPhoto,
+                        url: atkpimfApp.data.urlTmpl.SendChatPhoto,
                         type: "POST",
                         data: {
                             UserId: parentViewModel.MyUser().UserId,
@@ -736,14 +736,14 @@
                         }
                     }).done(function (result) {
                         if (result.messagesLimit) {
-                            kinkyApp.modal.showTopByUrl(kinkyApp.data.urlTmpl.UnlimitedMessagesPremiumBlocker + "?time=");
+                            atkpimfApp.modal.showTopByUrl(atkpimfApp.data.urlTmpl.UnlimitedMessagesPremiumBlocker + "?time=");
                         }
                         else if (result.timeLeft) {
-                            kinkyApp.modal.showTopByUrl(kinkyApp.data.urlTmpl.UnlimitedMessagesPremiumBlocker + "?time=" + result.timeLeft);
+                            atkpimfApp.modal.showTopByUrl(atkpimfApp.data.urlTmpl.UnlimitedMessagesPremiumBlocker + "?time=" + result.timeLeft);
                         }
                     });
 
-                    kinkyApp.analytics.trackEvent(kinkyApp.analytics.eventType.chatImageSendPc);
+                    atkpimfApp.analytics.trackEvent(atkpimfApp.analytics.eventType.chatImageSendPc);
 
                     self.ShowUploadPhotoPanel(false);
                     self.PhotoId = 0;
@@ -770,16 +770,16 @@
                         if (result.showPremiumBlocker) {
 //                            debugger;
                             if (result.messagesLimit) {
-                                kinkyApp.modal.showTopByUrl(kinkyApp.data.urlTmpl.UnlimitedMessagesPremiumBlocker + "?time=");
+                                atkpimfApp.modal.showTopByUrl(atkpimfApp.data.urlTmpl.UnlimitedMessagesPremiumBlocker + "?time=");
                             }
                             else if (result.timeLeft) {
-                                kinkyApp.modal.showTopByUrl(kinkyApp.data.urlTmpl.UnlimitedMessagesPremiumBlocker + "?time=" + result.timeLeft);
+                                atkpimfApp.modal.showTopByUrl(atkpimfApp.data.urlTmpl.UnlimitedMessagesPremiumBlocker + "?time=" + result.timeLeft);
                             }
                         }
                         else if (result.showClubCardBlocker) {
 //                            debugger;
                             if (result.contactsLimit) {
-                                kinkyApp.modal.showTopByUrl(kinkyApp.data.urlTmpl.ModalBlockerContactsLimit + "?time=" + result.timeLeft);
+                                atkpimfApp.modal.showTopByUrl(atkpimfApp.data.urlTmpl.ModalBlockerContactsLimit + "?time=" + result.timeLeft);
                             }
                         }
                     });
@@ -787,7 +787,7 @@
 
                 self.Text('');
 
-                kinkyApp.analytics.trackEvent(kinkyApp.analytics.eventType.chatMessageSend);
+                atkpimfApp.analytics.trackEvent(atkpimfApp.analytics.eventType.chatMessageSend);
 
             }
             catch (e) {
@@ -809,8 +809,8 @@
     this.SyncKey = ko.observable(0);
 
     this.selectPhotoSendType = function () {
-        if (kinkyApp.viewModel.MyUser().IsAffiliated && kinkyApp.viewModel.MyUser().Sex == 1 && !kinkyApp.viewModel.MyUser().IsPremium) {
-            kinkyApp.modal.showTopByUrl(kinkyApp.data.urlTmpl.BuyClubCard, null, false, true);
+        if (atkpimfApp.viewModel.MyUser().IsAffiliated && atkpimfApp.viewModel.MyUser().Sex == 1 && !atkpimfApp.viewModel.MyUser().IsPremium) {
+            atkpimfApp.modal.showTopByUrl(atkpimfApp.data.urlTmpl.BuyClubCard, null, false, true);
 
             return;
         }
@@ -834,7 +834,7 @@
         var syncCustomData = null;
         try {
             self.SyncKey((new Date()).getTime());
-            kinkyApp.UploadPhoto(kinkyApp.data.urlTmpl.InterestItemUploadPhoto + "?sk=" + self.SyncKey(),
+            atkpimfApp.UploadPhoto(atkpimfApp.data.urlTmpl.InterestItemUploadPhoto + "?sk=" + self.SyncKey(),
                 function (input) {
                     self.ShowBanWaitPanel(false);
                 },
@@ -867,7 +867,7 @@
 
     this.selectPhoto = function () {
         parentViewModel.sendPhotoToChatUserId = self.BuddyUser().UserId;
-        kinkyApp.modal.showByUrl(kinkyApp.data.urlTmpl.InterestSelect);
+        atkpimfApp.modal.showByUrl(atkpimfApp.data.urlTmpl.InterestSelect);
         //alert('пока функционал не доступен :(');
         self.ShowSelectPhotoSendTypePanel(false);
         self.ShowUploadPhotoPanel(false);
@@ -881,7 +881,7 @@
 
     this.openGiftSelectionPanel = function (url) {
         return function () {
-            kinkyApp.modal.showByUrl(url);
+            atkpimfApp.modal.showByUrl(url);
         };
     };
 
@@ -950,7 +950,7 @@
     this.startVideoChat = function (byButton, successCallback) {
         //        debugger;
         if (self.isPromoStub()) {
-            kinkyApp.modal.showByUrl('/ctrl/payment/premiumstatus');
+            atkpimfApp.modal.showByUrl('/ctrl/payment/premiumstatus');
             return;
         }
         
@@ -963,8 +963,8 @@
         }
         else {
             
-            if (!kinkyApp.viewModel.MyUser().IsModel && !self.privateVideoMode()) {
-                kinkyApp.modal.showTopByUrl(kinkyApp.data.urlTmpl.ModalBlockerVideoOnlyForPrivate);
+            if (!atkpimfApp.viewModel.MyUser().IsModel && !self.privateVideoMode()) {
+                atkpimfApp.modal.showTopByUrl(atkpimfApp.data.urlTmpl.ModalBlockerVideoOnlyForPrivate);
 
                 return;
             }
@@ -975,8 +975,8 @@
             }
             else {
                 try {
-                    kinkyApp.asyncRequest({
-                        url: kinkyApp.data.urlTmpl.VideoChatStart,
+                    atkpimfApp.asyncRequest({
+                        url: atkpimfApp.data.urlTmpl.VideoChatStart,
                         type: "POST",
                         success: function(data) {
                             parentViewModel.currentVideoSessionId = data.sessionId;
@@ -1002,7 +1002,7 @@
         console.log('initBuddyUsersVideo');
         console.log(self.BuddyUser());
         
-        if (!self.BuddyUser().IsBroadcastingVideo && (self.BuddyUser().StreamOpenedFor == null || (self.BuddyUser().StreamOpenedFor != null && self.BuddyUser().StreamOpenedFor.indexOf(kinkyApp.viewModel.MyUser().UserId) < 0))) {
+        if (!self.BuddyUser().IsBroadcastingVideo && (self.BuddyUser().StreamOpenedFor == null || (self.BuddyUser().StreamOpenedFor != null && self.BuddyUser().StreamOpenedFor.indexOf(atkpimfApp.viewModel.MyUser().UserId) < 0))) {
 //            debugger;
             return;
         }
@@ -1016,8 +1016,8 @@
         var videoId = 'video-stream-' + self.BuddyUser().UserId + '-' + parentViewModel.MyUser().UserId;
         var videoHandlerName = 'handleBuddyVideo_' + parentViewModel.MyUser().UserId + '_' + self.BuddyUser().UserId;
 
-        kinkyApp.videoHandlers[videoHandlerName] = function(state) {
-            var chat = ko.utils.arrayFirst(kinkyApp.viewModel.Chats(), function(item) {
+        atkpimfApp.videoHandlers[videoHandlerName] = function(state) {
+            var chat = ko.utils.arrayFirst(atkpimfApp.viewModel.Chats(), function(item) {
                 return item.BuddyUser().UserId == self.BuddyUser().UserId;
             });
 
@@ -1032,7 +1032,7 @@
                     self.currentBroadcastSessionId = '';
                 }
 
-//                if (self.privateVideoMode() && !kinkyApp.viewModel.MyUser().IsModel) {
+//                if (self.privateVideoMode() && !atkpimfApp.viewModel.MyUser().IsModel) {
 //                    self.privateVideoChatClose();
 //                }
 //                else {
@@ -1042,13 +1042,13 @@
         };
         var flashvars = {
             __type: 'viewer',
-            __rtmp: 'rtmp://88.198.39.25:1935/kinkylove',
+            __rtmp: 'rtmp://88.198.39.28:1940/',
             __stream: self.buddyUsersVideoSessionId(),
             __autoplay: '1',
             __log: '1',
             __sign: self.buddyUsersSignature(),
             __getParamFunJS: 'getVideoParamsHandler', //TODO: repair this shit
-            __setStatusJS: 'kinkyApp.videoHandlers["' + videoHandlerName + '"]'
+            __setStatusJS: 'atkpimfApp.videoHandlers["' + videoHandlerName + '"]'
         };
         var params = {
             menu: 'true',
@@ -1139,8 +1139,8 @@
         var videoId = 'video-stream-' + parentViewModel.MyUser().UserId + '-' + self.BuddyUser().UserId;
         var videoHandlerName = 'handleMyVideo_' + parentViewModel.MyUser().UserId + '_' + self.BuddyUser().UserId;
 
-        kinkyApp.videoHandlers[videoHandlerName] = function(state) {
-            var chat = ko.utils.arrayFirst(kinkyApp.viewModel.Chats(), function(item) {
+        atkpimfApp.videoHandlers[videoHandlerName] = function(state) {
+            var chat = ko.utils.arrayFirst(atkpimfApp.viewModel.Chats(), function(item) {
                 return item.BuddyUser().UserId == self.BuddyUser().UserId;
             });
 
@@ -1158,7 +1158,7 @@
                     var watchdogVideoId = 'watchdog-' + videoId;
                     var watchdogHandlerName = 'watchdog_' + parentViewModel.currentVideoSessionId;
 
-                    kinkyApp.videoHandlers[watchdogHandlerName] = function (watchdogState) {
+                    atkpimfApp.videoHandlers[watchdogHandlerName] = function (watchdogState) {
                         console.info('watchdog handler: ' + watchdogHandlerName + ', current state: ' + watchdogState);
 
                         var watchdogVideo = $('#' + watchdogVideoId).length > 0 ? $('#' + watchdogVideoId)[0] : null;
@@ -1179,12 +1179,12 @@
 
                     var wFlashvars = {
                         __type: 'viewer',
-                        __rtmp: 'rtmp://88.198.39.25:1935/kinkylove',
+                        __rtmp: 'rtmp://88.198.39.28:1940/',
                         __stream: parentViewModel.currentVideoSessionId,
                         __autoplay: '1',
                         __log: '1',
                         __sign: parentViewModel.signature,
-                        __setStatusJS: 'kinkyApp.videoHandlers["' + watchdogHandlerName + '"]'
+                        __setStatusJS: 'atkpimfApp.videoHandlers["' + watchdogHandlerName + '"]'
                     };
                     var wParams = {
                         menu: 'false',
@@ -1208,13 +1208,13 @@
         
         var flashvars = {
             __type: 'publisher',
-            __rtmp: 'rtmp://88.198.39.25:1935/kinkylove',
+            __rtmp: 'rtmp://88.198.39.28:1940/',
             __stream: parentViewModel.currentVideoSessionId,
             __autoplay: '1',
             __log: '1',
             __sign: parentViewModel.signature,
             __getParamFunJS: 'getVideoParamsHandler', //TODO: repair this shit
-            __setStatusJS: 'kinkyApp.videoHandlers["' + videoHandlerName + '"]'
+            __setStatusJS: 'atkpimfApp.videoHandlers["' + videoHandlerName + '"]'
         };
         var params = {
             menu: 'true',
@@ -1229,8 +1229,8 @@
         self.myVideoStreamObject = $('#' + videoId).length > 0 ? $('#' + videoId)[0] : null;
         self.myVideoStreamOpened(true);
 //        debugger;
-        kinkyApp.asyncRequest({
-            url: kinkyApp.data.urlTmpl.NotifyUserOfVideoChatStart,
+        atkpimfApp.asyncRequest({
+            url: atkpimfApp.data.urlTmpl.NotifyUserOfVideoChatStart,
             type: "POST",
             data: {
                 buddyUserId: self.BuddyUser().UserId,
@@ -1273,8 +1273,8 @@
 
     this.closeMyVideo = function() {
 //        debugger;
-        kinkyApp.asyncRequest({
-            url: kinkyApp.data.urlTmpl.NotifyUserOfVideoChatEnd,
+        atkpimfApp.asyncRequest({
+            url: atkpimfApp.data.urlTmpl.NotifyUserOfVideoChatEnd,
             type: "POST",
             data: {
                 buddyUserId: self.BuddyUser().UserId,
@@ -1321,8 +1321,8 @@
                     var videoHandlerName = 'handleMyVideo_' + parentViewModel.MyUser().UserId + '_' + self.BuddyUser().UserId;
                     var watchdogHandlerName = 'watchdog_' + parentViewModel.currentVideoSessionId;
                     
-                    delete kinkyApp.videoHandlers[videoHandlerName];
-                    delete kinkyApp.videoHandlers[watchdogHandlerName];
+                    delete atkpimfApp.videoHandlers[videoHandlerName];
+                    delete atkpimfApp.videoHandlers[watchdogHandlerName];
 
                     self.myVideoStreamObject = null;
                     self.myVideoInitialized = false;
@@ -1378,7 +1378,7 @@
 
             var videoHandlerName = 'handleBuddyVideo_' + parentViewModel.MyUser().UserId + '_' + self.BuddyUser().UserId;
             
-            delete kinkyApp.videoHandlers[videoHandlerName];
+            delete atkpimfApp.videoHandlers[videoHandlerName];
             
             self.buddyUsersVideoStreamObject = null;
             self.buddyVideoInitialized = false;
@@ -1404,7 +1404,7 @@
     this.clientsCash = ko.observable({integerPart: 0, fractionPart: '00'});
     
     this.privateVideoChatAccept = function () {
-        kinkyApp.viewModel.broadcastingModel.stopBroadcasting();
+        atkpimfApp.viewModel.broadcastingModel.stopBroadcasting();
         self.privateVideoMode(true);
         //self.showGuide(true);
         
@@ -1449,7 +1449,7 @@
 //        debugger;
         if (self.privateVideoMode()) {
             
-            kinkyApp.modal.showTopByUrl(kinkyApp.data.urlTmpl.ModalBlockerConfirmCloseVideoChat + '?userId=' + self.BuddyUser().UserId + '&close=false');
+            atkpimfApp.modal.showTopByUrl(atkpimfApp.data.urlTmpl.ModalBlockerConfirmCloseVideoChat + '?userId=' + self.BuddyUser().UserId + '&close=false');
 
             return;
             
@@ -1532,11 +1532,11 @@
     }
 
     this.ShowPhotoDetails = function (data) {
-        kinkyApp.modal.showByUrl(kinkyApp.data.urlTmpl.PhotoDetails.replace('~0', data.ItemUserId).replace('~1', data.ItemId), null, true);
+        atkpimfApp.modal.showByUrl(atkpimfApp.data.urlTmpl.PhotoDetails.replace('~0', data.ItemUserId).replace('~1', data.ItemId), null, true);
     };
 
     this.ShowInterest = function (data) {
-        kinkyApp.updateElementById(kinkyApp.data.urlTmpl.Interest.replace('~0', data.ItemUserId).replace('~1', data.ItemId), 'body');
+        atkpimfApp.updateElementById(atkpimfApp.data.urlTmpl.Interest.replace('~0', data.ItemUserId).replace('~1', data.ItemId), 'body');
     };
 };
 

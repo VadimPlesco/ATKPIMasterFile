@@ -1,4 +1,4 @@
-﻿kinkyApp.fn.createMyFirstInterest = function (el) {
+﻿atkpimfApp.fn.createMyFirstInterest = function (el) {
     $(el).hide();
     $(".b-core-ui-select").show().click();
     setTimeout(function () {

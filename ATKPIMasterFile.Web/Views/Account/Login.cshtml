@@ -24,17 +24,17 @@
 
                         <div class="landing__input-label-block"><label class="landing__input-label" for="landing__input-email-login">Почта</label></div>
                         <div class="landing__input-block">
-                            @Html.TextBoxFor(m => m.Email, new { id = "landing__input-email-login", Class = "landing__input_general text-black background-grey-gradient text-shadow-02", onblur = "kinkyApp.registerInputBlur(this)", onfocus = "kinkyApp.registerInputFocus(this)", onkeyup = "kinkyApp.registerInputFocus(this)" })
+                            @Html.TextBoxFor(m => m.Email, new { id = "landing__input-email-login", Class = "landing__input_general text-black background-grey-gradient text-shadow-02", onblur = "atkpimfApp.registerInputBlur(this)", onfocus = "atkpimfApp.registerInputFocus(this)", onkeyup = "atkpimfApp.registerInputFocus(this)" })
                             <div class="landing-icon-delete-background background-grey-gradient" data-hidden="true">
-                                @*<div data-selector="register-input-close-button" class="landing-action-icon-delete action-icon-delete pointer" onclick="kinkyApp.registerClearInput(this)"></div>*@
+                                @*<div data-selector="register-input-close-button" class="landing-action-icon-delete action-icon-delete pointer" onclick="atkpimfApp.registerClearInput(this)"></div>*@
                             </div>
                         </div>
 
                             <div class="landing__input-label-block"><label class="landing__input-label" for="landing__input-password-login">Пароль</label></div>
                             <div class="landing__input-block">
-                                @Html.PasswordFor(m => m.Password, new { id = "landing__input-password-login", Class = "landing__input_general text-black font-bold background-grey-gradient text-shadow-02", onblur = "kinkyApp.registerInputBlur(this)", onfocus = "kinkyApp.registerInputFocus(this)", onkeyup = "kinkyApp.registerInputFocus(this)" })
+                                @Html.PasswordFor(m => m.Password, new { id = "landing__input-password-login", Class = "landing__input_general text-black font-bold background-grey-gradient text-shadow-02", onblur = "atkpimfApp.registerInputBlur(this)", onfocus = "atkpimfApp.registerInputFocus(this)", onkeyup = "atkpimfApp.registerInputFocus(this)" })
                                 <div class="landing-icon-delete-background background-grey-gradient" data-hidden="true">
-                                    @*<div data-selector="register-input-close-button" class="landing-action-icon-delete action-icon-delete pointer" onclick="kinkyApp.registerClearInput(this)"></div>*@
+                                    @*<div data-selector="register-input-close-button" class="landing-action-icon-delete action-icon-delete pointer" onclick="atkpimfApp.registerClearInput(this)"></div>*@
                                 </div>
                             </div>
 

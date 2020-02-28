@@ -85,7 +85,7 @@
                                             }
                                             else
                                             {
-                                                <a href="" style="text-decoration:underline" onclick="kinkyApp.modal.showByUrl('@Url.Action("SalariesDetails", "User", new { salariesName = Model.SalaryPart.Rows[i].Name, month = ViewBag.SelectedMonth.SelectedValue, year = ViewBag.SelectedYear.SelectedValue, monthEnd = ViewBag.SelectedMonthEnd.SelectedValue, yearEnd = ViewBag.SelectedYearEnd.SelectedValue, filial = ViewBag.SelectedFilial.SelectedValue })','body'); return false; " class="shared__text-black">@Model.SalaryPart.Rows[i].Fact.ToString("N0")</a>
+                                                <a href="" style="text-decoration:underline" onclick="atkpimfApp.modal.showByUrl('@Url.Action("SalariesDetails", "User", new { salariesName = Model.SalaryPart.Rows[i].Name, month = ViewBag.SelectedMonth.SelectedValue, year = ViewBag.SelectedYear.SelectedValue, monthEnd = ViewBag.SelectedMonthEnd.SelectedValue, yearEnd = ViewBag.SelectedYearEnd.SelectedValue, filial = ViewBag.SelectedFilial.SelectedValue })','body'); return false; " class="shared__text-black">@Model.SalaryPart.Rows[i].Fact.ToString("N0")</a>
                                             }
                                         </td>
                                         @if (Model.SalaryPart.Rows[i].Percent > 3.00)
@@ -108,7 +108,7 @@
                                                     }
                                                     else
                                                     {
-                                                    <a href="" style="text-decoration:underline" onclick="kinkyApp.modal.showByUrl('@Url.Action("SalariesDetails", "User", new { salariesName = Model.SalaryPartPast.Rows[i].Name, month = ViewBag.SelectedMonth.SelectedValue, year = ViewBag.SelectedYear.SelectedValue-1, monthEnd = ViewBag.SelectedMonthEnd.SelectedValue, yearEnd = ViewBag.SelectedYearEnd.SelectedValue-1, filial = ViewBag.SelectedFilial.SelectedValue })','body'); return false; " class="shared__text-black">@Model.SalaryPartPast.Rows[i].Fact.ToString("N0")</a>
+                                                    <a href="" style="text-decoration:underline" onclick="atkpimfApp.modal.showByUrl('@Url.Action("SalariesDetails", "User", new { salariesName = Model.SalaryPartPast.Rows[i].Name, month = ViewBag.SelectedMonth.SelectedValue, year = ViewBag.SelectedYear.SelectedValue-1, monthEnd = ViewBag.SelectedMonthEnd.SelectedValue, yearEnd = ViewBag.SelectedYearEnd.SelectedValue-1, filial = ViewBag.SelectedFilial.SelectedValue })','body'); return false; " class="shared__text-black">@Model.SalaryPartPast.Rows[i].Fact.ToString("N0")</a>
                                                     }
                                             </td>
                                             @if (Model.SalaryPartPast.Rows[i].Percent > 3.00)
@@ -207,7 +207,7 @@
                                                 }
                                                 else
                                                 {
-                                                    <a href="" style="text-decoration:underline" onclick="kinkyApp.modal.showByUrl('@Url.Action("AutosDetails", "User", new { autosName = Model.AutoPart.Rows[i].Name, month = ViewBag.SelectedMonth.SelectedValue, year = ViewBag.SelectedYear.SelectedValue, monthEnd = ViewBag.SelectedMonthEnd.SelectedValue, yearEnd = ViewBag.SelectedYearEnd.SelectedValue, filial = ViewBag.SelectedFilial.SelectedValue })','body'); return false; " class="shared__text-black">@Model.AutoPart.Rows[i].Fact.ToString("N0")</a>
+                                                    <a href="" style="text-decoration:underline" onclick="atkpimfApp.modal.showByUrl('@Url.Action("AutosDetails", "User", new { autosName = Model.AutoPart.Rows[i].Name, month = ViewBag.SelectedMonth.SelectedValue, year = ViewBag.SelectedYear.SelectedValue, monthEnd = ViewBag.SelectedMonthEnd.SelectedValue, yearEnd = ViewBag.SelectedYearEnd.SelectedValue, filial = ViewBag.SelectedFilial.SelectedValue })','body'); return false; " class="shared__text-black">@Model.AutoPart.Rows[i].Fact.ToString("N0")</a>
                                                 }
                                             </td>
                                             @if (Model.AutoPart.Rows[i].Percent > 3.00)
@@ -230,7 +230,7 @@
                                                     }
                                                     else
                                                     {
-                                                        <a href="" style="text-decoration:underline" onclick="kinkyApp.modal.showByUrl('@Url.Action("AutosDetails", "User", new { autosName = Model.AutoPartPast.Rows[i].Name, month = ViewBag.SelectedMonth.SelectedValue, year = ViewBag.SelectedYear.SelectedValue-1, monthEnd = ViewBag.SelectedMonthEnd.SelectedValue, yearEnd = ViewBag.SelectedYearEnd.SelectedValue-1, filial = ViewBag.SelectedFilial.SelectedValue })','body'); return false; " class="shared__text-black">@Model.AutoPartPast.Rows[i].Fact.ToString("N0")</a>
+                                                        <a href="" style="text-decoration:underline" onclick="atkpimfApp.modal.showByUrl('@Url.Action("AutosDetails", "User", new { autosName = Model.AutoPartPast.Rows[i].Name, month = ViewBag.SelectedMonth.SelectedValue, year = ViewBag.SelectedYear.SelectedValue-1, monthEnd = ViewBag.SelectedMonthEnd.SelectedValue, yearEnd = ViewBag.SelectedYearEnd.SelectedValue-1, filial = ViewBag.SelectedFilial.SelectedValue })','body'); return false; " class="shared__text-black">@Model.AutoPartPast.Rows[i].Fact.ToString("N0")</a>
                                                     }
                                                 </td>
                                                 @if (Model.AutoPartPast.Rows[i].Percent > 3.00)
@@ -321,7 +321,7 @@
                                             }
                                             else
                                             {
-                                                <a href="" style="text-decoration:underline" onclick="kinkyApp.modal.showByUrl('@Url.Action("PublicServicesDetails", "User", new { month = ViewBag.SelectedMonth.SelectedValue, year = ViewBag.SelectedYear.SelectedValue, monthEnd = ViewBag.SelectedMonthEnd.SelectedValue, yearEnd = ViewBag.SelectedYearEnd.SelectedValue, filial = ViewBag.SelectedFilial.SelectedValue })','body'); return false; " class="shared__text-black">@Model.AdminPart.Rows[i].Fact.ToString("N0")</a>
+                                                <a href="" style="text-decoration:underline" onclick="atkpimfApp.modal.showByUrl('@Url.Action("PublicServicesDetails", "User", new { month = ViewBag.SelectedMonth.SelectedValue, year = ViewBag.SelectedYear.SelectedValue, monthEnd = ViewBag.SelectedMonthEnd.SelectedValue, yearEnd = ViewBag.SelectedYearEnd.SelectedValue, filial = ViewBag.SelectedFilial.SelectedValue })','body'); return false; " class="shared__text-black">@Model.AdminPart.Rows[i].Fact.ToString("N0")</a>
                                             }
                                         </td>
                                         @if (Model.AdminPart.Rows[i].Percent > 3.00)
@@ -344,7 +344,7 @@
                                                 }
                                                 else
                                                 {
-                                                    <a href="" style="text-decoration:underline" onclick="kinkyApp.modal.showByUrl('@Url.Action("PublicServicesDetails", "User", new { month = ViewBag.SelectedMonth.SelectedValue, year = ViewBag.SelectedYear.SelectedValue-1, monthEnd = ViewBag.SelectedMonthEnd.SelectedValue, yearEnd = ViewBag.SelectedYearEnd.SelectedValue-1, filial = ViewBag.SelectedFilial.SelectedValue })','body'); return false; " class="shared__text-black">@Model.AdminPartPast.Rows[i].Fact.ToString("N0")</a>
+                                                    <a href="" style="text-decoration:underline" onclick="atkpimfApp.modal.showByUrl('@Url.Action("PublicServicesDetails", "User", new { month = ViewBag.SelectedMonth.SelectedValue, year = ViewBag.SelectedYear.SelectedValue-1, monthEnd = ViewBag.SelectedMonthEnd.SelectedValue, yearEnd = ViewBag.SelectedYearEnd.SelectedValue-1, filial = ViewBag.SelectedFilial.SelectedValue })','body'); return false; " class="shared__text-black">@Model.AdminPartPast.Rows[i].Fact.ToString("N0")</a>
                                                 }
                                             </td>
                                             @if (Model.AdminPartPast.Rows[i].Percent > 3.00)

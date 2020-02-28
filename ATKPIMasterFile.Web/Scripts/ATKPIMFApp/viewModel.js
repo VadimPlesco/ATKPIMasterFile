@@ -1,5 +1,5 @@
 ﻿
-kinkyApp.ViewModel = function () {
+atkpimfApp.ViewModel = function () {
 
     var self = this;
 
@@ -23,12 +23,12 @@ kinkyApp.ViewModel = function () {
 
             href = href.substring(0, i);
             $('#menu-item-dating').data('href', href);
-            $('#menu-item-dating').attr('onclick', "kinkyApp.updateElementById('" + href + "','body')");
+            $('#menu-item-dating').attr('onclick', "atkpimfApp.updateElementById('" + href + "','body')");
         }
 
 
         if (_myUserLastVar != null && (newValue.RealSocialStatus != self.MyUser().RealSocialStatus || _myUserLastVar.IsModel != newValue.IsModel)) {
-            kinkyApp.reloadBody();
+            atkpimfApp.reloadBody();
         }
         
         self.broadcastingModel.watchersCount(newValue.WatchersCount);
@@ -36,7 +36,7 @@ kinkyApp.ViewModel = function () {
         self.UserInfo({ AvatarUrl: newValue.AvatarUrl, AvatarWidth: newValue.AvatarWidth, Status: newValue.SocialStatusText });
 
         //if (_myUserLastVar == null || _myUserLastVar.UserId != newValue.UserId) {
-        //    kinkyApp.analytics.resetUser();
+        //    atkpimfApp.analytics.resetUser();
         //}
 
         if (newValue.SocialStatusText == '') {
@@ -61,13 +61,13 @@ kinkyApp.ViewModel = function () {
             var currentDate = +new Date();
             
             if (currentDate > confirmationStartDate) {
-                kinkyApp.modal.showByUrl('/ctrl/Account/EmailConfirmationAffiliate', null, false, true);
+                atkpimfApp.modal.showByUrl('/ctrl/Account/EmailConfirmationAffiliate', null, false, true);
                 self.emailConfirmationVisible = true;
             }
             else {
                 self.emailConfirmationVisible = true;
                 setTimeout(function() {
-                    kinkyApp.modal.showByUrl('/ctrl/Account/EmailConfirmationAffiliate', null, false, true);
+                    atkpimfApp.modal.showByUrl('/ctrl/Account/EmailConfirmationAffiliate', null, false, true);
                 }, confirmationStartDate - currentDate);
             }
         }
@@ -91,11 +91,11 @@ kinkyApp.ViewModel = function () {
     this.Contacts = ko.observableArray();
     this.ContactsMenu = ko.observableArray();
 
-    //    this.publishVideoModal = new kinkyApp.PublishVideoModal(this);
+    //    this.publishVideoModal = new atkpimfApp.PublishVideoModal(this);
 
-    this.broadcastingModel = new kinkyApp.PublishVideoModel('publisher-video-frame');
+    this.broadcastingModel = new atkpimfApp.PublishVideoModel('publisher-video-frame');
 
-    this.notificationsViewModel = new kinkyApp.NotificationsViewModel(this);
+    this.notificationsViewModel = new atkpimfApp.NotificationsViewModel(this);
 
     this.UnreadCount = ko.observable(0);
     this.maxContactsMenuCountPrev = -1;
@@ -182,7 +182,7 @@ kinkyApp.ViewModel = function () {
             });
 
             if (contact) {
-                kinkyApp.mapAsObservable(contact, "BuddyUser", user);
+                atkpimfApp.mapAsObservable(contact, "BuddyUser", user);
                 contact.BuddyUser = user;
             }
 
@@ -200,7 +200,7 @@ kinkyApp.ViewModel = function () {
         try {
             if (Object.prototype.toString.call(obj) == '[object Array]') {
                 for (var i = 0; i < obj.length; i++) {
-                    kinkyApp.mapAsObservable(obj[i], "BuddyUser", obj[i].BuddyUser);
+                    atkpimfApp.mapAsObservable(obj[i], "BuddyUser", obj[i].BuddyUser);
                     self.Contacts.push(obj[i]);
                 }
                 // self.Contacts(obj);
@@ -208,7 +208,7 @@ kinkyApp.ViewModel = function () {
             }
             else {
                 self.Contacts.remove(function (item) { return item.BuddyUserId == obj.BuddyUserId; });
-                kinkyApp.mapAsObservable(obj, "BuddyUser", obj.BuddyUser);
+                atkpimfApp.mapAsObservable(obj, "BuddyUser", obj.BuddyUser);
                 self.Contacts.unshift(obj);
 
                 var chat = ko.utils.arrayFirst(self.Chats(), function (item) {
@@ -295,7 +295,7 @@ kinkyApp.ViewModel = function () {
             //user = self.putUser(user);
 
             if (!chat) {
-                chat = new kinkyApp.ChatViewModel(self, user);
+                chat = new atkpimfApp.ChatViewModel(self, user);
                 self.Chats.push(chat);
                 chat.init();
             }
@@ -411,9 +411,9 @@ kinkyApp.ViewModel = function () {
             try {
                 console.log("ping");
                 sendToServer(function (serverHub) {
-                    console.log("ping siteVersion: " + kinkyApp.data.siteVersion);
+                    console.log("ping siteVersion: " + atkpimfApp.data.siteVersion);
                     if (serverHub.ping)
-                        serverHub.ping(kinkyApp.data.siteVersion);
+                        serverHub.ping(atkpimfApp.data.siteVersion);
                     //else
                     //    location.reload();
                 });
@@ -435,7 +435,7 @@ kinkyApp.ViewModel = function () {
     this.playAudio = function () {
         if (self.EnableAudio()) {
             try {
-                var snd = new Audio(kinkyApp.data.contentCdnPath + "Content/themes/dzen/images/chat.mp3?v1");
+                var snd = new Audio(atkpimfApp.data.contentCdnPath + "Content/themes/dzen/images/chat.mp3?v1");
                 snd.play();
             } catch (e) {
                 console.log(e);
@@ -445,7 +445,7 @@ kinkyApp.ViewModel = function () {
 
     this.checkUser = function () {
         if (!self.MyUser().CanSendMessages) {
-            kinkyApp.modal.showTopByUrl(kinkyApp.data.urlTmpl.MenuAvatarNotModeratedAlert, null, null, true);
+            atkpimfApp.modal.showTopByUrl(atkpimfApp.data.urlTmpl.MenuAvatarNotModeratedAlert, null, null, true);
             return false;
         }
         return true;
@@ -454,7 +454,7 @@ kinkyApp.ViewModel = function () {
     this.showChat = function (userId) {
         self.getUser(userId, function (user) {
             self.initChat(user, true);
-            kinkyApp.analytics.trackPageView("/OpenChatDialog", "Открыто окно чата");
+            atkpimfApp.analytics.trackPageView("/OpenChatDialog", "Открыто окно чата");
         }, true);
     };
 
@@ -483,8 +483,8 @@ kinkyApp.ViewModel = function () {
         }
     };
 };
-kinkyApp = kinkyApp || {};
-kinkyApp.mapAsObservable = function (obj, key, value) {
+atkpimfApp = atkpimfApp || {};
+atkpimfApp.mapAsObservable = function (obj, key, value) {
     if (obj[key + "Observable"] == null)
         obj[key + "Observable"] = ko.observable(value);
     else
@@ -492,5 +492,5 @@ kinkyApp.mapAsObservable = function (obj, key, value) {
     obj[key] = value;
 };
 
-kinkyApp.viewModel = new kinkyApp.ViewModel();
-kinkyApp.videoHandlers = {};
+atkpimfApp.viewModel = new atkpimfApp.ViewModel();
+atkpimfApp.videoHandlers = {};
