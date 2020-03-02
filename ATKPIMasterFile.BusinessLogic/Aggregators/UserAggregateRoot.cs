@@ -2081,9 +2081,7 @@ namespace ATKPIMasterFile.BusinessLogic.Aggregators
                 var autoPerson = auto.Person.Replace(" ", string.Empty);
                 if (autoPerson.Length > 0)
                 {
-                    //var d = 0;
-                    //if (auto.Person == "Cusnir  Valeriu")
-                    //    d = 1;
+                    
 
                     var tempSalariesInAuto =
                         tempSalaries.FirstOrDefault(p => p.Employee.Contains(autoPerson) && p.Year == auto.Year && p.Month == auto.Month);
@@ -2888,7 +2886,7 @@ namespace ATKPIMasterFile.BusinessLogic.Aggregators
             }
             catch (Exception e)
             {
-                //Debug.WriteLine(e.Message);
+                
             }
         }
 

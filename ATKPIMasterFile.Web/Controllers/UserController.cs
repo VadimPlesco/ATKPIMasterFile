@@ -70,19 +70,13 @@ namespace ATKPIMasterFile.Web.Controllers
             //if (SelectedFilial.Value == 0)
             return View();
 
-            //return View(_userAggregateRoot.GetKPI(SelectedFilial.Value, SelectedMonth.Value, SelectedYear.Value, 
-              //  SelectedMonthEnd.Value, SelectedYearEnd.Value));
-            // "../User/KPIFilial"
-            //return PartialView("KPIFilial", _userAggregateRoot.GetKPI(SelectedFilial.Value, SelectedMonth.Value, SelectedYear.Value, 
-            //    SelectedMonthEnd.Value, SelectedYearEnd.Value));
+           
         }
 
         [HttpPost]
         public ActionResult Index(int? SelectedFilial, short? SelectedYear, short? SelectedMonth, short? SelectedYearEnd, short? SelectedMonthEnd, bool? submit)
         {
-            //var dateTimeNow = DateTime.Now.AddMonths(-1);
-            //var ww = ViewBag.SelectedYear;
-            //if (SelectedYear.HasValue == false) SelectedYear = (short)(dateTimeNow.Year);
+           
             var years = new List<short> { 2015, 2016, 2017, 2018, 2019, 2020 };
             ViewBag.SelectedYear = new SelectList(years, SelectedYear);
 
