@@ -527,7 +527,7 @@ namespace ATKPIMasterFile.Web.Controllers
 
 
         public ActionResult AutosCompareReport(int? SelectedFilial, short? SelectedYear1, short? SelectedMonth1, short? SelectedYear2,
-          short? SelectedMonth2, short? SelectedCompareType, int? SelectedProject)
+          short? SelectedMonth2, short? SelectedCompareType, short? SelectedAutoType, int? SelectedProject)
         {
             var dateTimeNow = DateTime.Now.AddMonths(-1);
 
@@ -552,8 +552,19 @@ namespace ATKPIMasterFile.Web.Controllers
             if (SelectedCompareType.HasValue == false) SelectedCompareType = 1;
             ViewBag.SelectedCompareType = new MultiSelectList(new[]{
                   new SelectListItem{ Text="Департамент", Value="1"},
-                  new SelectListItem{ Text="Марка", Value="2"},
+                  new SelectListItem{ Text="Марка", Value="2"}
+                   //new SelectListItem{ Text="Тип Авто", Value="3"},
                 }, "Value", "Text");
+
+            if (SelectedAutoType.HasValue == false) SelectedAutoType = -1;
+            ViewBag.SelectedAutoType = new SelectList(new[]{
+                  new SelectListItem{ Text="Все",           Value="-1"},
+                  new SelectListItem{ Text="-",             Value="0"},
+                  new SelectListItem{ Text="Легковая",      Value="1"},
+                  new SelectListItem{ Text="Грузовая",      Value="2"},
+                  new SelectListItem{ Text="Админ",         Value="3"},
+                  new SelectListItem{ Text="Магистральный", Value="4"}
+                }, "Value", "Text", SelectedAutoType);
 
 
             if (SelectedProject.HasValue == false) SelectedProject = 0;
@@ -571,7 +582,7 @@ namespace ATKPIMasterFile.Web.Controllers
 
         [HttpPost]
         public JsonResult AutosCompareReport(int? SelectedFilial, int? SelectedDepartment, short? SelectedYear1, short? SelectedMonth1,
-           short? SelectedYear2, short? SelectedMonth2, short? SelectedCompareType, int? SelectedProject, bool SelectedByYear,
+           short? SelectedYear2, short? SelectedMonth2, short? SelectedCompareType, short? SelectedAutoType, int? SelectedProject, bool SelectedByYear,
            int jtStartIndex = 0, int jtPageSize = 0, string jtSorting = null)
         {
 
@@ -593,7 +604,8 @@ namespace ATKPIMasterFile.Web.Controllers
                 //var weight = autosWeight1.ToString("N0") + " - " + autosWeight2.ToString("N0") + ";";
 
                 var autos = _userAggregateRoot.GetAutosCompareReport(SelectedFilial.Value, SelectedDepartment.Value, SelectedMonth1.Value,
-                    SelectedYear1.Value, SelectedMonth2.Value, SelectedYear2.Value, SelectedCompareType.Value, SelectedProject.Value, SelectedByYear, jtSorting);
+                    SelectedYear1.Value, SelectedMonth2.Value, SelectedYear2.Value, SelectedCompareType.Value, SelectedAutoType.Value,
+                    SelectedProject.Value, SelectedByYear, jtSorting);
 
 
                 var autosCount = autos.Count;

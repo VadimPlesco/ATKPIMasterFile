@@ -302,11 +302,84 @@ namespace ATKPIMasterFile.BusinessLogic.Commands
         }
 
 
-        public List<AutoGroupedBy> GetGroupedByDepartmentAutos(ATDbEntities atDbEntities, int filialId, int departmentId,
-            short month, short year, int project, bool byYear)
+        //public List<AutoGroupedBy> GetGroupedByDepartmentAutos(ATDbEntities atDbEntities, int filialId, int departmentId,
+        //    short month, short year, int project, bool byYear)
+        //{
+
+        //    var stocks = Enumerable.Empty<Auto>();
+
+        //    if (byYear)
+        //        stocks = atDbEntities.Autos.Include("Department")
+        //        .Where(p => p.Year == year)
+        //        .AsQueryable();
+        //    else
+        //        stocks = atDbEntities.Autos.Include("Department")
+        //        .Where(p => p.Month == month && p.Year == year)
+        //        .AsQueryable();
+
+        //    if (filialId > 0) stocks = stocks.Where(s => s.FilialId == filialId);
+        //    if (departmentId > 0) stocks = stocks.Where(s => s.DepartmentId == departmentId);
+        //    if (project > 0) stocks = stocks.Where(s => s.ProjectId == project);
+
+        //    var autoGroupedBy =
+        //                    stocks
+        //                    .GroupBy(p => new { p.Department.Name })
+        //                        .Select(n => new AutoGroupedBy
+        //                        {
+        //                            Name = n.Key.Name,
+        //                            SumСombustible = n.Sum(c => c.LitersWork * c.СombustiblePrice),
+        //                            SumExpenses = n.Sum(c => c.Accumulators + c.Expenses + c.Lubricants + c.Repairs
+        //                                                + c.Services + c.Spares + c.TestareAuto + c.Tires),
+        //                            Count = n.Count()
+        //                        })
+        //                        .OrderBy(p => p.Name)
+        //                        .ToList();
+
+        //    return autoGroupedBy;
+        //}
+
+
+        //public List<AutoGroupedBy> GetGroupedByBrandAutos(ATDbEntities atDbEntities, int filialId, int departmentId,
+        //    short month, short year, int project, bool byYear)
+        //{
+
+        //    var stocks = Enumerable.Empty<Auto>();
+
+        //    if (byYear)
+        //        stocks = atDbEntities.Autos.Include("Department")
+        //        .Where(p => p.Year == year)
+        //        .AsQueryable();
+        //    else
+        //        stocks = atDbEntities.Autos.Include("Department")
+        //        .Where(p => p.Month == month && p.Year == year)
+        //        .AsQueryable();
+
+        //    if (filialId > 0) stocks = stocks.Where(s => s.FilialId == filialId);
+        //    if (departmentId > 0) stocks = stocks.Where(s => s.DepartmentId == departmentId);
+        //    if (project > 0) stocks = stocks.Where(s => s.ProjectId == project);
+
+        //    var autoGroupedBy =
+        //                    stocks
+        //                    .GroupBy(p => new { Brand = p.Brand.Trim() })
+        //                        .Select(n => new AutoGroupedBy
+        //                        {
+        //                            Name = n.Key.Brand,
+        //                            SumСombustible = n.Sum(c => c.LitersWork * c.СombustiblePrice),
+        //                            SumExpenses = n.Sum(c => c.Accumulators + c.Expenses + c.Lubricants + c.Repairs
+        //                                                + c.Services + c.Spares + c.TestareAuto + c.Tires),
+        //                            Count = n.Count()
+        //                        })
+        //                        .OrderBy(p => p.Name)
+        //                        .ToList();
+
+        //    return autoGroupedBy;
+        //}
+
+        public List<AutoGroupedBy> GetGroupedAutos<TKey>(ATDbEntities atDbEntities, int filialId, int departmentId,
+            short month, short year, int project, short autoType, bool byYear, Expression<Func<Auto, TKey>> myGroupingProperty)
         {
 
-            var stocks = Enumerable.Empty<Auto>();
+             var stocks = Enumerable.Empty<Auto>().AsQueryable();
 
             if (byYear)
                 stocks = atDbEntities.Autos.Include("Department")
@@ -317,83 +390,10 @@ namespace ATKPIMasterFile.BusinessLogic.Commands
                 .Where(p => p.Month == month && p.Year == year)
                 .AsQueryable();
 
-            if (filialId > 0) stocks = stocks.Where(s => s.FilialId == filialId);
-            if (departmentId > 0) stocks = stocks.Where(s => s.DepartmentId == departmentId);
-            if (project > 0) stocks = stocks.Where(s => s.ProjectId == project);
-
-            var autoGroupedBy =
-                            stocks
-                            .GroupBy(p => new { p.Department.Name })
-                                .Select(n => new AutoGroupedBy
-                                {
-                                    Name = n.Key.Name,
-                                    SumСombustible = n.Sum(c => c.LitersWork * c.СombustiblePrice),
-                                    SumExpenses = n.Sum(c => c.Accumulators + c.Expenses + c.Lubricants + c.Repairs
-                                                        + c.Services + c.Spares + c.TestareAuto + c.Tires),
-                                    Count = n.Count()
-                                })
-                                .OrderBy(p => p.Name)
-                                .ToList();
-
-            return autoGroupedBy;
-        }
-
-
-        public List<AutoGroupedBy> GetGroupedByBrandAutos(ATDbEntities atDbEntities, int filialId, int departmentId,
-            short month, short year, int project, bool byYear)
-        {
-
-            var stocks = Enumerable.Empty<Auto>();
-
-            if (byYear)
-                stocks = atDbEntities.Autos.Include("Department")
-                .Where(p => p.Year == year)
-                .AsQueryable();
-            else
-                stocks = atDbEntities.Autos.Include("Department")
-                .Where(p => p.Month == month && p.Year == year)
-                .AsQueryable();
 
             if (filialId > 0) stocks = stocks.Where(s => s.FilialId == filialId);
             if (departmentId > 0) stocks = stocks.Where(s => s.DepartmentId == departmentId);
-            if (project > 0) stocks = stocks.Where(s => s.ProjectId == project);
-
-            var autoGroupedBy =
-                            stocks
-                            .GroupBy(p => new { Brand = p.Brand.Trim() })
-                                .Select(n => new AutoGroupedBy
-                                {
-                                    Name = n.Key.Brand,
-                                    SumСombustible = n.Sum(c => c.LitersWork * c.СombustiblePrice),
-                                    SumExpenses = n.Sum(c => c.Accumulators + c.Expenses + c.Lubricants + c.Repairs
-                                                        + c.Services + c.Spares + c.TestareAuto + c.Tires),
-                                    Count = n.Count()
-                                })
-                                .OrderBy(p => p.Name)
-                                .ToList();
-
-            return autoGroupedBy;
-        }
-
-        public List<AutoGroupedBy> GetGroupedByTAutos<TKey>(ATDbEntities atDbEntities, int filialId, int departmentId,
-            short month, short year, int project, bool byYear, Expression<Func<Auto, TKey>> myGroupingProperty)
-        {
-
-           // var stocks = Enumerable.Empty<T>();
-           //// var stocks1 = Queryable..DefaultIfEmpty();
-
-           // if (byYear)
-           //     stocks = atDbEntities.Autos.Include("Department")
-           //     .Where(p => p.Year == year)
-           //     .AsQueryable();
-           // else
-              var  stocks = atDbEntities.Autos.Include("Department")
-                .Where(p => p.Month == month && p.Year == year)
-                .AsQueryable();
-
-
-            if (filialId > 0) stocks = stocks.Where(s => s.FilialId == filialId);
-            if (departmentId > 0) stocks = stocks.Where(s => s.DepartmentId == departmentId);
+            if (autoType >= 0) stocks = stocks.Where(s => s.Type == (AutoType)autoType);
             if (project > 0) stocks = stocks.Where(s => s.ProjectId == project);
 
             var autoGroupedBy =
@@ -404,8 +404,9 @@ namespace ATKPIMasterFile.BusinessLogic.Commands
                                     Name = n.Key.ToString(),
                                     SumСombustible = n.Sum(c => c.LitersWork * c.СombustiblePrice),
                                     SumExpenses = n.Sum(c => c.Accumulators + c.Expenses + c.Lubricants + c.Repairs
-                                                        + c.Services + c.Spares + c.TestareAuto + c.Tires),
-                                    Count = n.Count()
+                                                        + c.Services + c.Spares + c.TestareAuto + c.Tires)*1.2,
+                                    Count = n.Count(),
+                                    Weight = n.Sum(c => c.Weight ?? 0.0)
                                 })
                                 .OrderBy(p => p.Name)
                                 .ToList();

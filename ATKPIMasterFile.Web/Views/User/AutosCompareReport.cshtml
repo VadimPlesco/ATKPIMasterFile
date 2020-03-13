@@ -196,7 +196,7 @@
 
             <div class="shared__left-float shared__margin-right-double">
                 <div class="shared__text-white shared__font-bold shared__font-small shared__margin-bottom-single shared__height-small">
-                    Тип:
+                    Тип сравнения:
                 </div>
                 
                 @Html.DropDownList(
@@ -205,6 +205,19 @@
                     new { @style = "width:120px;" }
                 )
             </div>
+
+            <div class="shared__left-float shared__margin-right-double">
+                <div class="shared__text-white shared__font-bold shared__font-small shared__margin-bottom-single shared__height-small">
+                    Тип Авто:
+                </div>
+               
+                @Html.DropDownList(
+                    "SelectedAutoType",
+                    (IEnumerable<SelectListItem>)ViewBag.SelectedAutoType,
+                    new { @style = "width:120px;" }
+                )
+            </div>
+
 
             <div class="shared__left-float shared__margin-right-double">
                 <div class="shared__text-white shared__font-bold shared__font-small shared__margin-bottom-single shared__height-small">
@@ -267,13 +280,13 @@
 
                 Name1: {
                     title: $('#SelectedCompareType :selected').text() + ' ' + $('#SelectedMonth1').val() + '/' + $('#SelectedYear1').val(),
-                    width: '14%'
+                    width: '12%'
                 },
 
                 SumСombustible1: {
                     title: 'Топливо',
                     sorting: false,
-                    width: '12%',
+                    width: '10%',
                     display: function (data) {
                         return parseFloat(data.record.SumСombustible1.toFixed(0)).toLocaleString();
                     },
@@ -289,7 +302,7 @@
                 SumExpenses1: {
                     title: 'ТО',
                     sorting: false,
-                    width: '12%',
+                    width: '10%',
                     display: function (data) {
                         return parseFloat(data.record.SumExpenses1.toFixed(0)).toLocaleString();
                     },
@@ -316,6 +329,23 @@
                     }
                 },
 
+
+                Weight1: {
+                    title: 'Тоннаж',
+                    sorting: false,
+                    width: '7%',
+                    display: function (data) {
+                        return parseFloat(data.record.Weight1.toFixed(0)).toLocaleString();
+                    },
+                    footer: function (data) {
+                        var total = 0;
+                        $.each(data.Records, function (index, record) {
+                            total += Number(record.Weight1);
+                        });
+                        return (parseFloat(total.toFixed(0)).toLocaleString());
+                    }
+                },
+
                 Delimiter: {
                     title: '/',
                     sorting: false,
@@ -324,14 +354,14 @@
 
                 Name2: {
                     title: $('#SelectedCompareType :selected').text() + ' ' + $('#SelectedMonth2').val() + '/' + $('#SelectedYear2').val(),
-                    width: '14%'
+                    width: '12%'
                 },
 
 
                 SumСombustible2: {
                     title: 'Топливо',
                     sorting: false,
-                    width: '12%',
+                    width: '10%',
                     display: function (data) {
                         return parseFloat(data.record.SumСombustible2.toFixed(0)).toLocaleString();
                     },
@@ -347,7 +377,7 @@
                 SumExpenses2: {
                     title: 'ТО',
                     sorting: false,
-                    width: '12%',
+                    width: '10%',
                     display: function (data) {
                         return parseFloat(data.record.SumExpenses2.toFixed(0)).toLocaleString();
                     },
@@ -374,6 +404,23 @@
                         }
                 },
 
+                Weight2: {
+                    title: 'Тоннаж',
+                    sorting: false,
+                    width: '7%',
+                    display: function (data) {
+                        return parseFloat(data.record.Weight2.toFixed(0)).toLocaleString();
+                    },
+                    footer: function (data) {
+                        var total = 0;
+                        $.each(data.Records, function (index, record) {
+                            total += Number(record.Weight2);
+                        });
+                        return (parseFloat(total.toFixed(0)).toLocaleString());
+                    }
+                },
+
+
                 Difference: {
                     title: 'Разница',
                     display: function (data) {
@@ -393,10 +440,10 @@
             recordsLoaded: function (event, data) {
             for (var i = 0; i < data.records.length; i++) {
                 if (data.records[i].Difference > 20000) {
-                    $(".jtable tbody tr:eq(" + i + ") td:eq(9)").css({ 'background-color': 'red', 'color': 'white' });
+                    $(".jtable tbody tr:eq(" + i + ") td:eq(11)").css({ 'background-color': 'red', 'color': 'white' });
                 }
 
-                $(".jtable tbody tr:eq(" + i + ") td:eq(4)").css({ 'background-color': 'gray', 'color': 'white' });
+                $(".jtable tbody tr:eq(" + i + ") td:eq(5)").css({ 'background-color': 'gray', 'color': 'white' });
             }
 
             //var autosWeight = data.serverResponse['AutosWeight'];
@@ -474,7 +521,7 @@
 
                 SelectedByYear: $('#SelectedByYear').val(),
 
-                //Employee: $('#Employee').val()
+                SelectedAutoType: $('#SelectedAutoType').val()
 
             });
 
@@ -486,7 +533,7 @@
                     $(obj).find('.jtable-column-header-text').text(title1);
                 }
 
-                if (idx == 5) {
+                if (idx == 6) {
                     $(obj).find('.jtable-column-header-text').text(title2);
                 }
             });

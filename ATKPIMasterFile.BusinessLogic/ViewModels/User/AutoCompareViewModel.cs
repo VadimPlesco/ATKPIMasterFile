@@ -16,6 +16,8 @@ namespace ATKPIMasterFile.BusinessLogic.ViewModels.User
 
         public int Count { get; set; }
 
+        public double Weight { get; set; }
+
     }
 
 
@@ -29,6 +31,8 @@ namespace ATKPIMasterFile.BusinessLogic.ViewModels.User
 
         public int Count1 { get; set; }
 
+        public double Weight1 { get; set; }
+
         public string Delimiter { get; set; }
 
         public string Name2 { get; set; }
@@ -38,6 +42,8 @@ namespace ATKPIMasterFile.BusinessLogic.ViewModels.User
         public double SumExpenses2 { get; set; }
 
         public int Count2 { get; set; }
+
+        public double Weight2 { get; set; }
 
         public double Difference { get; set; }
 

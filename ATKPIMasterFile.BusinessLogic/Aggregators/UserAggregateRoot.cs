@@ -13,6 +13,7 @@ using System.Drawing.Drawing2D;
 using System.Web.Helpers;
 using System.IO;
 using System.Web.Hosting;
+using System.Linq.Expressions;
 
 namespace ATKPIMasterFile.BusinessLogic.Aggregators
 {
@@ -2508,7 +2509,7 @@ namespace ATKPIMasterFile.BusinessLogic.Aggregators
 
 
         public List<AutoCompareViewModel> GetAutosCompareReport(int filialId, int departmentId, short month1, short year1, short month2, short year2,
-            short type, int project, bool byYear, string jtSorting)
+            short type, short autoType, int project, bool byYear, string jtSorting)
         {
 
             if (filialId == -1)
@@ -2517,28 +2518,23 @@ namespace ATKPIMasterFile.BusinessLogic.Aggregators
             var autosGroupedByDepartment1 = new List<AutoGroupedBy>();
             var autosGroupedByDepartment2 = new List<AutoGroupedBy>();
 
-            if (type == 1)
+            Expression<Func<Auto, object>> autoGroupingProperty 
+                = p => p.Department.Name;
+
+            if (type == 2)
             {
-                autosGroupedByDepartment1 =
-                   _userCommands.GetGroupedByDepartmentAutos(_ade, filialId, departmentId, month1, year1, project, byYear);
-
-                autosGroupedByDepartment2 =
-                    _userCommands.GetGroupedByDepartmentAutos(_ade, filialId, departmentId, month2, year2, project, byYear);
+                autoGroupingProperty = p => p.Brand;
             }
-            else if (type == 2)
+            else if (type == 3)
             {
-                //autosGroupedByDepartment1 =
-                //   _userCommands.GetGroupedByBrandAutos(_ade, filialId, departmentId, month1, year1, project, byYear);
-
-                //autosGroupedByDepartment2 =
-                //    _userCommands.GetGroupedByBrandAutos(_ade, filialId, departmentId, month2, year2, project, byYear);
-
-                autosGroupedByDepartment1 =
-                  _userCommands.GetGroupedByTAutos(_ade, filialId, departmentId, month1, year1, project, byYear, p=>p.Brand);
-
-                autosGroupedByDepartment2 =
-                    _userCommands.GetGroupedByTAutos(_ade, filialId, departmentId, month2, year2, project, byYear, p => p.Brand);
+                autoGroupingProperty = p => p.Type;
             }
+
+            autosGroupedByDepartment1 =
+                _userCommands.GetGroupedAutos(_ade, filialId, departmentId, month1, year1, project, autoType, byYear, autoGroupingProperty);
+
+            autosGroupedByDepartment2 =
+               _userCommands.GetGroupedAutos(_ade, filialId, departmentId, month2, year2, project, autoType, byYear, autoGroupingProperty);
 
             var tempAutos = GetAutoCompareViewModel(autosGroupedByDepartment1, autosGroupedByDepartment2);
 
@@ -2581,6 +2577,7 @@ namespace ATKPIMasterFile.BusinessLogic.Aggregators
                     SumСombustible1 = Math.Round(auto.SumСombustible, 2),
                     SumExpenses1 = Math.Round(auto.SumExpenses, 2),
                     Count1 = auto.Count,
+                    Weight1 = Math.Round(auto.Weight, 2),
                     Difference = Math.Round(0 - auto.SumСombustible - auto.SumExpenses, 2)
                 });
             }
@@ -2595,6 +2592,7 @@ namespace ATKPIMasterFile.BusinessLogic.Aggregators
                     existingSal.SumСombustible2 = Math.Round(auto.SumСombustible, 2);
                     existingSal.SumExpenses2 = Math.Round(auto.SumExpenses, 2);
                     existingSal.Count2 = auto.Count;
+                    existingSal.Weight2 = Math.Round(auto.Weight, 2); ;
                     existingSal.Difference = Math.Round(existingSal.SumСombustible2 + existingSal.SumExpenses2 
                         - existingSal.SumСombustible1 - existingSal.SumExpenses1, 2);
                 }
@@ -2606,6 +2604,7 @@ namespace ATKPIMasterFile.BusinessLogic.Aggregators
                         SumСombustible2 = Math.Round(auto.SumСombustible, 2),
                         SumExpenses2 = Math.Round(auto.SumExpenses, 2),
                         Count2 = auto.Count,
+                        Weight2 = Math.Round(auto.Weight, 2),
                         Difference = Math.Round(auto.SumСombustible + auto.SumExpenses, 2)
                     });
                 }
